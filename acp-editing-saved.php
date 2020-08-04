@@ -22,11 +22,10 @@ add_action( 'acp/editing/saved', 'acp_editing_saved_usage', 10, 3 );
  *
  * @param AC\Column $column
  * @param int       $id
- * @param string    $value
  */
 function acp_editing_saved_update_post( AC\Column $column, $id ) {
 	if ( 'post' === $column->get_list_screen()->get_meta_type() ) {
-		wp_update_post( array( 'ID' => $id ) );
+		wp_update_post( [ 'ID' => $id ] );
 	}
 }
 
@@ -37,11 +36,10 @@ add_action( 'acp/editing/saved', 'acp_editing_saved_update_post', 10, 2 );
  *
  * @param AC\Column $column
  * @param int       $id
- * @param string    $value
  */
 function acp_editing_saved_trigger_update_for_custom_field( AC\Column $column, $id ) {
 	if ( $column instanceof AC\Column\CustomField && 'my_key' === $column->get_meta_key() ) {
-		wp_update_post( array( 'ID' => $id ) );
+		wp_update_post( [ 'ID' => $id ] );
 	}
 }
 
@@ -52,14 +50,16 @@ add_action( 'acp/editing/saved', 'acp_editing_saved_trigger_update_for_custom_fi
  *
  * @param AC\Column $column
  * @param int       $id
- * @param string    $value
  */
 function acp_editing_saved_update_wc_price_on_base_price( AC\Column $column, $id ) {
 	if ( $column instanceof AC\Column\CustomField && 'base_price' === $column->get_meta_key() ) {
 		$product = wc_get_product( $id );
+
 		if ( $product ) {
+
 			$factor = 1.21;
 			$new_price = (float) get_post_meta( $id, 'base_price', true ) * $factor;
+
 			$product->set_regular_price( $new_price );
 			$product->save();
 		}

@@ -6,11 +6,6 @@
  */
 
 /**
- * This is an example for the default behavior. This should not be necessary
- */
-add_filter( 'ac/column/custom_field/use_text_input', '__return_false' );
-
-/**
  * This is an example on how to enable the text input instead of the ajax drop down
  * Use this hook if you experiencing performance issues on loading the available meta keys
  */

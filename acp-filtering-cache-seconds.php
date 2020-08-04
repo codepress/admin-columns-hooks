@@ -15,4 +15,4 @@ function acp_filter_increase_cache_seconds( $seconds ) {
 	return 300;
 }
 
-add_filter( 'acp/filtering/cache/seconds', array( $this, 'increase_cache_duration' ), 10, 1 );
+add_filter( 'acp/filtering/cache/seconds', [ $this, 'increase_cache_duration' ], 10, 1 );

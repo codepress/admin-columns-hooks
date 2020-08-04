@@ -6,8 +6,7 @@
  */
 
 /**
- * @param int                 $number
- * @param ACP\Export\Strategy $stategy
+ * @param int $number
  *
  * @return int
  */
@@ -16,7 +15,7 @@ function acp_export_increase_number_per_iteration( $number ) {
 	return 500;
 }
 
-add_filter( 'ac/export/exportable_list_screen/num_items_per_iteration', 'acp_export_increase_number_per_iteration', 10, 1 );
+add_filter( 'ac/export/exportable_list_screen/num_items_per_iteration', 'acp_export_increase_number_per_iteration' );
 
 /**
  * Set a different number of items to be exported per iteration for different list screens

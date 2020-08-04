@@ -5,13 +5,12 @@
  * Default amount is 2000
  */
 
-
 /**
  * Prepare less items if you experiencing performance issues or time out issues
  *
  * @param int $amount
  */
-function acp_editing_bulk_less_items_per_iteration( $amount ){
+function acp_editing_bulk_less_items_per_iteration( $amount ) {
 	return 100;
 }
 

@@ -33,12 +33,12 @@ function acp_sorting_custom_field_date_type( $date_type, AC\Column\CustomField $
 
 	// Change to numeric when working with UNIX Timestamps
 	if ( 'my_timestamp_field' === $column->get_meta_key() ) {
-		$date_type = ACP\Sorting\Type\DataType::NUMERIC; // 'numeric
+		$date_type = ACP\Sorting\Type\DataType::NUMERIC; // 'numeric'
 	}
 
 	// Change to date when working with dates without time notations
 	if ( 'my_date_field' === $column->get_meta_key() ) {
-		$date_type = ACP\Sorting\Type\DataType::DATE; // 'numeric
+		$date_type = ACP\Sorting\Type\DataType::DATE; // 'date'
 	}
 
 	return $date_type;

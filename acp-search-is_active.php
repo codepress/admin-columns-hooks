@@ -53,12 +53,11 @@ add_filter( 'acp/search/is_active', 'acp_search_disable_for_custom_post_type', 1
 /**
  * Disable Smart Filtering for specific user roles
  *
- * @param bool          $is_active
- * @param AC\ListScreen $list_screen
+ * @param bool $is_active
  *
  * @return bool
  */
-function acp_search_disable_for_authors( $is_active, AC\ListScreen $list_screen ) {
+function acp_search_disable_for_authors( $is_active ) {
 	$user = wp_get_current_user();
 
 	if ( in_array( 'author', (array) $user->roles ) ) {
@@ -68,4 +67,4 @@ function acp_search_disable_for_authors( $is_active, AC\ListScreen $list_screen 
 	return $is_active;
 }
 
-add_filter( 'acp/search/is_active', 'acp_search_disable_for_authors', 10, 2 );
+add_filter( 'acp/search/is_active', 'acp_search_disable_for_authors' );
