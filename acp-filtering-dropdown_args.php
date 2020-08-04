@@ -23,6 +23,7 @@ function acp_filtering_dropdown_args_usage( $args, AC\Column $column ) {
 
 add_filter( 'acp/filtering/dropdown_args', 'acp_filtering_dropdown_args_usage', 10, 2 );
 
+// todo: remove?
 $defaults = [
 	'order'        => true,
 	'options'      => [],
