@@ -4,13 +4,11 @@
  * Mostly use to alter the behavior of Custom Field columns
  */
 
-use AC\Column;
-
 /**
  * Example code that explains what can be done with this hook
  *
- * @param            $data
- * @param Column $column
+ * @param array     $data
+ * @param AC\Column $column
  *
  * @return mixed
  */
@@ -34,8 +32,8 @@ add_filter( 'acp/editing/view_settings', 'acp_editing_view_settings_usage_exampl
  * Change the editing settings for a specific Custom Field
  * Set the edit type to a drop down box with defined options
  *
- * @param            $data
- * @param Column $column
+ * @param array     $data
+ * @param AC\Column $column
  *
  * @return mixed
  */
