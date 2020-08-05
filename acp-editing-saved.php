@@ -17,21 +17,6 @@ function acp_editing_saved_usage( AC\Column $column, $id, $value ) {
 add_action( 'acp/editing/saved', 'acp_editing_saved_usage', 10, 3 );
 
 /**
- * By default, the post modified date is not updated when using inline edit with Admin Column Pro.
- * This example shows how you can change the modified date of a post when using inline edit.
- *
- * @param AC\Column $column
- * @param int       $id
- */
-function acp_editing_saved_update_post( AC\Column $column, $id ) {
-	if ( 'post' === $column->get_list_screen()->get_meta_type() ) {
-		wp_update_post( [ 'ID' => $id ] );
-	}
-}
-
-add_action( 'acp/editing/saved', 'acp_editing_saved_update_post', 10, 2 );
-
-/**
  * In this example we will Save the submitted value to another custom field.
  *
  * @param AC\Column $column
@@ -52,18 +37,27 @@ function acp_editing_save_value_to_another_custom_field( AC\Column $column, $id,
 add_action( 'acp/editing/saved', 'acp_editing_save_value_to_another_custom_field', 10, 3 );
 
 /**
- * Trigger a post update when a specific custom field is saved
+ * By default, the post modified date is not always updated when using inline or bulk edit with Admin Column Pro.
+ * For example, when updating meta data the `wp_update_post` is not called, which is the call that set then post's modified date.
+ * In this example we will trigger this call manually.
  *
  * @param AC\Column $column
  * @param int       $id
  */
-function acp_editing_saved_trigger_update_for_custom_field( AC\Column $column, $id ) {
-	if ( $column instanceof AC\Column\CustomField && 'my_custom_field' === $column->get_meta_key() ) {
+function acp_editing_update_post_modified_date( AC\Column $column, $id ) {
+
+	// Update the `modified_date` after making any changes using inline or bulk editing
+	if ( 'post' === $column->get_meta_type() ) {
+		wp_update_post( [ 'ID' => $id ] );
+	}
+
+	// Update the `modified_date` after making changesto a specific custom field
+	if ( 'post' === $column->get_meta_type() && $column instanceof AC\Column\CustomField && 'my_custom_field' === $column->get_meta_key() ) {
 		wp_update_post( [ 'ID' => $id ] );
 	}
 }
 
-add_action( 'acp/editing/saved', 'acp_editing_saved_trigger_update_for_custom_field', 10, 2 );
+add_action( 'acp/editing/saved', 'acp_editing_update_post_modified_date', 10, 2 );
 
 /**
  * Update a WooCommerce product price based on a custom field
