@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This filter allows you to set the data type of a custom `date` field. Not setting the correct
- * format can result in incorrect sorting results.
+ * This filter allows you to set the data type of a custom `date` field used to sort the column.
+ * Not setting the correct date format can result in incorrect sorting results.
  */
 
 /**
