@@ -13,7 +13,7 @@
 function acp_custom_field_stored_date_format( $date_format, ACP\Column\CustomField $column ) {
 
 	// Specifify the date format for a specific custom field
-	 // $date_format = ACP\Search\Comparison\Meta\DateFactory::FORMAT_DATE; // 'Y-m-d'
+	// $date_format = 'Y-m-d';
 
 	return $date_format;
 }
