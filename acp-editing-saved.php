@@ -32,13 +32,33 @@ function acp_editing_saved_update_post( AC\Column $column, $id ) {
 add_action( 'acp/editing/saved', 'acp_editing_saved_update_post', 10, 2 );
 
 /**
+ * In this example we will Save the submitted value to another custom field.
+ *
+ * @param AC\Column $column
+ * @param int       $id
+ * @param string    $value
+ */
+function acp_editing_save_value_to_another_custom_field( AC\Column $column, $id, $value ) {
+
+	if ( $column instanceof AC\Column\CustomField && 'my_custom_field' === $column->get_meta_key() && 'post' === $column->get_meta_type() ) {
+
+		// Modify the value if necessairy
+		// $value = $value * 2;
+
+		update_post_meta( $id, 'my_second_custom_field', $value );
+	}
+}
+
+add_action( 'acp/editing/saved', 'acp_editing_save_value_to_another_custom_field', 10, 3 );
+
+/**
  * Trigger a post update when a specific custom field is saved
  *
  * @param AC\Column $column
  * @param int       $id
  */
 function acp_editing_saved_trigger_update_for_custom_field( AC\Column $column, $id ) {
-	if ( $column instanceof AC\Column\CustomField && 'my_key' === $column->get_meta_key() ) {
+	if ( $column instanceof AC\Column\CustomField && 'my_custom_field' === $column->get_meta_key() ) {
 		wp_update_post( [ 'ID' => $id ] );
 	}
 }
@@ -50,20 +70,20 @@ add_action( 'acp/editing/saved', 'acp_editing_saved_trigger_update_for_custom_fi
  *
  * @param AC\Column $column
  * @param int       $id
+ * @param string    $value
  */
-function acp_editing_saved_update_wc_price_on_base_price( AC\Column $column, $id ) {
-	if ( $column instanceof AC\Column\CustomField && 'base_price' === $column->get_meta_key() ) {
+function acp_editing_saved_update_wc_price_on_base_price( AC\Column $column, $id, $value ) {
+	if ( $column instanceof AC\Column\CustomField && 'product' === $column->get_post_type() && 'base_price' === $column->get_meta_key() ) {
+
+		$price = (float) $value;
+
+		// Modify price if neccessairy
+		$price = $price * 1.2;
+
 		$product = wc_get_product( $id );
-
-		if ( $product ) {
-
-			$factor = 1.21;
-			$new_price = (float) get_post_meta( $id, 'base_price', true ) * $factor;
-
-			$product->set_regular_price( $new_price );
-			$product->save();
-		}
+		$product->set_regular_price( $price );
+		$product->save();
 	}
 }
 
-add_action( 'acp/editing/saved', 'acp_editing_saved_update_wc_price_on_base_price', 10, 2 );
+add_action( 'acp/editing/saved', 'acp_editing_saved_update_wc_price_on_base_price', 10, 3 );
