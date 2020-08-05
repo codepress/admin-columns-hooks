@@ -8,36 +8,47 @@
 /**
  * Usage of the hook
  *
- * @param string                $data_type 'string', 'numeric', 'date' or 'datetime'. Default is 'datetime'.
+ * @param string                $date_type 'string', 'numeric', 'date' or 'datetime'. Default is 'datetime'.
  * @param AC\Column\CustomField $column
  *
  * @return string
  */
-function acp_sorting_custom_field_date_type( $data_type, AC\Column\CustomField $column ) {
+function acp_sorting_custom_field_date_type( $date_type, AC\Column\CustomField $column ) {
 
 	// Change the custom field type
 	// $data_type = 'datetime';
 
-	return $data_type;
+	return $date_type;
 }
 
 add_filter( 'acp/sorting/custom_field/date_type', 'acp_sorting_custom_field_date_type', 10, 2 );
 
 /**
- * Change date format for a specific meta key from a `datetime` to a `numeric` type.
+ * Change date format for a specific meta key from the default `datetime` to a `date` or `numeric` type.
  *
- * @param string                $data_type
+ * @param string                $date_type
  * @param AC\Column\CustomField $column
  *
  * @return string
  */
-function acp_set_sorting_date_type_for_a_specific_meta_key( $data_type, AC\Column\CustomField $column ) {
+function acp_set_sorting_date_type_for_a_specific_meta_key( $date_type, AC\Column\CustomField $column ) {
 
-	if ( 'my_custom_date_key' === $column->get_meta_key() ) {
-		$data_type = ACP\Sorting\Type\DataType::NUMERIC; // 'numeric'
+	// This is the default settings for a custom field date type
+	if ( 'my_datetime_field' === $column->get_meta_key() ) {
+		$date_type = ACP\Sorting\Type\DataType::DATETIME; // 'datetime'
 	}
 
-	return $data_type;
+	// Change to numeric when working with UNIX Timestamps
+	if ( 'my_timestamp_field' === $column->get_meta_key() ) {
+		$date_type = ACP\Sorting\Type\DataType::NUMERIC; // 'numeric'
+	}
+
+	// Change to date when working with dates without time notations
+	if ( 'my_date_field' === $column->get_meta_key() ) {
+		$date_type = ACP\Sorting\Type\DataType::DATE; // 'date'
+	}
+
+	return $date_type;
 }
 
 add_filter( 'acp/sorting/custom_field/date_type', 'acp_set_sorting_date_type_for_a_specific_meta_key', 10, 2 );
