@@ -17,7 +17,7 @@ function acp_editing_saved_usage( AC\Column $column, $id, $value ) {
 add_action( 'acp/editing/saved', 'acp_editing_saved_usage', 10, 3 );
 
 /**
- * In this example we will Save the submitted value to another custom field.
+ * In this example we will save the submitted value to second custom field.
  *
  * @param AC\Column $column
  * @param int       $id
