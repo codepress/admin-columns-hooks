@@ -23,7 +23,7 @@ function acp_sorting_default( $args, AC\ListScreen $list_screen ) {
 	return $args;
 }
 
-add_filter( 'acp/sorting/default', 'acp_sorting_default' );
+add_filter( 'acp/sorting/default', 'acp_sorting_default', 10, 2 );
 
 /**
  * Change the default sorting of a Posts list table to another column
@@ -47,4 +47,4 @@ function acp_sorting_default_posts_list_table( $args, AC\ListScreen $list_screen
 	return $args;
 }
 
-add_filter( 'acp/sorting/default', 'acp_sorting_default_posts_list_table' );
+add_filter( 'acp/sorting/default', 'acp_sorting_default_posts_list_table', 10, 2 );
