@@ -1,6 +1,6 @@
 <?php
 /**
- * This hook allows you to alter the value of the exported column / post.
+ * This hook allows you to alter the exported value when generating a CSV file
  */
 
 /**
