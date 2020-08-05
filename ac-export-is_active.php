@@ -1,26 +1,46 @@
 <?php
+
 /**
- * This hook allows you to alter the default sorting for a list screen when you visit the page for the first time or when you reset sorting
- * Altering the value must probably always be done for a specific list screen ID
+ * This hooks allows you to disable the export functionality for specific list tables.
  */
 
 /**
- * Example on how to change the default sorting for a specific list screen
+ * Disable the export functionality on the Uses list table. The `Export` button wil also be removed.
  *
- * @param array         $default
- * @param AC\ListScreen $list_screen
+ * @param bool          $is_active
+ * @param AC\ListScreen $listScreen
  *
- * @return array
+ * @return bool
  */
-
-function acp_sorting_set_default( $default, AC\ListScreen $list_screen ) {
-
-	// Set the default sorting to the title in descending order for a specific list ID
-	if ( '5f0ef965c16d6' === $list_screen->get_id() ) {
-		$default = [ 'title', 'desc' ];
+function acp_disable_export_for_users_list_table( $is_active, AC\ListScreen $listScreen ) {
+	if ( $listScreen instanceof AC\ListScreen\User ) {
+		$is_active = false;
 	}
 
-	return $default;
+	return $is_active;
 }
 
-add_filter( 'acp/sorting/default', 'acp_sorting_set_default', 10, 2 );
+add_filter( 'acp/export/is_active', 'acp_disable_export_for_users_list_table', 10, 2 );
+
+/**
+ * Disable the export functionality for a specific `Post Type`, in this the `Page` list table.
+ *
+ * @param bool          $is_active
+ * @param AC\ListScreen $listScreen
+ *
+ * @return bool
+ */
+function acp_disable_export_for_page_list_table( $is_active, AC\ListScreen $listScreen ) {
+	if ( $listScreen instanceof AC\ListScreen\Post && 'page' === $listScreen->get_post_type() ) {
+		$is_active = false;
+	}
+
+	return $is_active;
+}
+
+add_filter( 'acp/export/is_active', 'acp_disable_export_for_page_list_table', 10, 2 );
+
+/**
+ * Disable the export functionality completey for all list tables
+ */
+add_filter( 'acp/export/is_active', '__return_false' );
