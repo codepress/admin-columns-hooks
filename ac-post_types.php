@@ -6,14 +6,13 @@
  */
 
 /**
- * @param array $post_types
+ * @param array $post_types [ $post_type => $label ]
  *
  * @return array
  */
 function acp_post_types( array $post_types ) {
 
-	// Disable a post type by unsetting them
-	// unset( $post_types['page'] );
+	// Modify $post_types
 
 	return $post_types;
 }
