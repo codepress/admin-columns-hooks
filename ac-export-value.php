@@ -9,7 +9,7 @@
  * @param string    $value
  * @param AC\Column $column
  *
- * @return false|string
+ * @return string
  */
 function acp_export_change_export_date_format( $value, AC\Column $column ) {
 
@@ -31,7 +31,7 @@ add_filter( 'ac/export/value', 'acp_export_change_export_date_format', 10, 2 );
  * @param AC\Column $column
  * @param int       $id
  *
- * @return false|string
+ * @return string
  */
 function acp_export_change_acf_image_export_value( $value, AC\Column $column, $id ) {
 

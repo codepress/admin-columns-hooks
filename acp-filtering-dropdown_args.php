@@ -13,24 +13,24 @@
  */
 function acp_filtering_dropdown_args_usage( $args, AC\Column $column ) {
 
-	// $args['order'] = boolean - set if the filter options must be sorted alphabetically
-	// $args['options' ] = [] - key-value pair of the available options
-	// $args['empty_option'] = boolean - Show 'empty' and 'not empty' options for the drop down
-	// $args['limit'] = int - Max number of items that can be displayed in the drop down
+	// Example usage:
+
+	// Set to `true` when the options must be sorted alphabetically
+	// $args['order'] = true;
+
+	// Use to modify the available filter options
+	// $args['options'][ $key ] = $label;
+
+	// Hide the `empty` and `non empty` options
+	// $args['empty_option'] = false;
+
+	// Limit the number of items in the dropdown
+	// $args['limit'] = 1000;
 
 	return $args;
 }
 
 add_filter( 'acp/filtering/dropdown_args', 'acp_filtering_dropdown_args_usage', 10, 2 );
-
-// todo: remove?
-$defaults = [
-	'order'        => true,
-	'options'      => [],
-	'empty_option' => false,
-	'label'        => $label, // backcompat
-	'limit'        => 5000,
-];
 
 /**
  * Remove the empty options for the Custom Field column
