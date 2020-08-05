@@ -5,9 +5,9 @@
  */
 
 /**
- * Change the default export delimiter to ';'
+ * Change the default export delimiter from a ',' to ';'
  *
- * @param string $delimiter
+ * @param string $delimiter Default is a comma ','
  *
  * @return string
  */
@@ -15,4 +15,4 @@ function acp_export_change_export_delimiter( $delimiter ) {
 	return ';';
 }
 
-add_filter( 'ac/export/exporter_csv/delimiter', 'acp_export_change_export_delimiter', 10, 1 );
+add_filter( 'ac/export/exporter_csv/delimiter', 'acp_export_change_export_delimiter' );
