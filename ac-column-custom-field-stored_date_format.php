@@ -33,7 +33,7 @@ function acp_set_custom_field_stored_date_format( $date_format, ACP\Column\Custo
 	if ( 'my_date_meta_key' === $column->get_meta_key() ) {
 
 		// Set the date format to 'U' Unix timestamp
-		$date_format = ACP\Search\Comparison\Meta\DateFactory::FORMAT_UNIX_TIMESTAMP; // 'U'
+		$date_format = 'U';
 	}
 
 	return $date_format;
