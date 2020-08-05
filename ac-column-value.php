@@ -22,32 +22,6 @@ function ac_column_value_usage( $value, $id, AC\Column $column ) {
 add_filter( 'ac/column/value', 'ac_column_value_usage', 10, 3 );
 
 /**
- * Example on how to alter the value based on an ACF Column. It defines different variables that can be used to check for specific conditionals
- *
- * @param string    $value
- * @param int       $id
- * @param AC\Column $column
- *
- * @return string
- */
-function ac_column_value_acf_example( $value, $id, AC\Column $column ) {
-	if ( $column instanceof ACA\ACF\Column ) {
-		$acf_field = $column->get_acf_field(); // Print_r this var for all information
-		$meta_key = $column->get_meta_key();
-		$acf_field_key = $column->get_acf_field_option( 'key' );
-		$acf_type = $column->get_acf_field_option( 'type' ); // Get the ACF field type
-
-		if ( $acf_type === 'text' ) {
-			$value .= ' (text)';
-		}
-	}
-
-	return $value;
-}
-
-add_filter( 'ac/column/value', 'ac_column_value_acf_example', 10, 3 );
-
-/**
  * Example on how to wrap the value of a specific Custom Field column of the type 'color' in markup to give it a background color
  *
  * @param string    $value
@@ -103,6 +77,54 @@ function ac_column_value_add_class_attribute_based_on_value( $value, $id, AC\Col
 }
 
 add_filter( 'ac/column/value', 'ac_column_value_add_class_attribute_based_on_value', 10, 3 );
+
+/**
+ * Example on how to alter the value based on an ACF Column. It defines different variables that can be used to check for specific conditionals
+ *
+ * @param string    $value
+ * @param int       $id
+ * @param AC\Column $column
+ *
+ * @return string
+ */
+function ac_column_value_acf_example( $value, $id, AC\Column $column ) {
+
+	// Check for the ACF column
+	if ( $column instanceof ACA\ACF\Column ) {
+
+		/**
+		 * @var array $acf_field Contains all ACF field information
+		 */
+		$acf_field = $column->get_acf_field();
+
+		/**
+		 * @var string $meta_key Custom Field `meta_key`
+		 */
+		$meta_key = $column->get_meta_key();
+
+		/**
+		 * @var string $acf_field_hash_key The unique identifier for the ACF field
+		 */
+		$acf_field_hash_key = $column->get_acf_field_option( 'key' );
+
+		/**
+		 * @var string $acf_field_type 'text|number|url|radio|post_object|link|wysiwyg'
+		 * @see ACA\ACF\FieldType Contains the complete list of available ACF field types
+		 */
+		$acf_field_type = $column->get_acf_field_option( 'type' );
+
+		// Modify the rendered column value for the ACF `text` field type
+		if ( 'my_custom_field_key' === $meta_key && 'text' === $acf_field_type ) {
+
+			// In this example we will append a string
+			$value .= ' ( Additional Text )';
+		}
+	}
+
+	return $value;
+}
+
+add_filter( 'ac/column/value', 'ac_column_value_acf_example', 10, 3 );
 
 /**
  * Example to target the taxonomy column and prefix it with the taxonomy name
