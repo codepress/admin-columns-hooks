@@ -10,7 +10,9 @@
  * @return string
  */
 function ac_heading_label( $label, AC\Column $column ) {
-	// Insert code
+
+	// Change column label
+	// $label = 'My Custom Label';
 
 	return $label;
 }
