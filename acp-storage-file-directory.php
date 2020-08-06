@@ -13,7 +13,7 @@
  * Set the storage directory to a folder on your file system.
  * Only a single folder can be active at the time by using this hook.
  *
- * @param string|null $path Default is NULL
+ * @param string $path Directory path to write the storage files to
  *
  * @return string
  */
