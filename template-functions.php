@@ -30,7 +30,7 @@ function acp_loaded() {
 	 * The Column Name/ID will now be visible for each column.
 	 * @var string $column_name The column's identifier
 	 */
-	$column_name = "<COLUMN NAME/ID GOES HERE>"; // e.g. '5f2a7bb898468' or 'post_title'
+	$column_name = "<COLUMN NAME/ID GOES HERE>"; // e.g. '5f2a7bb898468' or 'title'
 
 	/**
 	 * Get a single column object
