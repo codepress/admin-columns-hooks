@@ -14,15 +14,9 @@ function acp_loaded() {
 	$list_screen_id = "<LIST SCREEN ID GOES HERE>"; // e.g. '5e84e8302794f'
 
 	/**
-	 * @var AC\ListScreen $list_screen
-	 */
-	$list_screen = ac_get_list_screen( $list_screen_id );
-
-	/**
-	 * Get all column objects
 	 * @var AC\Column[] $columns
 	 */
-	$columns = $list_screen->get_columns();
+	$columns = ac_get_columns( $list_screen_id );
 
 }
 
