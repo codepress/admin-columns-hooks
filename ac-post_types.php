@@ -1,12 +1,12 @@
 <?php
 
 /**
- * This hooks allows you to disable admin columns support for certain post types. The post type will mno longer show up
- * in the admin columns menu, The actual post type will keep working and will NOT be disabled.
+ * This hooks allows you to disable admin columns support for certain post types. The post type will no longer show up
+ * in the admin columns menu. The actual post type will keep working and will NOT be disabled.
  */
 
 /**
- * @param array $post_types [ $post_type => $label ]
+ * @param array $post_types [ $name => $label ]
  *
  * @return array
  */

@@ -39,7 +39,10 @@ function ac_column_value_custom_field_example( $value, $id, AC\Column $column ) 
 		// Custom Field Type can be 'text|textarea|color|date|numeric|image|link|checkmark|library_id|title_by_id|user_by_id'. The default is ''.
 		$custom_field_type = $column->get_field_type();
 
-		if ( 'my_hex_color' === $meta_key && 'color' !== $custom_field_type ) {
+		if (
+			'my_hex_color' === $meta_key
+			&& 'color' === $custom_field_type
+		) {
 			$value = sprintf( '<span style="background-color: %1$s">%1$s</span>', $value );
 		}
 	}
