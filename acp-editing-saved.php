@@ -51,7 +51,7 @@ function acp_editing_update_post_modified_date( AC\Column $column, $id ) {
 		wp_update_post( [ 'ID' => $id ] );
 	}
 
-	// Update the `modified_date` after making changesto a specific custom field
+	// Update the `modified_date` after making changes to a specific custom field
 	if ( 'post' === $column->get_meta_type() && $column instanceof AC\Column\CustomField && 'my_custom_field' === $column->get_meta_key() ) {
 		wp_update_post( [ 'ID' => $id ] );
 	}
