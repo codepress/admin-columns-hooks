@@ -147,3 +147,32 @@ function ac_column_value_taxonomy_example( $value, $id, AC\Column $column ) {
 }
 
 add_filter( 'ac/column/value', 'ac_column_value_taxonomy_example', 10, 3 );
+
+/**
+ * Example on how to strip HTML from the exported value
+ *
+ * @param string    $value
+ * @param int       $id
+ * @param AC\Column $column
+ *
+ * @return string
+ */
+function ac_column_value_strip_html( $value, $id, AC\Column $column ) {
+
+	// Check for a custom field column
+	if ( $column instanceof ACP\Column\CustomField ) {
+
+		// The meta key you want the HTML stripped from
+		$meta_key = 'my_custom_field_key';
+
+		if ( $meta_key === $column->get_meta_key() ) {
+
+			// Strips all HTML. Example: '<a href="#">my label</a>' will become 'my label'.
+			$value = strip_tags( $value );
+		}
+	}
+
+	return $value;
+}
+
+add_filter( 'ac/column/value', 'ac_column_value_strip_html', 10, 3 );
