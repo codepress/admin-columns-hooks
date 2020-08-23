@@ -53,3 +53,32 @@ function acp_export_change_acf_image_export_value( $value, AC\Column $column, $i
 }
 
 add_filter( 'ac/export/value', 'acp_export_change_acf_image_export_value', 10, 3 );
+
+/**
+ * Example on how to strip HTML from the exported value
+ *
+ * @param string    $value
+ * @param AC\Column $column
+ *
+ * @return string
+ */
+function ac_column_export_value_strip_html( $value, AC\Column $column ) {
+
+	// Check for a custom field column
+	if ( $column instanceof ACP\Column\CustomField ) {
+
+		// The meta key you want the HTML stripped from
+		$meta_key = 'my_custom_field_key';
+
+		if ( $meta_key === $column->get_meta_key() ) {
+
+			// Strips all HTML.
+			// Example: '<a href="#">my label</a>' will become 'my label'.
+			$value = strip_tags( $value );
+		}
+	}
+
+	return $value;
+}
+
+add_filter( 'ac/export/value', 'ac_column_export_value_strip_html', 10, 2 );
