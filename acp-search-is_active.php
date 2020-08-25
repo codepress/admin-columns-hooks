@@ -9,12 +9,12 @@
 add_filter( 'acp/search/is_active', '__return_true' );
 
 /**
- * Disable Smart Filtering for all lisdt screens
+ * Disable Smart Filtering for all list screens
  */
 add_filter( 'acp/search/is_active', '__return_false' );
 
 /**
- * Disable Smart Filtering for the media overview page
+ * Disable Smart Filtering for the media list table
  *
  * @param bool          $is_active
  * @param AC\ListScreen $list_screen
@@ -32,7 +32,7 @@ function acp_search_disable_for_media( $is_active, AC\ListScreen $list_screen ) 
 add_filter( 'acp/search/is_active', 'acp_search_disable_for_media', 10, 2 );
 
 /**
- * Disable Smart Filtering for a custom overview page
+ * Disable Smart Filtering on a custom post type list table
  *
  * @param bool          $is_active
  * @param AC\ListScreen $list_screen
@@ -60,6 +60,7 @@ add_filter( 'acp/search/is_active', 'acp_search_disable_for_custom_post_type', 1
 function acp_search_disable_for_authors( $is_active ) {
 	$user = wp_get_current_user();
 
+	// Disable smart filter for users with the role 'author'
 	if ( in_array( 'author', (array) $user->roles ) ) {
 		$is_active = false;
 	}
