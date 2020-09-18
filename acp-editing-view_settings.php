@@ -52,3 +52,25 @@ function acp_editing_view_settings_change_select_options_example( $data, AC\Colu
 }
 
 add_filter( 'acp/editing/view_settings', 'acp_editing_view_settings_change_select_options_example', 10, 2 );
+
+/**
+ * Change the editing settings for a specific Custom Field
+ * Set specific numeric field settings
+ *
+ * @param array     $data
+ * @param AC\Column $column
+ *
+ * @return mixed
+ */
+function acp_editing_view_settings_change_numeric_custom_field_example( $data, AC\Column $column ) {
+	if ( $column instanceof AC\Column\Meta && 'my_custom_numeric_field_key' === $column->get_meta_key() ) {
+		$data['type'] = 'number';
+		$data['range_min'] = 1;
+		$data['range_max'] = 5;
+		$data['range_step'] = 1;
+	}
+
+	return $data;
+}
+
+add_filter( 'acp/editing/view_settings', 'acp_editing_view_settings_change_numeric_custom_field_example', 10, 2 );
