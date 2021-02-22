@@ -70,3 +70,21 @@ function acp_filter_format_options_as_currency( $args ) {
 }
 
 add_filter( 'acp/filtering/dropdown_args', 'acp_filter_format_options_as_currency', 10, 1 );
+
+/**
+ * @param array     $args
+ * @param AC\Column $column
+ *
+ * @return array
+ */
+function acp_filter_format_unserialize_options( $args, AC\Column $column ) {
+	if( $column instanceof AC\Column\CustomField && 'key_to_alter_options' === $column->get_meta_key() ){
+		foreach ( $args['options'] as $value => $label ) {
+			$args['options'][ $value ] = implode( ', ', unserialize( $label ) );
+		}
+	}
+
+	return $args;
+}
+
+add_filter( 'acp/filtering/dropdown_args', 'acp_filter_format_unserialize_options', 10, 2 );
