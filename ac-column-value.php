@@ -5,9 +5,9 @@
  */
 
 /**
- * @param string    $value
- * @param int       $id
- * @param AC\Column $column
+ * @param string    $value  The column value that is displayed within a cell on the list table
+ * @param int       $id     Post ID, User ID, Comment ID, Attachement ID or Term ID
+ * @param AC\Column $column Column object
  *
  * @return string
  */
@@ -24,9 +24,9 @@ add_filter( 'ac/column/value', 'ac_column_value_usage', 10, 3 );
 /**
  * Example on how to wrap the value of a specific Custom Field column of the type 'color' in markup to give it a background color
  *
- * @param string    $value
- * @param int       $id
- * @param AC\Column $column
+ * @param string    $value  Column value
+ * @param int       $id     Post ID, User ID, Comment ID, Attachement ID or Term ID
+ * @param AC\Column $column Column object
  *
  * @return string
  */
@@ -55,9 +55,9 @@ add_filter( 'ac/column/value', 'ac_column_value_custom_field_example', 10, 3 );
 /**
  * Example on how to add a `class` attribute to the rendered value that can be styled by CSS.
  *
- * @param string    $value
- * @param int       $id
- * @param AC\Column $column
+ * @param string    $value  Column value
+ * @param int       $id     Post ID, User ID, Comment ID, Attachement ID or Term ID
+ * @param AC\Column $column Column object
  *
  * @return string
  */
@@ -84,9 +84,9 @@ add_filter( 'ac/column/value', 'ac_column_value_add_class_attribute_based_on_val
 /**
  * Example on how to alter the value based on an ACF Column. It defines different variables that can be used to check for specific conditionals
  *
- * @param string    $value
- * @param int       $id
- * @param AC\Column $column
+ * @param string    $value  Column value
+ * @param int       $id     Post ID, User ID, Comment ID, Attachement ID or Term ID
+ * @param AC\Column $column Column object
  *
  * @return string
  */
@@ -132,9 +132,9 @@ add_filter( 'ac/column/value', 'ac_column_value_acf_example', 10, 3 );
 /**
  * Example to target the taxonomy column and prefix it with the taxonomy name
  *
- * @param string    $value
- * @param int       $id
- * @param AC\Column $column
+ * @param string    $value  Column value
+ * @param int       $id     Post ID, User ID, Comment ID, Attachement ID or Term ID
+ * @param AC\Column $column Column object
  *
  * @return string
  */
