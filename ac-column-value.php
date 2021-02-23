@@ -22,7 +22,7 @@ function ac_column_value_usage( $value, $id, AC\Column $column ) {
 add_filter( 'ac/column/value', 'ac_column_value_usage', 10, 3 );
 
 /**
- * Example on how to wrap the value of a specific Custom Field column of the type 'color' in markup to give it a background color
+ * Example on how to wrap the value of a specific Custom Field column of the type 'color' in markup to give it a background color.
  *
  * @param string    $value  Column value
  * @param int       $id     Post ID, User ID, Comment ID, Attachement ID or Term ID
@@ -82,6 +82,38 @@ function ac_column_value_add_class_attribute_based_on_value( $value, $id, AC\Col
 add_filter( 'ac/column/value', 'ac_column_value_add_class_attribute_based_on_value', 10, 3 );
 
 /**
+ * Example on how change the rendered custom field value on the 'Page' list table.
+ *
+ * @param string    $value  Column value
+ * @param int       $id     Post ID, User ID, Comment ID, Attachement ID or Term ID
+ * @param AC\Column $column Column object
+ *
+ * @return string
+ */
+function ac_column_value_display_word_count( $value, $id, AC\Column $column ) {
+	if ( $column instanceof ACP\Column\CustomField ) {
+
+		// Post type
+		$post_type = $column->get_post_type();
+
+		// Custom Field Key
+		$meta_key = $column->get_meta_key();
+
+		if (
+			'page' === $post_type
+			&& 'my_custom_text_field' === $meta_key
+		) {
+			// We use our own utility method to count the number of words. But feel free to use your own logic.
+			$value = ac_helper()->string->word_count( $value );
+		}
+	}
+
+	return $value;
+}
+
+add_filter( 'ac/column/value', 'ac_column_value_display_word_count', 10, 3 );
+
+/**
  * Example on how to alter the value based on an ACF Column. It defines different variables that can be used to check for specific conditionals
  *
  * @param string    $value  Column value
@@ -117,7 +149,10 @@ function ac_column_value_acf_example( $value, $id, AC\Column $column ) {
 		$acf_field_type = $column->get_acf_field_option( 'type' );
 
 		// Modify the rendered column value for the ACF `text` field type
-		if ( 'my_custom_field_key' === $meta_key && 'text' === $acf_field_type ) {
+		if (
+			'my_custom_field_key' === $meta_key
+			&& 'text' === $acf_field_type
+		) {
 
 			// In this example we will append a string
 			$value .= ' ( Additional Text )';
