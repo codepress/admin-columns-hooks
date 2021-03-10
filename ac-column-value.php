@@ -31,7 +31,7 @@ add_filter( 'ac/column/value', 'ac_column_value_usage', 10, 3 );
  * @return string
  */
 function ac_column_value_custom_field_example( $value, $id, AC\Column $column ) {
-	if ( $column instanceof ACP\Column\CustomField ) {
+	if ( $column instanceof AC\Column\CustomField ) {
 
 		// Custom Field Key
 		$meta_key = $column->get_meta_key();
@@ -62,7 +62,7 @@ add_filter( 'ac/column/value', 'ac_column_value_custom_field_example', 10, 3 );
  * @return string
  */
 function ac_column_value_add_class_attribute_based_on_value( $value, $id, AC\Column $column ) {
-	if ( $column instanceof ACP\Column\CustomField ) {
+	if ( $column instanceof AC\Column\CustomField ) {
 
 		// Add a unqiue `class` attribute to the rendered value.
 
@@ -91,7 +91,7 @@ add_filter( 'ac/column/value', 'ac_column_value_add_class_attribute_based_on_val
  * @return string
  */
 function ac_column_value_display_word_count( $value, $id, AC\Column $column ) {
-	if ( $column instanceof ACP\Column\CustomField ) {
+	if ( $column instanceof AC\Column\CustomField ) {
 
 		// Post type
 		$post_type = $column->get_post_type();
@@ -174,7 +174,7 @@ add_filter( 'ac/column/value', 'ac_column_value_acf_example', 10, 3 );
  * @return string
  */
 function ac_column_value_taxonomy_example( $value, $id, AC\Column $column ) {
-	if ( $column instanceof ACP\Column\Post\Taxonomy ) {
+	if ( $column instanceof AC\Column\Post\Taxonomy ) {
 		$value = $column->get_taxonomy() . ' > ' . $value;
 	}
 
