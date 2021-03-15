@@ -36,7 +36,7 @@ function ac_column_value_custom_field_example( $value, $id, AC\Column $column ) 
 		// Custom Field Key
 		$meta_key = $column->get_meta_key();
 
-		// Custom Field Type can be 'text|textarea|color|date|numeric|image|link|checkmark|library_id|title_by_id|user_by_id'. The default is ''.
+		// Custom Field Type can be 'excerpt|color|date|numeric|image|has_content|link|checkmark|library_id|title_by_id|user_by_id|array|count'. The default is ''.
 		$custom_field_type = $column->get_field_type();
 
 		if (
