@@ -74,3 +74,33 @@ function acp_editing_view_settings_change_numeric_custom_field_example( $data, A
 }
 
 add_filter( 'acp/editing/view_settings', 'acp_editing_view_settings_change_numeric_custom_field_example', 10, 2 );
+
+/**
+ * Enable Bulk Editing for Content column
+ *
+ * @param array     $data
+ * @param AC\Column $column
+ *
+ * @return mixed
+ */
+
+function acp_editing_view_settings_enable_bulk_editing_for_content_column( $data, AC\Column $column ) {
+	if ( $column instanceof AC\Column\Post\Content ) {
+		$data['bulk_editable'] = true;
+	}
+
+	return $data;
+}
+
+add_filter( 'acp/editing/view_settings', 'acp_editing_view_settings_enable_bulk_editing_for_content_column', 10, 2 );
+
+/**
+ * Enables the clear button for every column
+ */
+function acp_editing_view_settings_always_enable_clear_button( $data ) {
+	$data['clear_button'] = true;
+
+	return $data;
+}
+
+add_filter( 'acp/editing/view_settings', 'acp_editing_view_settings_always_enable_clear_button', 10, 1 );
