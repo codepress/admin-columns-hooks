@@ -1,0 +1,15 @@
+# OS
+.DS_Stor*
+._*
+.Spotlight-V100
+.Trashes
+Icon*
+ehthumbs.d*
+Thumbs.d*
+/.idea*
+# Project specific
+config.codekit
+*.scssc
+/build*
+/_build*
+/src/node_modules*
