@@ -81,3 +81,25 @@ function acp_editing_saved_update_wc_price_on_base_price( AC\Column $column, $id
 }
 
 add_action( 'acp/editing/saved', 'acp_editing_saved_update_wc_price_on_base_price', 10, 3 );
+
+/**
+ * Update a taxonomy term after using inline or bulk editing
+ *
+ * @param AC\Column $column
+ * @param int       $id
+ * @param string    $value
+ */
+function acp_editing_saved_update_taxonomy_term( AC\Column $column, $id, $value ) {
+
+	if ( 'term' === $column->get_meta_type() ) {
+
+		// Modify term arguments
+		$args = [
+			'description' => 'My new value: ' . $value
+		];
+
+		wp_update_term( $id, $column->get_taxonomy(), $args );
+	}
+}
+
+add_action( 'acp/editing/saved', 'acp_editing_saved_update_taxonomy_term', 10, 3 );
