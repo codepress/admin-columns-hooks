@@ -45,14 +45,15 @@ add_action( 'acp/editing/saved', 'acp_editing_save_value_to_another_custom_field
  * @param int       $id
  */
 function acp_editing_update_post_modified_date( AC\Column $column, $id ) {
+	$meta_type = $column->get_list_screen()->get_meta_type();
 
 	// Update the `modified_date` after making any changes using inline or bulk editing
-	if ( 'post' === $column->get_meta_type() ) {
+	if ( AC\MetaType::POST === $meta_type ) {
 		wp_update_post( [ 'ID' => $id ] );
 	}
 
 	// Update the `modified_date` after making changes to a specific custom field
-	if ( 'post' === $column->get_meta_type() && $column instanceof AC\Column\CustomField && 'my_custom_field' === $column->get_meta_key() ) {
+	if ( AC\MetaType::POST === $meta_type && $column instanceof AC\Column\Meta && 'my_custom_field' === $column->get_meta_key() ) {
 		wp_update_post( [ 'ID' => $id ] );
 	}
 }
@@ -95,7 +96,7 @@ function acp_editing_saved_update_taxonomy_term( AC\Column $column, $id, $value 
 
 		// Modify term arguments
 		$args = [
-			'description' => 'My new value: ' . $value
+			'description' => 'My new value: ' . $value,
 		];
 
 		wp_update_term( $id, $column->get_taxonomy(), $args );
