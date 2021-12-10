@@ -22,4 +22,4 @@ function acp_filtering_disable_cache_for_custom_field_column( $enabled, AC\Colum
 		: $enabled;
 }
 
-add_filter( 'acp/filtering/cache/enable', 'acp_filtering_disable_cache_for_custom_field_column' );
+add_filter( 'acp/filtering/cache/enable', 'acp_filtering_disable_cache_for_custom_field_column', 10, 2 );
