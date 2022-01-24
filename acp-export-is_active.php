@@ -31,7 +31,7 @@ add_filter( 'acp/export/is_active', 'acp_disable_export_for_users_list_table', 1
  * @return bool
  */
 function acp_disable_export_for_page_list_table( $is_active, AC\ListScreen $listScreen ) {
-	if ( $listScreen instanceof AC\ListScreen\Post && 'page' === $listScreen->get_post_type() ) {
+	if ( $listScreen instanceof AC\ListScreenPost && 'page' === $listScreen->get_post_type() ) {
 		$is_active = false;
 	}
 
@@ -41,6 +41,6 @@ function acp_disable_export_for_page_list_table( $is_active, AC\ListScreen $list
 add_filter( 'acp/export/is_active', 'acp_disable_export_for_page_list_table', 10, 2 );
 
 /**
- * Disable the export functionality completey for all list tables
+ * Disable the export functionality completely for all list tables
  */
 add_filter( 'acp/export/is_active', '__return_false' );

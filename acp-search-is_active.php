@@ -16,7 +16,7 @@ add_filter( 'acp/search/is_active', '__return_false' );
 /**
  * Disable Smart Filtering for the media list table
  *
- * @param bool          $is_active
+ * @param bool $is_active
  * @param AC\ListScreen $list_screen
  *
  * @return bool
@@ -34,14 +34,14 @@ add_filter( 'acp/search/is_active', 'acp_search_disable_for_media', 10, 2 );
 /**
  * Disable Smart Filtering on a custom post type list table
  *
- * @param bool          $is_active
+ * @param bool $is_active
  * @param AC\ListScreen $list_screen
  *
  * @return bool
  */
 function acp_search_disable_for_custom_post_type( $is_active, AC\ListScreen $list_screen ) {
 	// The following condition does the same: $list_screen->get_key() === 'my_custom_post_type'
-	if ( $list_screen instanceof ACP\ListScreen\Post && 'my_custom_post_type' === $list_screen->get_post_type() ) {
+	if ( $list_screen instanceof AC\ListScreenPost && 'my_custom_post_type' === $list_screen->get_post_type() ) {
 		$is_active = false;
 	}
 
