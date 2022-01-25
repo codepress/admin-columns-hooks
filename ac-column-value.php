@@ -182,3 +182,22 @@ function ac_column_value_taxonomy_example( $value, $id, AC\Column $column ) {
 }
 
 add_filter( 'ac/column/value', 'ac_column_value_taxonomy_example', 10, 3 );
+
+/**
+ * Example to wrap a custom field columns value in a link tag
+ *
+ * @param string    $value  Column value
+ * @param int       $id     Post ID, User ID, Comment ID, Attachement ID or Term ID
+ * @param AC\Column $column Column object
+ *
+ * @return string
+ */
+function ac_column_value_wrap_custom_field_in_post_link( $value, $id, AC\Column $column ) {
+	if ( $column->get_list_screen() instanceof AC\ListScreen\Post && $column instanceof AC\Column\CustomField && 'my_own_key' === $column->get_meta_key() ) {
+		$value = sprintf( '<a href="%s">%s</a>', get_permalink( $id ), $value );
+	}
+
+	return $value;
+}
+
+add_filter( 'ac/column/value', 'ac_column_value_wrap_custom_field_in_post_link', 10, 3 );
