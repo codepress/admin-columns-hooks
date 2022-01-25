@@ -19,7 +19,7 @@ function acp_editing_bulk_editing_disable_for_custom_field_column( $is_active, A
 	return $is_active;
 }
 
-add_filter( 'acp/editing/bulk-edit-active', 'acp_editing_bulk_editing_disable_for_custom_field_column', 10, 2 );
+add_filter( 'acp/editing/bulk/is_active', 'acp_editing_bulk_editing_disable_for_custom_field_column', 10, 2 );
 
 /**
  * Disable bulk editing for a specific column by targeting the column by its name
@@ -40,7 +40,7 @@ function acp_editing_bulk_disable_for_column_by_name( $is_active, AC\Column $col
 	return $is_active;
 }
 
-add_filter( 'acp/editing/bulk-edit-active', 'acp_editing_bulk_disable_for_column_by_name', 10, 2 );
+add_filter( 'acp/editing/bulk/is_active', 'acp_editing_bulk_disable_for_column_by_name', 10, 2 );
 
 /**
  * Disable bulk editing for a specific column by targeting the column by its type
@@ -62,4 +62,4 @@ function acp_editing_bulk_disable_for_column_type( $is_active, AC\Column $column
 	return $is_active;
 }
 
-add_filter( 'acp/editing/bulk-edit-active', 'acp_editing_bulk_disable_for_column_type', 10, 2 );
+add_filter( 'acp/editing/bulk/is_active', 'acp_editing_bulk_disable_for_column_type', 10, 2 );
