@@ -3,6 +3,11 @@
  * This hook allows you to alter the exported value when generating a CSV file
  */
 
+
+add_filter( 'ac/export/value',function( $value, AC\Column $column, $id ) {
+	return $value;
+}, 10, 3 );
+
 /**
  * Change the exported date format to 'Y-m-d' for a custom field.
  *

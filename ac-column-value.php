@@ -21,6 +21,11 @@ function ac_column_value_usage( $value, $id, AC\Column $column ) {
 
 add_filter( 'ac/column/value', 'ac_column_value_usage', 10, 3 );
 
+/** Shorter notation */
+add_filter( 'ac/column/value', function( $value, $id, AC\Column $column ){
+	return $value;
+}, 10, 3 );
+
 /**
  * Example on how to wrap the value of a specific Custom Field column of the type 'color' in markup to give it a background color.
  *
