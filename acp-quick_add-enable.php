@@ -1,6 +1,6 @@
 <?php
 /**
- * This hooks allows you to enable Quick Add for a specific List Screen
+ * This hooks allows you to enable Quick Add for a specific List Screen in the Hide on Screen Settings
  */
 
 /**
