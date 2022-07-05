@@ -1,16 +1,19 @@
 <?php
 /**
- * Change the amount of items being prepared per batch process for Bulk Edit.
- * This process is done before the actual processing finds place.
+ * The filter acp/editing/bulk/updated_rows_per_iteration allows you to set the number of records that is processed per iteration with Bulk Edit.
+ * The default number is 250, but if you have a slow server, you may want to lower this number.
  */
 
 /**
- * Prepare less items if you experiencing performance issues or time out issues
+ * Reduce the amount of items that is saved per batch operation.
+ * Lower this when experiencing time out issues
  *
- * @param int $amount Default is `2000`
+ * @param int $number Default is 250.
+ *
+ * @return int
  */
-function acp_editing_bulk_less_items_per_iteration( $amount ) {
-	return 100; // Default is 2000
+function acp_editing_bulk_reduce_records_to_update_per_iteration( $number ) {
+	return 10; // Default is 250
 }
 
-add_filter( 'acp/editing/bulk/editable_rows_per_iteration', 'acp_editing_bulk_less_items_per_iteration' );
+add_filter( 'acp/editing/bulk/updated_rows_per_iteration', 'acp_editing_bulk_reduce_records_to_update_per_iteration' );
