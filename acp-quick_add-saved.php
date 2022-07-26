@@ -1,6 +1,6 @@
 <?php
 /**
- * This hooks allows you to modify the newly create item after using Quick Add
+ * The acp/quick_add/saved action fires after a new item is created when using Quick Add.
  */
 
 /**
@@ -10,7 +10,7 @@
  * @return void
  */
 function acp_quick_add_saved( $id, AC\ListScreen $list_screen ) {
-	// TODO modify item
+	// Place your code here
 }
 add_action( 'acp/quick_add/saved', 'acp_quick_add_saved' );
 
