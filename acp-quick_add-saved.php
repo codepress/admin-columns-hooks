@@ -1,6 +1,6 @@
 <?php
 /**
- * The acp/quick_add/saved action fires after a new item is created when using Quick Add.
+ * The acp/quick_add/saved action fires after a new item is created using Quick Add.
  */
 
 /**
