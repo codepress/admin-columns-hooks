@@ -4,7 +4,7 @@
  */
 
 /**
- * @param int          $id
+ * @param int $id
  * @param AC\ListScreen $list_screen
  *
  * @return void
@@ -12,8 +12,8 @@
 function acp_quick_add_saved( $id, AC\ListScreen $list_screen ) {
 	// Place your code here
 }
-add_action( 'acp/quick_add/saved', 'acp_quick_add_saved' );
 
+add_action( 'acp/quick_add/saved', 'acp_quick_add_saved' );
 
 /**
  * Add the filtered term to the newly created post (with the use of quick add)

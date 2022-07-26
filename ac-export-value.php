@@ -87,3 +87,23 @@ function ac_column_export_value_strip_html( $value, AC\Column $column ) {
 }
 
 add_filter( 'ac/export/value', 'ac_column_export_value_strip_html', 10, 2 );
+
+/**
+ * Change the number format to use comma (,) as its decimal separator
+ */
+function acp_export_change_number_format( $value, AC\Column $column ) {
+
+	// The meta key you want to apply a different number format
+	$meta_key = 'my_number_meta_key';
+
+	// Check for a custom field column type and the correct meta key
+	if ( $column instanceof \AC\Column\CustomField && $meta_key === $column->get_meta_key() ) {
+
+		// Change decimal separator to a comma
+		$value = number_format( $value, 2, ',', '' );
+	}
+
+	return $value;
+}
+
+add_filter( 'ac/export/value', 'acp_export_change_number_format', 10, 2 );
