@@ -12,18 +12,18 @@ class CustomFieldTimestampMapper {
 	}
 
 	public function register() {
-		add_filter( 'acp/editing/view_settings', [ $this, 'alterEditSettings' ], 10, 2 );
+		add_filter( 'acp/editing/view', [ $this, 'alterEditSettings' ], 10, 2 );
 		add_filter( 'acp/editing/save_value', [ $this, 'alterSaveValue' ], 10, 2 );
 		add_filter( 'acp/sorting/custom_field/date_type', [ $this, 'changeSortingDateType' ], 10, 2 );
 		add_filter( 'acp/custom_field/stored_date_format', [ $this, 'changeStoredDateFormat' ], 10, 2 );
 	}
 
-	public function alterEditSettings( $data, $column ) {
+	public function alterEditSettings( ACP\Editing\View $view, $column ) {
 		if ( $this->isColumnMatch( $column ) ) {
-			$data['type'] = 'date_time';
+			return new ACP\Editing\View\DateTime();
 		}
 
-		return $data;
+		return $view;
 	}
 
 	public function alterSaveValue( $value, AC\Column $column ) {
