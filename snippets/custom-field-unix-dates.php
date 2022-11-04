@@ -18,7 +18,7 @@ class CustomFieldTimestampMapper {
 		add_filter( 'acp/custom_field/stored_date_format', [ $this, 'changeStoredDateFormat' ], 10, 2 );
 	}
 
-	public function alterEditSettings( ACP\Editing\View $view, $column ) {
+	public function alterEditSettings( $view, $column ) {
 		if ( $this->isColumnMatch( $column ) ) {
 			return new ACP\Editing\View\DateTime();
 		}
