@@ -36,7 +36,7 @@ add_filter( 'acp/editing/view', function ( $view, AC\Column $column, $context, A
  * @return ACP\Editing\View|false
  */
 function acp_editing_view_enable_bulk_for_slug( $view, AC\Column $column, $context, ACP\Editing\Service $service ) {
-	if( $column instanceof AC\Column\Post\Slug && 'bulk' === $context ){
+	if ( $column instanceof AC\Column\Post\Slug && 'bulk' === $context ) {
 		$view = $service->get_view( 'single' );
 	}
 
@@ -44,3 +44,16 @@ function acp_editing_view_enable_bulk_for_slug( $view, AC\Column $column, $conte
 }
 
 add_filter( 'acp/editing/view', 'acp_editing_view_enable_bulk_for_slug', 10, 4 );
+
+function acp_editing_view_custom_select( $view, AC\Column $column, $context, ACP\Editing\Service $service ) {
+	if ( $column instanceof AC\Column\CustomField && $column->get_meta_key() === 'your-meta-key' ) {
+		$view = new ACP\Editing\View\Select( [
+			'value'  => 'Label',
+			'value2' => 'Label 2',
+		] );
+	}
+
+	return $view;
+}
+
+add_filter( 'acp/editing/view', 'acp_editing_view_custom_select', 10, 4 );
