@@ -57,3 +57,12 @@ function acp_editing_view_custom_select( $view, AC\Column $column, $context, ACP
 }
 
 add_filter( 'acp/editing/view', 'acp_editing_view_custom_select', 10, 4 );
+
+// Change the color palette for every color editable
+add_filter( 'acp/editing/view', function ( $view ) {
+	if ( $view instanceof ACP\Editing\View\Color ) {
+		$view->set_palletes( [ '#fe3d6c', '#02abab', '#ffee85', '#242830', '#3D4350', '#CACED9' ] );
+	}
+
+	return $view;
+} );
