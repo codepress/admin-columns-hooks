@@ -6,24 +6,24 @@
  */
 
 /** Usage Example: Short notation */
-add_filter( 'ac/list_screen/is_active', function ( bool $active, WP_Screen $screen ) {
-	return $active;
-}, 10, 2 );
+add_filter('ac/list_screen/is_active', function (bool $active, WP_Screen $screen) {
+    return $active;
+}, 10, 2);
 
 /** Disable Admin Columns on the list table for the Song Custom Post Tepe */
-add_filter( 'ac/list_screen/key/is_active', function ( $active, WP_Screen $screen ) {
-	if ( $screen->post_type && 'song' === $screen->post_type ) {
-		return false;
-	}
+add_filter('ac/list_screen/is_active', function ($active, WP_Screen $screen) {
+    if ($screen->post_type && 'song' === $screen->post_type) {
+        return false;
+    }
 
-	return $active;
-}, 10, 2 );
+    return $active;
+}, 10, 2);
 
 /** Disable Admin Columns for all Editors */
-add_filter( 'ac/list_screen/key/is_active', function ( $active, WP_Screen $screen ) {
-	if ( current_user_can( 'editor' ) ) {
-		return false;
-	}
+add_filter('ac/list_screen/key/is_active', function ($active, WP_Screen $screen) {
+    if (current_user_can('editor')) {
+        return false;
+    }
 
-	return $active;
-}, 10, 2 );
+    return $active;
+}, 10, 2);
