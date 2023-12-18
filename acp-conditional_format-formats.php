@@ -11,7 +11,7 @@ add_filter('acp/conditional_format/formats', function (array $formats) {
 /**
  * Example that adds new color blind patterns
  *
- * @param array $styles
+ * @param array $formats
  *
  * @return array
  */
@@ -46,11 +46,11 @@ add_filter('acp/conditional_format/formats', 'acp_conditional_formatting_add_col
 /**
  * Example that adds some nice matching colors :)
  *
- * @param array $styles
+ * @param array $formats
  *
  * @return array
  */
-add_filter('acp/conditional_format/formats', function ($formats) {
+add_filter('acp/conditional_format/formats', function (array $formats) {
     $formats['black_pink'] = [
         'color'            => 'pink',
         'background_color' => 'black',
@@ -99,6 +99,27 @@ add_filter('acp/conditional_format/formats', function ($formats) {
         'color'            => '#CC313D',
         'background_color' => '#F7C5CC',
     ];
+
+    return $formats;
+});
+
+/**
+ * Example that removes all default colors
+ *
+ * @param array $formats
+ *
+ * @return array
+ */
+add_filter('acp/conditional_format/formats', function (array $formats) {
+    unset($formats['success']);
+    unset($formats['warning']);
+    unset($formats['error']);
+    unset($formats['info']);
+
+    unset($formats['success-invert']);
+    unset($formats['warning-invert']);
+    unset($formats['error-invert']);
+    unset($formats['info-invert']);
 
     return $formats;
 });
