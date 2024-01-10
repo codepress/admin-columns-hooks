@@ -10,8 +10,9 @@
  *
  * @param int $amount Default is `2000`
  */
-function acp_editing_bulk_less_items_per_iteration( $amount ) {
-	return 100; // Default is 2000
+function acp_editing_bulk_less_items_per_iteration($amount)
+{
+    return 100; // Default is 2000
 }
 
-add_filter( 'acp/editing/bulk/editable_rows_per_iteration', 'acp_editing_bulk_less_items_per_iteration' );
+add_filter('acp/editing/bulk/editable_rows_per_iteration', 'acp_editing_bulk_less_items_per_iteration');

@@ -6,15 +6,15 @@
  */
 
 /** Usage Example: Short notation */
-add_filter( 'ac/list_screen/key/is_active', function ( bool $active, string $key ) {
-	return $active;
-}, 10, 2 );
+add_filter('ac/list_screen/key/is_active', function (bool $active, string $key) {
+    return $active;
+}, 10, 2);
 
 /** Disable Admin Columns for the Media List Table */
-add_filter( 'ac/list_screen/key/is_active', function ( $active, $key ) {
-	if ( 'wp-media' === $key ) {
-		return false;
-	}
+add_filter('ac/list_screen/key/is_active', function ($active, $key) {
+    if ('wp-media' === $key) {
+        return false;
+    }
 
-	return $active;
-}, 10, 2 );
+    return $active;
+}, 10, 2);

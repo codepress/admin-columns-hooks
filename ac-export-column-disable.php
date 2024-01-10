@@ -12,15 +12,16 @@
  *
  * @return bool
  */
-function acp_export_disable_export_for_title_column( $is_disabled, AC\Column $column ) {
-	if ( $column->get_name() === 'title' ) {
-		return true;
-	}
+function acp_export_disable_export_for_title_column($is_disabled, AC\Column $column)
+{
+    if ($column->get_name() === 'title') {
+        return true;
+    }
 
-	return $is_disabled;
+    return $is_disabled;
 }
 
-add_filter( 'ac/export/column/disable', 'acp_export_disable_export_for_title_column', 10, 2 );
+add_filter('ac/export/column/disable', 'acp_export_disable_export_for_title_column', 10, 2);
 
 /**
  * Example for disabling specific columns based on the class.
@@ -31,21 +32,22 @@ add_filter( 'ac/export/column/disable', 'acp_export_disable_export_for_title_col
  *
  * @return bool
  */
-function acp_export_disable_export_for_custom_field_column( $is_disabled, AC\Column $column ) {
-	if ( $column instanceof AC\Column\CustomField ) {
-		// Additionally check for meta key to enable / disable specific columns
-		if ( 'your_custom_field_key' === $column->get_meta_key() ) {
-			return false;
-		}
+function acp_export_disable_export_for_custom_field_column($is_disabled, AC\Column $column)
+{
+    if ($column instanceof AC\Column\CustomField) {
+        // Additionally check for meta key to enable / disable specific columns
+        if ('your_custom_field_key' === $column->get_meta_key()) {
+            return false;
+        }
 
-		if ( 'date' === $column->get_field_type() ) {
-			return false;
-		}
+        if ('date' === $column->get_field_type()) {
+            return false;
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	return $is_disabled;
+    return $is_disabled;
 }
 
-add_filter( 'ac/export/column/disable', 'acp_export_disable_export_for_custom_field_column', 10, 2 );
+add_filter('ac/export/column/disable', 'acp_export_disable_export_for_custom_field_column', 10, 2);

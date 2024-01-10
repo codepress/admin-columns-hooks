@@ -10,12 +10,13 @@
  *
  * @return int
  */
-function acp_export_increase_number_per_iteration( $number ) {
-	// Default = 250;
-	return 500;
+function acp_export_increase_number_per_iteration($number)
+{
+    // Default = 250;
+    return 500;
 }
 
-add_filter( 'ac/export/exportable_list_screen/num_items_per_iteration', 'acp_export_increase_number_per_iteration' );
+add_filter('ac/export/exportable_list_screen/num_items_per_iteration', 'acp_export_increase_number_per_iteration');
 
 /**
  * Set a different number of items to be exported per iteration for different list screens
@@ -25,19 +26,25 @@ add_filter( 'ac/export/exportable_list_screen/num_items_per_iteration', 'acp_exp
  *
  * @return int
  */
-function acp_export_set_number_of_exported_items_per_iteration_per_list_screen( $number, ACP\Export\Strategy $stategy ) {
-	$list_screen = $stategy->get_list_screen();
+function acp_export_set_number_of_exported_items_per_iteration_per_list_screen($number, ACP\Export\Strategy $stategy)
+{
+    $list_screen = $stategy->get_list_screen();
 
-	switch ( true ) {
-		case $list_screen instanceof AC\ListScreen\Post:
-			return 100;
-		case $list_screen instanceof AC\ListScreen\User:
-			return 200;
-		case $list_screen instanceof AC\ListScreen\Comment:
-			return 300;
-		default:
-			return $number;
-	}
+    switch (true) {
+        case $list_screen instanceof AC\ListScreen\Post:
+            return 100;
+        case $list_screen instanceof AC\ListScreen\User:
+            return 200;
+        case $list_screen instanceof AC\ListScreen\Comment:
+            return 300;
+        default:
+            return $number;
+    }
 }
 
-add_filter( 'ac/export/exportable_list_screen/num_items_per_iteration', 'acp_export_set_number_of_exported_items_per_iteration_per_list_screen', 10, 2 );
+add_filter(
+    'ac/export/exportable_list_screen/num_items_per_iteration',
+    'acp_export_set_number_of_exported_items_per_iteration_per_list_screen',
+    10,
+    2
+);

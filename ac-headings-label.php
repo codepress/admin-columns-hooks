@@ -9,15 +9,15 @@
  *
  * @return string
  */
-function ac_heading_label( $label, AC\Column $column ) {
+function ac_heading_label($label, AC\Column $column)
+{
+    // Change column label
+    // $label = 'My Custom Label';
 
-	// Change column label
-	// $label = 'My Custom Label';
-
-	return $label;
+    return $label;
 }
 
-add_filter( 'ac/headings/label', 'ac_heading_label', 10, 2 );
+add_filter('ac/headings/label', 'ac_heading_label', 10, 2);
 
 /**
  * Example on running each label through the string translation methods
@@ -28,8 +28,9 @@ add_filter( 'ac/headings/label', 'ac_heading_label', 10, 2 );
  *
  * @return string
  */
-function ac_heading_label_translate( $label, AC\Column $column ) {
-	return __( $label, 'custom-text-domain' );
+function ac_heading_label_translate($label, AC\Column $column)
+{
+    return __($label, 'custom-text-domain');
 }
 
-add_filter( 'ac/headings/label', 'ac_heading_label_translate', 10, 2 );
+add_filter('ac/headings/label', 'ac_heading_label_translate', 10, 2);

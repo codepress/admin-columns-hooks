@@ -12,15 +12,16 @@
  *
  * @return bool
  */
-function acp_disable_export_for_users_list_table( $is_active, AC\ListScreen $listScreen ) {
-	if ( $listScreen instanceof AC\ListScreen\User ) {
-		$is_active = false;
-	}
+function acp_disable_export_for_users_list_table($is_active, AC\ListScreen $listScreen)
+{
+    if ($listScreen instanceof AC\ListScreen\User) {
+        $is_active = false;
+    }
 
-	return $is_active;
+    return $is_active;
 }
 
-add_filter( 'acp/export/is_active', 'acp_disable_export_for_users_list_table', 10, 2 );
+add_filter('acp/export/is_active', 'acp_disable_export_for_users_list_table', 10, 2);
 
 /**
  * Disable the export functionality for a specific `Post Type`, in this the `Page` list table.
@@ -30,17 +31,18 @@ add_filter( 'acp/export/is_active', 'acp_disable_export_for_users_list_table', 1
  *
  * @return bool
  */
-function acp_disable_export_for_page_list_table( $is_active, AC\ListScreen $listScreen ) {
-	if ( $listScreen instanceof AC\ListScreenPost && 'page' === $listScreen->get_post_type() ) {
-		$is_active = false;
-	}
+function acp_disable_export_for_page_list_table($is_active, AC\ListScreen $listScreen)
+{
+    if ($listScreen instanceof AC\ListScreenPost && 'page' === $listScreen->get_post_type()) {
+        $is_active = false;
+    }
 
-	return $is_active;
+    return $is_active;
 }
 
-add_filter( 'acp/export/is_active', 'acp_disable_export_for_page_list_table', 10, 2 );
+add_filter('acp/export/is_active', 'acp_disable_export_for_page_list_table', 10, 2);
 
 /**
  * Disable the export functionality completely for all list tables
  */
-add_filter( 'acp/export/is_active', '__return_false' );
+add_filter('acp/export/is_active', '__return_false');

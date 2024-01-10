@@ -9,14 +9,14 @@
  *
  * @return string
  */
-function my_acp_editable_ajax_column_save_value( $value, AC\Column $column, $id ) {
+function my_acp_editable_ajax_column_save_value($value, AC\Column $column, $id)
+{
+    // Possibly modify $value
 
-	// Possibly modify $value
-
-	return $value;
+    return $value;
 }
 
-add_filter( 'acp/editing/save_value', 'my_acp_editable_ajax_column_save_value', 10, 3 );
+add_filter('acp/editing/save_value', 'my_acp_editable_ajax_column_save_value', 10, 3);
 
 /**
  * Change the value to a timestamp for a specific custom field
@@ -26,15 +26,15 @@ add_filter( 'acp/editing/save_value', 'my_acp_editable_ajax_column_save_value', 
  *
  * @return string
  */
-function acp_editing_change_date_format_for_custom_field( $value, AC\Column $column ) {
+function acp_editing_change_date_format_for_custom_field($value, AC\Column $column)
+{
+    if ($column instanceof ACP\Column\CustomField && 'date' == $column->get_field_type(
+        ) && 'my_date_field_key' === $column->get_meta_key() && $value) {
+        // Convert submitted value to a unix timestamp
+        $value = strtotime($value);
+    }
 
-	if ( $column instanceof ACP\Column\CustomField && 'date' == $column->get_field_type() && 'my_date_field_key' === $column->get_meta_key() && $value ) {
-
-		// Convert submitted value to a unix timestamp
-		$value = strtotime( $value );
-	}
-
-	return $value;
+    return $value;
 }
 
-add_filter( 'acp/editing/save_value', 'acp_editing_change_date_format_for_custom_field', 10, 2 );
+add_filter('acp/editing/save_value', 'acp_editing_change_date_format_for_custom_field', 10, 2);

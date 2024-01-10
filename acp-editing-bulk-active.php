@@ -11,15 +11,16 @@
  *
  * @return bool
  */
-function acp_editing_bulk_editing_disable_for_custom_field_column( $is_active, AC\Column $column ) {
-	if ( $column instanceof ACP\Column\CustomField && 'optional_specific_field_check' === $column->get_meta_key() ) {
-		$is_active = false;
-	}
+function acp_editing_bulk_editing_disable_for_custom_field_column($is_active, AC\Column $column)
+{
+    if ($column instanceof ACP\Column\CustomField && 'optional_specific_field_check' === $column->get_meta_key()) {
+        $is_active = false;
+    }
 
-	return $is_active;
+    return $is_active;
 }
 
-add_filter( 'acp/editing/bulk/is_active', 'acp_editing_bulk_editing_disable_for_custom_field_column', 10, 2 );
+add_filter('acp/editing/bulk/is_active', 'acp_editing_bulk_editing_disable_for_custom_field_column', 10, 2);
 
 /**
  * Disable bulk editing for a specific column by targeting the column by its name
@@ -30,17 +31,18 @@ add_filter( 'acp/editing/bulk/is_active', 'acp_editing_bulk_editing_disable_for_
  *
  * @return bool
  */
-function acp_editing_bulk_disable_for_column_by_name( $is_active, AC\Column $column ) {
-	$column_name = '5d288ab7a019f';
+function acp_editing_bulk_disable_for_column_by_name($is_active, AC\Column $column)
+{
+    $column_name = '5d288ab7a019f';
 
-	if ( $column_name === $column->get_name() ) {
-		$is_active = false;
-	}
+    if ($column_name === $column->get_name()) {
+        $is_active = false;
+    }
 
-	return $is_active;
+    return $is_active;
 }
 
-add_filter( 'acp/editing/bulk/is_active', 'acp_editing_bulk_disable_for_column_by_name', 10, 2 );
+add_filter('acp/editing/bulk/is_active', 'acp_editing_bulk_disable_for_column_by_name', 10, 2);
 
 /**
  * Disable bulk editing for a specific column by targeting the column by its type
@@ -51,15 +53,16 @@ add_filter( 'acp/editing/bulk/is_active', 'acp_editing_bulk_disable_for_column_b
  *
  * @return bool
  */
-function acp_editing_bulk_disable_for_column_type( $is_active, AC\Column $column ) {
-	$column_type = 'column-featured_image';
-	$post_type = 'page';
+function acp_editing_bulk_disable_for_column_type($is_active, AC\Column $column)
+{
+    $column_type = 'column-featured_image';
+    $post_type = 'page';
 
-	if ( $column_type === $column->get_type() && $post_type === $column->get_list_screen()->get_key() ) {
-		$is_active = false;
-	}
+    if ($column_type === $column->get_type() && $post_type === $column->get_list_screen()->get_key()) {
+        $is_active = false;
+    }
 
-	return $is_active;
+    return $is_active;
 }
 
-add_filter( 'acp/editing/bulk/is_active', 'acp_editing_bulk_disable_for_column_type', 10, 2 );
+add_filter('acp/editing/bulk/is_active', 'acp_editing_bulk_disable_for_column_type', 10, 2);

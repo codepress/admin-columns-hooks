@@ -10,4 +10,4 @@
  * writable storage.
  * @return bool
  */
-add_filter( 'acp/storage/file/directory/writable', '__return_false' );
+add_filter('acp/storage/file/directory/writable', '__return_false');

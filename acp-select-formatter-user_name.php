@@ -12,15 +12,15 @@
  *
  * @return string
  */
-function acp_select_formatter_user_name( $label, WP_User $user ) {
+function acp_select_formatter_user_name($label, WP_User $user)
+{
+    // Modify label
+    // $label = $user->user_login;
 
-	// Modify label
-	// $label = $user->user_login;
-
-	return $label;
+    return $label;
 }
 
-add_filter( 'acp/select/formatter/user_name', 'acp_select_formatter_user_name', 10, 2 );
+add_filter('acp/select/formatter/user_name', 'acp_select_formatter_user_name', 10, 2);
 
 /**
  * Display the user's fullname when using the select2 dropdown menu
@@ -30,12 +30,13 @@ add_filter( 'acp/select/formatter/user_name', 'acp_select_formatter_user_name', 
  *
  * @return string
  */
-function acp_select_reformat_username_to_fullname( $label, WP_User $user ) {
-	if ( $user->first_name || $user->last_name ) {
-		$label = trim( $user->first_name . ' ' . $user->last_name );
-	}
+function acp_select_reformat_username_to_fullname($label, WP_User $user)
+{
+    if ($user->first_name || $user->last_name) {
+        $label = trim($user->first_name . ' ' . $user->last_name);
+    }
 
-	return $label;
+    return $label;
 }
 
-add_filter( 'acp/select/formatter/user_name', 'acp_select_reformat_username_to_fullname', 10, 2 );
+add_filter('acp/select/formatter/user_name', 'acp_select_reformat_username_to_fullname', 10, 2);

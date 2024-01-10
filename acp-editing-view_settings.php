@@ -12,21 +12,22 @@
  *
  * @return mixed
  */
-function acp_editing_view_settings_usage_example( $data, AC\Column $column ) {
-	// First Check for a specific column
-	// if( $column instanceof \AC\Column\Meta ){}
-	// if( $column->get_type() === 'column-ancestors'
-	// if( $column->get_name() === 'generated_name'
+function acp_editing_view_settings_usage_example($data, AC\Column $column)
+{
+    // First Check for a specific column
+    // if( $column instanceof \AC\Column\Meta ){}
+    // if( $column->get_type() === 'column-ancestors'
+    // if( $column->get_name() === 'generated_name'
 
-	// Now alter Data
-	$data['type'] = 'select'; // text|select|textarea|media|email|select2_dropdown
-	$data['options'] = []; // works in combination with select type
-	$data['multiple'] = true; // works in combination with select type
+    // Now alter Data
+    $data['type'] = 'select'; // text|select|textarea|media|email|select2_dropdown
+    $data['options'] = []; // works in combination with select type
+    $data['multiple'] = true; // works in combination with select type
 
-	return $data;
+    return $data;
 }
 
-add_filter( 'acp/editing/view_settings', 'acp_editing_view_settings_usage_example', 10, 2 );
+add_filter('acp/editing/view_settings', 'acp_editing_view_settings_usage_example', 10, 2);
 
 /**
  * Change the editing settings for a specific Custom Field
@@ -37,21 +38,22 @@ add_filter( 'acp/editing/view_settings', 'acp_editing_view_settings_usage_exampl
  *
  * @return mixed
  */
-function acp_editing_view_settings_change_select_options_example( $data, AC\Column $column ) {
-	if ( $column instanceof AC\Column\Meta && 'my_fruit_custom_field_key' === $column->get_meta_key() ) {
-		$data['type'] = 'select';
-		$data['options'] = [
-			'apple'  => 'Apple',
-			'orange' => 'Orange',
-			'banana' => 'Banana',
-			'pear'   => 'Pear',
-		];
-	}
+function acp_editing_view_settings_change_select_options_example($data, AC\Column $column)
+{
+    if ($column instanceof AC\Column\Meta && 'my_fruit_custom_field_key' === $column->get_meta_key()) {
+        $data['type'] = 'select';
+        $data['options'] = [
+            'apple'  => 'Apple',
+            'orange' => 'Orange',
+            'banana' => 'Banana',
+            'pear'   => 'Pear',
+        ];
+    }
 
-	return $data;
+    return $data;
 }
 
-add_filter( 'acp/editing/view_settings', 'acp_editing_view_settings_change_select_options_example', 10, 2 );
+add_filter('acp/editing/view_settings', 'acp_editing_view_settings_change_select_options_example', 10, 2);
 
 /**
  * Change the editing settings for a specific Custom Field
@@ -62,18 +64,19 @@ add_filter( 'acp/editing/view_settings', 'acp_editing_view_settings_change_selec
  *
  * @return mixed
  */
-function acp_editing_view_settings_change_numeric_custom_field_example( $data, AC\Column $column ) {
-	if ( $column instanceof AC\Column\Meta && 'my_custom_numeric_field_key' === $column->get_meta_key() ) {
-		$data['type'] = 'number';
-		$data['range_min'] = 1;
-		$data['range_max'] = 5;
-		$data['range_step'] = 1;
-	}
+function acp_editing_view_settings_change_numeric_custom_field_example($data, AC\Column $column)
+{
+    if ($column instanceof AC\Column\Meta && 'my_custom_numeric_field_key' === $column->get_meta_key()) {
+        $data['type'] = 'number';
+        $data['range_min'] = 1;
+        $data['range_max'] = 5;
+        $data['range_step'] = 1;
+    }
 
-	return $data;
+    return $data;
 }
 
-add_filter( 'acp/editing/view_settings', 'acp_editing_view_settings_change_numeric_custom_field_example', 10, 2 );
+add_filter('acp/editing/view_settings', 'acp_editing_view_settings_change_numeric_custom_field_example', 10, 2);
 
 /**
  * Enable Bulk Editing for Content column
@@ -84,23 +87,25 @@ add_filter( 'acp/editing/view_settings', 'acp_editing_view_settings_change_numer
  * @return mixed
  */
 
-function acp_editing_view_settings_enable_bulk_editing_for_content_column( $data, AC\Column $column ) {
-	if ( $column instanceof AC\Column\Post\Content ) {
-		$data['bulk_editable'] = true;
-	}
+function acp_editing_view_settings_enable_bulk_editing_for_content_column($data, AC\Column $column)
+{
+    if ($column instanceof AC\Column\Post\Content) {
+        $data['bulk_editable'] = true;
+    }
 
-	return $data;
+    return $data;
 }
 
-add_filter( 'acp/editing/view_settings', 'acp_editing_view_settings_enable_bulk_editing_for_content_column', 10, 2 );
+add_filter('acp/editing/view_settings', 'acp_editing_view_settings_enable_bulk_editing_for_content_column', 10, 2);
 
 /**
  * Enables the clear button for every column
  */
-function acp_editing_view_settings_always_enable_clear_button( $data ) {
-	$data['clear_button'] = true;
+function acp_editing_view_settings_always_enable_clear_button($data)
+{
+    $data['clear_button'] = true;
 
-	return $data;
+    return $data;
 }
 
-add_filter( 'acp/editing/view_settings', 'acp_editing_view_settings_always_enable_clear_button', 10, 1 );
+add_filter('acp/editing/view_settings', 'acp_editing_view_settings_always_enable_clear_button', 10, 1);

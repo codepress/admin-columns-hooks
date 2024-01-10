@@ -12,8 +12,9 @@
  *
  * @return int
  */
-function acp_editing_bulk_reduce_records_to_update_per_iteration( $number ) {
-	return 10; // Default is 250
+function acp_editing_bulk_reduce_records_to_update_per_iteration($number)
+{
+    return 10; // Default is 250
 }
 
-add_filter( 'acp/editing/bulk/updated_rows_per_iteration', 'acp_editing_bulk_reduce_records_to_update_per_iteration' );
+add_filter('acp/editing/bulk/updated_rows_per_iteration', 'acp_editing_bulk_reduce_records_to_update_per_iteration');

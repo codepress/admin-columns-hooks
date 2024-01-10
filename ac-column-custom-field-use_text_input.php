@@ -9,4 +9,4 @@
  * This is an example on how to enable the text input instead of the ajax drop down
  * Use this hook if you experiencing performance issues on loading the available meta keys
  */
-add_filter( 'ac/column/custom_field/use_text_input', '__return_true' );
+add_filter('ac/column/custom_field/use_text_input', '__return_true');

@@ -17,12 +17,12 @@
  *
  * @return string
  */
-function acp_storage_file_directory( $path ) {
+function acp_storage_file_directory($path)
+{
+    // Use a writable path
+    $path = get_stylesheet_directory() . '/acp-settings';
 
-	// Use a writable path
-	$path = get_stylesheet_directory() . '/acp-settings';
-
-	return $path;
+    return $path;
 }
 
-add_filter( 'acp/storage/file/directory', 'acp_storage_file_directory' );
+add_filter('acp/storage/file/directory', 'acp_storage_file_directory');

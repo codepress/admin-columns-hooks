@@ -12,9 +12,9 @@
  *
  * @return null|int
  */
-function acp_delete_reassign_user_usage( $reassign_id, int $deleted_user_id ) {
-
-	return $reassign_id;
+function acp_delete_reassign_user_usage($reassign_id, int $deleted_user_id)
+{
+    return $reassign_id;
 }
 
-add_filter( 'acp/delete/reassign_user', 'acp_delete_reassign_user_usage', 10, 2 );
+add_filter('acp/delete/reassign_user', 'acp_delete_reassign_user_usage', 10, 2);

@@ -11,8 +11,9 @@
  *
  * @return string
  */
-function acp_export_change_export_delimiter( $delimiter ) {
-	return ';';
+function acp_export_change_export_delimiter($delimiter)
+{
+    return ';';
 }
 
-add_filter( 'ac/export/exporter_csv/delimiter', 'acp_export_change_export_delimiter' );
+add_filter('ac/export/exporter_csv/delimiter', 'acp_export_change_export_delimiter');

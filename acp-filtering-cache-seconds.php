@@ -11,8 +11,9 @@
  *
  * @return int
  */
-function acp_filter_increase_cache_seconds( $seconds ) {
-	return 600; // default is 300 seconds (5 minutes).
+function acp_filter_increase_cache_seconds($seconds)
+{
+    return 600; // default is 300 seconds (5 minutes).
 }
 
-add_filter( 'acp/filtering/cache/seconds', 'acp_filter_increase_cache_seconds' );
+add_filter('acp/filtering/cache/seconds', 'acp_filter_increase_cache_seconds');

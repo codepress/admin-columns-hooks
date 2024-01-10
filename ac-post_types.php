@@ -10,14 +10,14 @@
  *
  * @return array
  */
-function acp_post_types( array $post_types ) {
+function acp_post_types(array $post_types)
+{
+    // Modify $post_types
 
-	// Modify $post_types
-
-	return $post_types;
+    return $post_types;
 }
 
-add_filter( 'ac/post_types', 'acp_post_types' );
+add_filter('ac/post_types', 'acp_post_types');
 
 /**
  * Disable admin columns support for the 'Page' custom post type
@@ -26,11 +26,11 @@ add_filter( 'ac/post_types', 'acp_post_types' );
  *
  * @return array
  */
-function acp_disable_support_for_pages( array $post_types ) {
+function acp_disable_support_for_pages(array $post_types)
+{
+    unset($post_types['page']);
 
-	unset( $post_types['page'] );
-
-	return $post_types;
+    return $post_types;
 }
 
-add_filter( 'ac/post_types', 'acp_disable_support_for_pages' );
+add_filter('ac/post_types', 'acp_disable_support_for_pages');

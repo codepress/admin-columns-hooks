@@ -1,4 +1,7 @@
 <?php
+
+use AC\ListScreenRepository\Storage;
+
 /**
  * Use this snippet when you have still PHP defined list screens in your code and you want to migrate all list screens to our new Local Storage feature.
  * Usage:
@@ -10,72 +13,76 @@
  * Documentation:
  * @url https://docs.admincolumns.com/article/58-how-to-setup-local-storage
  */
+class MigratePhpListScreensToLocalStorage
+{
 
-class MigratePhpListScreensToLocalStorage {
+    public function __construct()
+    {
+        add_action('ac/list_screens', [$this, 'migrate'], 21);
+    }
 
-	public function __construct() {
-		add_action( 'ac/list_screens', [ $this, 'migrate' ], 21 );
-	}
+    /**
+     * Check if Local Storage is active by removing all known database and collection repositories
+     * @return bool
+     */
+    private function isLocalStorageActive()
+    {
+        $repos = AC()->get_storage()->get_repositories();
 
-	/**
-	 * Check if Local Storage is active by removing all known database and collection repositories
-	 * @return bool
-	 */
-	private function isLocalStorageActive() {
-		$repos = AC()->get_storage()->get_repositories();
+        unset($repos['acp-database']);
+        unset($repos['acp-collection']);
 
-		unset( $repos['acp-database'] );
-		unset( $repos['acp-collection'] );
+        return count($repos) > 0;
+    }
 
-		return count( $repos ) > 0;
-	}
+    /**
+     * Remove the PHP defined list screen repository and database repository and return the remaining list screens as storage service
+     * @return Storage
+     */
+    private function prepareLocalStorageRepositories()
+    {
+        $repositories = AC()->get_storage()->get_repositories();
 
-	/**
-	 * Remove the PHP defined list screen repository and database repository and return the remaining list screens as storage service
-	 * @return \AC\ListScreenRepository\Storage
-	 */
-	private function prepareLocalStorageRepositories() {
-		$repositories = AC()->get_storage()->get_repositories();
+        unset($repositories['acp-collection']);
+        unset($repositories['acp-database']);
 
-		unset( $repositories['acp-collection'] );
-		unset( $repositories['acp-database'] );
+        AC()->get_storage()->set_repositories($repositories);
 
-		AC()->get_storage()->set_repositories( $repositories );
+        return AC()->get_storage();
+    }
 
-		return AC()->get_storage();
-	}
+    public function migrate()
+    {
+        if ( ! filter_input(INPUT_GET, 'migrate-acp-php-list-screens')) {
+            return;
+        }
 
-	public function migrate() {
-		if ( ! filter_input( INPUT_GET, 'migrate-acp-php-list-screens' ) ) {
-			return;
-		}
+        if ( ! AC()->get_storage()->has_repository('acp-collection')) {
+            wp_die('PHP Storage is not active, so script will not run');
+        }
 
-		if ( ! AC()->get_storage()->has_repository( 'acp-collection' ) ) {
-			wp_die( 'PHP Storage is not active, so script will not run' );
-		}
+        if ( ! $this->isLocalStorageActive()) {
+            wp_die('Local Storage is not active, so script will not run');
+        }
 
-		if ( ! $this->isLocalStorageActive() ) {
-			wp_die( 'Local Storage is not active, so script will not run' );
-		}
+        $processed = [];
+        $phpRepository = AC()->get_storage()->get_repository('acp-collection');
+        $localStorageRepositories = $this->prepareLocalStorageRepositories();
 
-		$processed = [];
-		$phpRepository = AC()->get_storage()->get_repository( 'acp-collection' );
-		$localStorageRepositories = $this->prepareLocalStorageRepositories();
+        foreach ($phpRepository->find_all() as $list_screen) {
+            if ( ! $localStorageRepositories->exists($list_screen->get_id())) {
+                $localStorageRepositories->save($list_screen);
+                $processed[] = $list_screen;
+            }
+        }
 
-		foreach ( $phpRepository->find_all() as $list_screen ) {
-			if ( ! $localStorageRepositories->exists( $list_screen->get_id() ) ) {
-				$localStorageRepositories->save( $list_screen );
-				$processed[] = $list_screen;
-			}
-		}
+        echo '<strong>Processed</strong><br>';
+        foreach ($processed as $list_screen) {
+            echo $list_screen->get_id()->get_id() . ' - ' . $list_screen->get_title() . '<br>';
+        }
 
-		echo '<strong>Processed</strong><br>';
-		foreach ( $processed as $list_screen ) {
-			echo $list_screen->get_id()->get_id() . ' - ' . $list_screen->get_title() . '<br>';
-		}
-
-		exit;
-	}
+        exit;
+    }
 
 }
 
