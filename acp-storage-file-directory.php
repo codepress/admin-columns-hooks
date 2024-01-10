@@ -13,11 +13,11 @@
  * Set the storage directory to a folder on your file system.
  * Only a single folder can be active at the time by using this hook.
  *
- * @param string $path Directory path to write the storage files to
+ * @param string|null $path Directory path to write the storage files to
  *
- * @return string
+ * @return string|null
  */
-function acp_storage_file_directory($path)
+function acp_storage_file_directory(?string $path): ?string
 {
     // Use a writable path
     $path = get_stylesheet_directory() . '/acp-settings';

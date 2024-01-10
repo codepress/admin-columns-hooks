@@ -4,9 +4,9 @@
  */
 
 /**
- * @param mixed     $value
- * @param int       $id
- * @param AC\Column $column
+ * @param mixed      $value
+ * @param int|string $id
+ * @param AC\Column  $column
  *
  * @return mixed
  */
@@ -26,9 +26,9 @@ add_filter('acp/editing/value', function ($value, $id, AC\Column $column) {
 /**
  * Example to get a nested value from an associative array. You need to parse it back when saving the value with the hook `acp/editing/save_value`
  *
- * @param mixed     $value
- * @param int       $id
- * @param AC\Column $column
+ * @param mixed      $value
+ * @param int|string $id
+ * @param AC\Column  $column
  *
  * @return mixed
  */

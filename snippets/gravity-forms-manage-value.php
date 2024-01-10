@@ -10,7 +10,7 @@
  */
 function ac_column_value_gravity_forms_entry($value, $form_id, $field_id, $entry)
 {
-    /////// Check for field ID here ///////
+    // Check for field ID here
     if ('2' !== $field_id) {
         return $value;
     }
@@ -21,11 +21,15 @@ function ac_column_value_gravity_forms_entry($value, $form_id, $field_id, $entry
      */
     $field = GFAPI::get_field($form_id, $field_id);
 
+    if ( ! $field) {
+        return $value;
+    }
+
     // Submitted entry value
     $entry_value = $field->get_value_entry_detail($entry);
 
-    /////// Modify display value here ///////
-    $value = (string)$entry_value;
+    // Modify display value here
+    // $value = $entry_value;
 
     return $value;
 }

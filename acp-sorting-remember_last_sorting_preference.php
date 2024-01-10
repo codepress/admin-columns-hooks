@@ -7,16 +7,16 @@
 add_filter('acp/sorting/remember_last_sorting_preference', '__return_false');
 
 // Disable this feature per list screen
-add_filter('acp/sorting/remember_last_sorting_preference', function ($enabled, AC\ListScreen $list_screen) {
-    if ($list_screen instanceof ACP\ListScreen\Post) {
+add_filter('acp/sorting/remember_last_sorting_preference', function (bool $enabled, AC\ListScreen $list_screen): bool {
+    if ('page' === $list_screen->get_post_type()) {
         return false;
     }
 
-    if ($list_screen instanceof ACP\ListScreen\Comment) {
+    if ('comment' === $list_screen->get_meta_type()) {
         return false;
     }
 
-    if ($list_screen instanceof ACP\ListScreen\User) {
+    if ('user' === $list_screen->get_meta_type()) {
         return false;
     }
 

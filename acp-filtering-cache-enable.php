@@ -10,13 +10,8 @@ add_filter('acp/filtering/cache/enable', '__return_false');
 
 /**
  * Disable caching for the custom field column
- *
- * @param bool      $enabled
- * @param AC\Column $column
- *
- * @return bool
  */
-function acp_filtering_disable_cache_for_custom_field_column($enabled, AC\Column $column)
+function acp_filtering_disable_cache_for_custom_field_column(bool $enabled, AC\Column $column): bool
 {
     return $column instanceof AC\Column\CustomField
         ? false

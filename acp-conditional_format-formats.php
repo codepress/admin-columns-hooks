@@ -3,19 +3,15 @@
  * The filter allows you to modify the styles that are available in Conditional Formatting
  */
 
-add_filter('acp/conditional_format/formats', function (array $formats) {
+add_filter('acp/conditional_format/formats', function (array $formats): array {
     // Modify Styles array
     return $formats;
 });
 
 /**
- * Example that adds new color blind patterns
- *
- * @param array $formats
- *
- * @return array
+ * Example that adds new colorblind patterns
  */
-function acp_conditional_formatting_add_color_blind_patterns(array $formats)
+function acp_conditional_formatting_add_color_blind_patterns(array $formats): array
 {
     $formats['success_pattern'] = [
         'background'       => 'repeating-linear-gradient(-45deg,rgba(255,255,255,.3),rgba(255,255,255,.3) 5px,transparent 5px,transparent 10px);',
@@ -45,12 +41,8 @@ add_filter('acp/conditional_format/formats', 'acp_conditional_formatting_add_col
 
 /**
  * Example that adds some nice matching colors :)
- *
- * @param array $formats
- *
- * @return array
  */
-add_filter('acp/conditional_format/formats', function (array $formats) {
+add_filter('acp/conditional_format/formats', function (array $formats): array {
     $formats['black_pink'] = [
         'color'            => 'pink',
         'background_color' => 'black',
@@ -105,12 +97,8 @@ add_filter('acp/conditional_format/formats', function (array $formats) {
 
 /**
  * Example that removes all default colors
- *
- * @param array $formats
- *
- * @return array
  */
-add_filter('acp/conditional_format/formats', function (array $formats) {
+add_filter('acp/conditional_format/formats', function (array $formats): array {
     unset($formats['success']);
     unset($formats['warning']);
     unset($formats['error']);
