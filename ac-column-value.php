@@ -111,7 +111,7 @@ function ac_column_value_display_word_count($value, $id, AC\Column $column)
             && 'my_custom_text_field' === $meta_key
         ) {
             // We use our own utility method to count the number of words. But feel free to use your own logic.
-            $value = ac_helper()->string->word_count($value);
+            $value = ac_helper()->string->word_count((string)$value);
         }
     }
 
