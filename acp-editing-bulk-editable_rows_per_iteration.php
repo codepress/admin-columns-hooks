@@ -7,10 +7,8 @@
 
 /**
  * Prepare less items if you experiencing performance issues or time out issues
- *
- * @param int $amount Default is `2000`
  */
-function acp_editing_bulk_less_items_per_iteration($amount)
+function acp_editing_bulk_less_items_per_iteration(int $amount): int
 {
     return 100; // Default is 2000
 }

@@ -4,12 +4,12 @@
  */
 
 /**
- * @param int           $id
+ * @param int|string    $id
  * @param AC\ListScreen $list_screen
  *
  * @return void
  */
-function acp_quick_add_saved($id, AC\ListScreen $list_screen)
+function acp_quick_add_saved($id, AC\ListScreen $list_screen): void
 {
     // Place your code here
 }
@@ -19,11 +19,11 @@ add_action('acp/quick_add/saved', 'acp_quick_add_saved');
 /**
  * Add the filtered term to the newly created post (with the use of quick add)
  */
-add_action('acp/quick_add/saved', function ($post_id, AC\ListScreen $list_screen) {
+add_action('acp/quick_add/saved', function ($post_id, AC\ListScreen $list_screen): void {
     $event_post_type = 'my_post_type';
     $event_taxonomy = 'my_taxaonomy';
 
-    if ($event_post_type !== $list_screen->get_key()) {
+    if ($event_post_type !== $list_screen->get_post_type()) {
         return;
     }
 
@@ -40,7 +40,7 @@ add_action('acp/quick_add/saved', function ($post_id, AC\ListScreen $list_screen
 
     foreach ($rules as $rule) {
         // Get the associated column
-        $column = $list_screen->get_column_by_name($rule->id);
+        $column = $list_screen->get_column($rule->id);
 
         // Check if the rule (with the use of the associated column) is a taxonomy
         if ($column && $event_taxonomy === $column->get_taxonomy()) {

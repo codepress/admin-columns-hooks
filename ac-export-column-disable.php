@@ -4,15 +4,10 @@
  */
 
 /**
- * Disable a specific column for export based on it's name.
+ * Disable a specific column for export based on its name.
  * Custom columns have a random generated name, so be aware of that!
- *
- * @param bool      $is_disabled
- * @param AC\Column $column
- *
- * @return bool
  */
-function acp_export_disable_export_for_title_column($is_disabled, AC\Column $column)
+function acp_export_disable_export_for_title_column(bool $is_disabled, AC\Column $column): bool
 {
     if ($column->get_name() === 'title') {
         return true;
@@ -26,13 +21,8 @@ add_filter('ac/export/column/disable', 'acp_export_disable_export_for_title_colu
 /**
  * Example for disabling specific columns based on the class.
  * This Example also shows some additional conditionals that can be used for the Custom Field column
- *
- * @param bool      $is_disabled
- * @param AC\Column $column
- *
- * @return bool
  */
-function acp_export_disable_export_for_custom_field_column($is_disabled, AC\Column $column)
+function acp_export_disable_export_for_custom_field_column(bool $is_disabled, AC\Column $column): bool
 {
     if ($column instanceof AC\Column\CustomField) {
         // Additionally check for meta key to enable / disable specific columns

@@ -3,12 +3,9 @@
 class CustomFieldTimestampMapper
 {
 
-    /**
-     * @var string
-     */
     private $meta_key;
 
-    public function __construct($meta_key)
+    public function __construct(string $meta_key)
     {
         $this->meta_key = $meta_key;
     }
@@ -39,7 +36,7 @@ class CustomFieldTimestampMapper
         return $value;
     }
 
-    public function changeSortingDateType($date_type, AC\Column\CustomField $column)
+    public function changeSortingDateType(string $date_type, AC\Column\CustomField $column): string
     {
         if ($this->isColumnMatch($column)) {
             $date_type = 'numeric';
@@ -48,7 +45,7 @@ class CustomFieldTimestampMapper
         return $date_type;
     }
 
-    public function changeStoredDateFormat($date_format, AC\Column\CustomField $column)
+    public function changeStoredDateFormat(string $date_format, AC\Column\CustomField $column): string
     {
         if ($this->isColumnMatch($column)) {
             $date_format = 'U';

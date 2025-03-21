@@ -5,14 +5,9 @@
  * in the admin columns menu. The actual post type will keep working and will NOT be disabled.
  */
 
-/**
- * @param array $post_types [ $name => $label ]
- *
- * @return array
- */
-function acp_post_types(array $post_types)
+function acp_post_types(array $post_types): array
 {
-    // Modify $post_types
+    // Modify $post_types [ $name => $label, ... ]
 
     return $post_types;
 }
@@ -20,13 +15,9 @@ function acp_post_types(array $post_types)
 add_filter('ac/post_types', 'acp_post_types');
 
 /**
- * Disable admin columns support for the 'Page' custom post type
- *
- * @param array $post_types
- *
- * @return array
+ * Disable admin columns support for the 'page' custom post type
  */
-function acp_disable_support_for_pages(array $post_types)
+function acp_disable_support_for_pages(array $post_types): array
 {
     unset($post_types['page']);
 

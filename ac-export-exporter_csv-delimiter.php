@@ -6,12 +6,8 @@
 
 /**
  * Change the default export delimiter from a ',' to ';'
- *
- * @param string $delimiter Default is a comma ','
- *
- * @return string
  */
-function acp_export_change_export_delimiter($delimiter)
+function acp_export_change_export_delimiter(string $delimiter): string
 {
     return ';';
 }

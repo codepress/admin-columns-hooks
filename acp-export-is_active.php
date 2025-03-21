@@ -5,17 +5,13 @@
  */
 
 /**
- * Disable the export functionality on the Uses list table. The `Export` button wil also be removed.
- *
- * @param bool          $is_active
- * @param AC\ListScreen $listScreen
- *
- * @return bool
+ * Disable the export functionality on the Users list table. The `Export` button wil also be removed.
  */
-function acp_disable_export_for_users_list_table($is_active, AC\ListScreen $listScreen)
+function acp_disable_export_for_users_list_table(bool $is_active, AC\ListScreen $list_screen): bool
 {
-    if ($listScreen instanceof AC\ListScreen\User) {
-        $is_active = false;
+    // Meta type is 'post', 'term', 'user' or 'comment'
+    if ('user' === $list_screen->get_meta_type()) {
+        return false;
     }
 
     return $is_active;
@@ -25,16 +21,11 @@ add_filter('acp/export/is_active', 'acp_disable_export_for_users_list_table', 10
 
 /**
  * Disable the export functionality for a specific `Post Type`, in this the `Page` list table.
- *
- * @param bool          $is_active
- * @param AC\ListScreen $listScreen
- *
- * @return bool
  */
-function acp_disable_export_for_page_list_table($is_active, AC\ListScreen $listScreen)
+function acp_disable_export_for_page_list_table(bool $is_active, AC\ListScreen $list_screen): bool
 {
-    if ($listScreen instanceof AC\ListScreenPost && 'page' === $listScreen->get_post_type()) {
-        $is_active = false;
+    if ('page' === $list_screen->get_post_type()) {
+        return false;
     }
 
     return $is_active;

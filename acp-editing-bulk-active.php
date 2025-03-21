@@ -5,13 +5,8 @@
 
 /**
  * Example that check a specific custom field column by its used key and disables bulk editing
- *
- * @param bool      $is_active
- * @param AC\Column $column
- *
- * @return bool
  */
-function acp_editing_bulk_editing_disable_for_custom_field_column($is_active, AC\Column $column)
+function acp_editing_bulk_editing_disable_for_custom_field_column(bool $is_active, AC\Column $column): bool
 {
     if ($column instanceof ACP\Column\CustomField && 'optional_specific_field_check' === $column->get_meta_key()) {
         $is_active = false;
@@ -25,13 +20,8 @@ add_filter('acp/editing/bulk/is_active', 'acp_editing_bulk_editing_disable_for_c
 /**
  * Disable bulk editing for a specific column by targeting the column by its name
  * You can find the column name by hovering over the "Type" label in the column setting.
- *
- * @param bool      $is_active
- * @param AC\Column $column
- *
- * @return bool
  */
-function acp_editing_bulk_disable_for_column_by_name($is_active, AC\Column $column)
+function acp_editing_bulk_disable_for_column_by_name(bool $is_active, AC\Column $column): bool
 {
     $column_name = '5d288ab7a019f';
 
@@ -46,19 +36,14 @@ add_filter('acp/editing/bulk/is_active', 'acp_editing_bulk_disable_for_column_by
 
 /**
  * Disable bulk editing for a specific column by targeting the column by its type
- * You can find the column name by hovering over the "Type" label in the column setting or you can show this by enabling it in the screen options menu (top right overview)
- *
- * @param bool      $is_active
- * @param AC\Column $column
- *
- * @return bool
+ * You can find the column name by hovering over the "Type" label in the column setting, or you can show this by enabling it in the screen options menu (top right overview)
  */
-function acp_editing_bulk_disable_for_column_type($is_active, AC\Column $column)
+function acp_editing_bulk_disable_for_column_type(bool $is_active, AC\Column $column, AC\ListScreen $list_screen): bool
 {
-    $column_type = 'column-featured_image';
-    $post_type = 'page';
-
-    if ($column_type === $column->get_type() && $post_type === $column->get_list_screen()->get_key()) {
+    if (
+        'column-featured_image' === $column->get_type() &&
+        'page' === $list_screen->get_post_type()
+    ) {
         $is_active = false;
     }
 

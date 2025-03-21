@@ -5,12 +5,7 @@
  * Default is set to 250
  */
 
-/**
- * @param int $number
- *
- * @return int
- */
-function acp_export_increase_number_per_iteration($number)
+function acp_export_increase_number_per_iteration(int $number): int
 {
     // Default = 250;
     return 500;
@@ -26,16 +21,19 @@ add_filter('ac/export/exportable_list_screen/num_items_per_iteration', 'acp_expo
  *
  * @return int
  */
-function acp_export_set_number_of_exported_items_per_iteration_per_list_screen($number, ACP\Export\Strategy $stategy)
-{
-    $list_screen = $stategy->get_list_screen();
+function acp_export_set_number_of_exported_items_per_iteration_per_list_screen(
+    int $number,
+    ACP\Export\Strategy $stategy
+): int {
+    $table_screen = $stategy->get_list_screen()
+                            ->get_table_screen();
 
     switch (true) {
-        case $list_screen instanceof AC\ListScreen\Post:
+        case $table_screen instanceof AC\PostType:
             return 100;
-        case $list_screen instanceof AC\ListScreen\User:
+        case $table_screen instanceof AC\TableScreen\User:
             return 200;
-        case $list_screen instanceof AC\ListScreen\Comment:
+        case $table_screen instanceof AC\TableScreen\Comment:
             return 300;
         default:
             return $number;

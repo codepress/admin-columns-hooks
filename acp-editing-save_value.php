@@ -3,11 +3,11 @@
 /**
  * Filter for changing the value before storing it to the DB
  *
- * @param mixed     $value  Value send from inline edit ajax callback
- * @param AC\Column $column Column object
- * @param int       $id     Post/User/Comment ID
+ * @param mixed      $value  Value send from inline edit ajax callback
+ * @param AC\Column  $column Column object
+ * @param int|string $id     Post/User/Comment ID
  *
- * @return string
+ * @return mixed
  */
 function my_acp_editable_ajax_column_save_value($value, AC\Column $column, $id)
 {
@@ -21,10 +21,10 @@ add_filter('acp/editing/save_value', 'my_acp_editable_ajax_column_save_value', 1
 /**
  * Change the value to a timestamp for a specific custom field
  *
- * @param string    $value
+ * @param mixed     $value
  * @param AC\Column $column
  *
- * @return string
+ * @return mixed
  */
 function acp_editing_change_date_format_for_custom_field($value, AC\Column $column)
 {

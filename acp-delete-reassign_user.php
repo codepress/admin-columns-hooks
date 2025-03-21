@@ -12,7 +12,7 @@
  *
  * @return null|int
  */
-function acp_delete_reassign_user_usage($reassign_id, int $deleted_user_id)
+function acp_delete_reassign_user_usage(?int $reassign_id, int $deleted_user_id): ?int
 {
     return $reassign_id;
 }

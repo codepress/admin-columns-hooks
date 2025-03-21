@@ -2,11 +2,11 @@
 
 /**
  * The filter allows you to add column settings to specific list tables dynamically
- * This might be usefull if you want ot add a column set to every post type for example.
+ * This might be usefully if you want ot add a column set to every post type for example.
  * One thing to keep in mind is that every key must be unique.
  */
 
-add_filter('acp/storage/repositories/callback', function (array $callbacks) {
+add_filter('acp/storage/repositories/callback', function (array $callbacks): array {
     $callbacks['example_callback'] = 'acpUsageExampleCallback';
     $callbacks['dummy_callback'] = 'acpExampleStorageCallback';
 

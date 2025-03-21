@@ -15,15 +15,10 @@ add_filter('acp/search/is_active', '__return_false');
 
 /**
  * Disable Smart Filtering for the media list table
- *
- * @param bool          $is_active
- * @param AC\ListScreen $list_screen
- *
- * @return bool
  */
-function acp_search_disable_for_media($is_active, AC\ListScreen $list_screen)
+function acp_search_disable_for_media(bool $is_active, AC\ListScreen $list_screen): bool
 {
-    if ($list_screen instanceof ACP\ListScreen\Media) {
+    if ('attachment' === $list_screen->get_post_type()) {
         $is_active = false;
     }
 
@@ -34,16 +29,10 @@ add_filter('acp/search/is_active', 'acp_search_disable_for_media', 10, 2);
 
 /**
  * Disable Smart Filtering on a custom post type list table
- *
- * @param bool          $is_active
- * @param AC\ListScreen $list_screen
- *
- * @return bool
  */
-function acp_search_disable_for_custom_post_type($is_active, AC\ListScreen $list_screen)
+function acp_search_disable_for_custom_post_type(bool $is_active, AC\ListScreen $list_screen): bool
 {
-    // The following condition does the same: $list_screen->get_key() === 'my_custom_post_type'
-    if ($list_screen instanceof AC\ListScreenPost && 'my_custom_post_type' === $list_screen->get_post_type()) {
+    if ('my_custom_post_type' === $list_screen->get_post_type()) {
         $is_active = false;
     }
 
@@ -54,17 +43,13 @@ add_filter('acp/search/is_active', 'acp_search_disable_for_custom_post_type', 10
 
 /**
  * Disable Smart Filtering for specific user roles
- *
- * @param bool $is_active
- *
- * @return bool
  */
-function acp_search_disable_for_authors($is_active)
+function acp_search_disable_for_authors(bool $is_active): bool
 {
     $user = wp_get_current_user();
 
     // Disable smart filter for users with the role 'author'
-    if (in_array('author', (array)$user->roles)) {
+    if (in_array('author', $user->roles, true)) {
         $is_active = false;
     }
 
