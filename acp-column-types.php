@@ -5,7 +5,7 @@
  * list tables. In this example we add our custom column to the 'page' list table, but you can pick
  * any custom post type or other list table, such as user, comment and taxonomies.
  */
-add_action('ac/column_types', static function (AC\ListScreen $list_screen): void {
+add_action('acp/column_types', static function (AC\ListScreen $list_screen): void {
     if ('page' !== $list_screen->get_post_type()) {
         return;
     }
