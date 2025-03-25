@@ -1,5 +1,10 @@
 <?php
 /**
+ * @depecated since 7.0
+ *            Use `ac/v2/column/value` instead.
+ */
+
+/**
  * The filter `ac/column/value` allows you to alter the value of a column cell
  * You probably want to check for a specific column instance and check for extra conditionals related to the column in order to change the value for the correct column
  */
