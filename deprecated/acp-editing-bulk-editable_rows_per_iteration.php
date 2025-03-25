@@ -1,4 +1,7 @@
 <?php
+/**
+ * @removed   since 7.0
+ */
 
 /**
  * Change the amount of items being prepared per batch process for Bulk Edit.

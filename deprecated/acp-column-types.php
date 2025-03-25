@@ -1,4 +1,8 @@
 <?php
+/**
+ * @depecated since 7.0
+ *            Use `acp/v2/column_types` instead.
+ */
 
 /**
  * Register your custom column type in the 'ac/column_types' hook. Use the ListScreen object to target specific

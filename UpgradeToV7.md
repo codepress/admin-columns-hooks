@@ -23,27 +23,27 @@ The following filters have been removed.
 
 The following filters have been replaced to prevent errors due to unmatching params.
 
-| Old hook                                     | Replacement                                     |
-|:---------------------------------------------|-------------------------------------------------|
-| ac/column/value                              | [`ac/v2/column/value`](./ac-v2-column-value.php)  |
-| ac/column/value/sanitize                     | ac/v2/column/value/sanitize                     |
-| ac/export/value                              | ac/v2/export/value                              |
-| ac/export/value/escape                       | ac/v2/export/value/escape                       |
-| acp/delete/bulk/deleted_rows_per_iteration   | acp/v2/delete/bulk/deleted_rows_per_iteration   |
-| acp/editing/bulk/updated_rows_per_iteration  | acp/v2/editing/bulk/updated_rows_per_iteration  |
-| acp/editing/persistent                       | acp/v2/editing/persistent                       |
-| acp/editing/post_statuses                    | acp/v2/editing/post_statuses                    |
-| acp/editing/save_value                       | acp/v2/editing/save_value                       |
-| acp/editing/settings/post_types              | acp/v2/editing/settings/post_types              |
-| acp/editing/value                            | acp/v2/editing/value                            |
-| acp/editing/view                             | acp/v2/editing/view                             |
-| acp/export/is_active                         | acp/v2/export/is_active                         |
-| acp/horizontal_scrolling/enable              | acp/v2/horizontal_scrolling/enable              |
-| acp/search/filters                           | acp/v2/search/filters                           |
-| acp/sorting/default                          | acp/v2/sorting/default                          |
-| acp/sorting/model                            | acp/v2/sorting/model                            |
-| acp/sorting/remember_last_sorting_preference | acp/v2/sorting/remember_last_sorting_preference |
-| acp/wc/column/product/sales/statuses         | acp/v2/wc/column/product/sales/statuses         |
+| Old hook                                     | Replacement                                      |
+|:---------------------------------------------|--------------------------------------------------|
+| ac/column/value                              | [`ac/v2/column/value`](./ac-v2-column-value.php) |
+| ac/column/value/sanitize                     | ac/v2/column/value/sanitize                      |
+| ac/export/value                              | ac/v2/export/value                               |
+| ac/export/value/escape                       | ac/v2/export/value/escape                        |
+| acp/delete/bulk/deleted_rows_per_iteration   | acp/v2/delete/bulk/deleted_rows_per_iteration    |
+| acp/editing/bulk/updated_rows_per_iteration  | acp/v2/editing/bulk/updated_rows_per_iteration   |
+| acp/editing/persistent                       | acp/v2/editing/persistent                        |
+| acp/editing/post_statuses                    | acp/v2/editing/post_statuses                     |
+| acp/editing/save_value                       | acp/v2/editing/save_value                        |
+| acp/editing/settings/post_types              | acp/v2/editing/settings/post_types               |
+| acp/editing/value                            | acp/v2/editing/value                             |
+| acp/editing/view                             | acp/v2/editing/view                              |
+| acp/export/is_active                         | acp/v2/export/is_active                          |
+| acp/horizontal_scrolling/enable              | acp/v2/horizontal_scrolling/enable               |
+| acp/search/filters                           | acp/v2/search/filters                            |
+| acp/sorting/default                          | acp/v2/sorting/default                           |
+| acp/sorting/model                            | acp/v2/sorting/model                             |
+| acp/sorting/remember_last_sorting_preference | acp/v2/sorting/remember_last_sorting_preference  |
+| acp/wc/column/product/sales/statuses         | acp/v2/wc/column/product/sales/statuses          |
 
 ## Actions ##
 
@@ -59,14 +59,14 @@ The following filters have been replaced to prevent errors due to unmatching par
 | ac/settings/sidebox               |       |
 | acp/admin/settings/hide_on_screen |       |
 
-| Old hook                         | Replacement                         |
-|----------------------------------|-------------------------------------|
-| ac/column_types                  | ac/v2/column_types                  |
-| ac/columns_stored                | ac/v2/columns_stored                |
-| acp/acf/after_get_field_options  | acp/v2/acf/after_get_field_options  |
-| acp/acf/before_get_field_options | acp/v2/acf/before_get_field_options |
-| acp/column_types                 | acp/v2/column_types                 |
-| acp/editing/before_save          | acp/v2/editing/before_save          |
-| acp/editing/saved                | acp/v2/editing/saved                |
-| acp/list_screen/deleted          | acp/v2/list_screen/deleted          |
-| acp/quick_add/saved              | acp/v2/quick_add/saved              |
+| Old hook                         | Replacement                                        |
+|----------------------------------|----------------------------------------------------|
+| ac/column_types                  | ac/v2/column_types                                 |
+| ac/columns_stored                | ac/v2/columns_stored                               |
+| acp/acf/after_get_field_options  | acp/v2/acf/after_get_field_options                 |
+| acp/acf/before_get_field_options | acp/v2/acf/before_get_field_options                |
+| acp/column_types                 | [`acp/v2/column_types`](./acp-v2-column-types.php) |
+| acp/editing/before_save          | acp/v2/editing/before_save                         |
+| acp/editing/saved                | acp/v2/editing/saved                               |
+| acp/list_screen/deleted          | acp/v2/list_screen/deleted                         |
+| acp/quick_add/saved              | acp/v2/quick_add/saved                             |

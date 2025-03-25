@@ -1,5 +1,9 @@
 <?php
 /**
+ * @removed   since 7.0
+ */
+
+/**
  * Disable Bulk Edit on column level despite the column settings
  */
 

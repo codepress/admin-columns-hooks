@@ -1,5 +1,9 @@
 <?php
 /**
+ * @removed   since 7.0
+ */
+
+/**
  * You can deactivate specific columns from exporting by using the `ac/export/column/disable` hook
  */
 

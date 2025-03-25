@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The filter acp/editing/bulk/updated_rows_per_iteration allows you to set the number of records that is processed per iteration with Bulk Edit.
  * The default number is 250, but if you have a slow server, you may want to lower this number.
@@ -13,4 +14,15 @@ function acp_editing_bulk_reduce_records_to_update_per_iteration(int $number): i
     return 10; // Default is 250
 }
 
-add_filter('acp/editing/bulk/updated_rows_per_iteration', 'acp_editing_bulk_reduce_records_to_update_per_iteration');
+add_filter('acp/v2/editing/bulk/updated_rows_per_iteration', 'acp_editing_bulk_reduce_records_to_update_per_iteration');
+
+/**
+ * Example to set the amount for a specific Table
+ */
+add_filter('acp/v2/editing/bulk/updated_rows_per_iteration', function (int $number, AC\ListScreen $listScreen) {
+    if ($listScreen->get_key()->equals(new AC\Type\ListKey('page'))) {
+        $number = 10;
+    }
+
+    return $number;
+}, 10, 2);
