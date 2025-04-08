@@ -1,5 +1,9 @@
 <?php
 /**
+ * @removed   since 7.0
+ */
+
+/**
  * This hook allows you to alter the value that is retrieved for editing before it is displayed in the editable.
  */
 
