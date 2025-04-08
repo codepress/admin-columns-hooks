@@ -1,4 +1,7 @@
 <?php
+/**
+ * @removed   since 7.0
+ */
 
 /**
  * Filter for changing the value before storing it to the DB

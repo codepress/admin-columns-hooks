@@ -1,5 +1,9 @@
 <?php
 /**
+ * @removed   since 7.0
+ */
+
+/**
  * The following filter allows you to disable the default sanitazion of cell values.
  * Because of the sanitazion value started with =,-,+, and @ are prefixed with a quote to prevent cell execution
  */
