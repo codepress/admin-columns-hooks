@@ -5,10 +5,10 @@
  */
 
 // This example disabled sanitation for all columns
-add_filter('ac/export/value/escape', '__return_false');
+add_filter('ac/export/render/escape', '__return_false');
 
 // This example disabled sanitation for all Custom Field Columns
-add_filter('ac/export/value/escape', static function ($enabled, AC\Setting\Context $context) {
+add_filter('ac/export/render/escape', static function ($enabled, AC\Setting\Context $context) {
     if ($context instanceof AC\Setting\Context\CustomField) {
         return false;
     }
@@ -18,7 +18,7 @@ add_filter('ac/export/value/escape', static function ($enabled, AC\Setting\Conte
 
 // This example disabled sanitation for all columns for specific tables
 add_filter(
-    'ac/export/value/escape',
+    'ac/export/render/escape',
     static function ($enabled, AC\Setting\Context $context, AC\TableScreen $table_screen) {
         // Check for Post table
         if ((string)$table_screen->get_key() === 'post') {

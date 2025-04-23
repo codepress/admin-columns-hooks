@@ -3,7 +3,7 @@
 /**
  * Register your custom column type in the 'acp/column_types' hook.
  */
-add_filter('acp/v2/column_types', static function ($factories, AC\TableScreen $table_screen): array {
+add_filter('ac/column/types/pro', static function ($factories, AC\TableScreen $table_screen): array {
     // Register for the page post type table
     if ($table_screen->get_key()->equals(new AC\Type\ListKey('page'))) {
         $factories[] = MyExampleColumn::class;
