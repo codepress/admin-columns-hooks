@@ -1,6 +1,7 @@
 <?php
 /**
- * @removed   since 7.0
+ * @depecated since 7.0
+ *            Use `ac/editing/persistent` instead.
  */
 
 /**

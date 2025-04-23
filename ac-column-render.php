@@ -1,6 +1,6 @@
 <?php
 /**
- * The filter `ac/v2/column/value` allows you to alter the value of a column cell
+ * The filter `aac/column/render` allows you to alter the value of a column cell
  * You probably want to check for a specific column instance and check for extra conditionals related to the column in order to change the value for the correct column
  */
 
@@ -19,12 +19,12 @@ function ac_column_value_usage($value, $id, AC\Setting\Context $context)
     return $value;
 }
 
-add_filter('ac/v2/column/value', 'ac_column_value_usage', 10, 3);
+add_filter('ac/column/render', 'ac_column_value_usage', 10, 3);
 
 /**
  * Shorter notation
  */
-add_filter('ac/v2/column/value', function ($value, $id, AC\Setting\Context $context) {
+add_filter('aac/column/render', function ($value, $id, AC\Setting\Context $context) {
     return $value;
 }, 10, 3);
 

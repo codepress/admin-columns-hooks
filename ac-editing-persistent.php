@@ -4,4 +4,4 @@
  * Permanently enables inline edit on all list tables
  * This means you don't need to toggle it on the overview
  */
-add_filter('acp/v2/editing/persistent', '__return_true');
+add_filter('ac/editing/persistent', '__return_true');

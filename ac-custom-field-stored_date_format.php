@@ -12,7 +12,7 @@ function acp_custom_field_stored_date_format(string $date_format, AC\Setting\Con
     return $date_format;
 }
 
-add_filter('acp/v2/custom_field/stored_date_format', 'acp_custom_field_stored_date_format', 10, 2);
+add_filter('ac/custom_field/stored_date_format', 'acp_custom_field_stored_date_format', 10, 2);
 
 /**
  * Set the date format for a specific key to a timestamp `U`
@@ -27,4 +27,4 @@ function acp_set_custom_field_stored_date_format(string $date_format, AC\Setting
     return $date_format;
 }
 
-add_filter('acp/v2/custom_field/stored_date_format', 'acp_set_custom_field_stored_date_format', 10, 2);
+add_filter('ac/custom_field/stored_date_format', 'acp_set_custom_field_stored_date_format', 10, 2);

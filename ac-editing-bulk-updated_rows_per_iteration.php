@@ -14,12 +14,12 @@ function acp_editing_bulk_reduce_records_to_update_per_iteration(int $number): i
     return 10; // Default is 250
 }
 
-add_filter('acp/v2/editing/bulk/updated_rows_per_iteration', 'acp_editing_bulk_reduce_records_to_update_per_iteration');
+add_filter('ac/editing/bulk/updated_rows_per_iteration', 'acp_editing_bulk_reduce_records_to_update_per_iteration');
 
 /**
  * Example to set the amount for a specific Table
  */
-add_filter('acp/v2/editing/bulk/updated_rows_per_iteration', function (int $number, AC\ListScreen $listScreen) {
+add_filter('ac/editing/bulk/updated_rows_per_iteration', function (int $number, AC\ListScreen $listScreen) {
     if ($listScreen->get_key()->equals(new AC\Type\ListKey('page'))) {
         $number = 10;
     }

@@ -1,7 +1,7 @@
 <?php
 /**
  * @depecated since 7.0
- *            Use `ac/v2/column/value` instead.
+ *            Use `ac/column/render` instead.
  */
 
 /**

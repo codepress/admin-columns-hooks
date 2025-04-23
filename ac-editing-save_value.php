@@ -12,12 +12,12 @@ function my_acp_editable_ajax_column_save_value(
     return $value;
 }
 
-add_filter('acp/v2/editing/save_value', 'my_acp_editable_ajax_column_save_value', 10, 5);
+add_filter('ac/editing/save_value', 'my_acp_editable_ajax_column_save_value', 10, 5);
 
 /**
  * Change the value to a timestamp for a specific custom field
  */
-add_filter('acp/v2/editing/save_value', function (
+add_filter('ac/editing/save_value', function (
     $value,
     $id,
     AC\Setting\Context $context,

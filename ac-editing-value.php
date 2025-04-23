@@ -17,11 +17,11 @@ function acp_editing_value_example_usage(
     return $value;
 }
 
-add_filter('acp/editing/value', 'acp_editing_value_example_usage', 10, 5);
+add_filter('ac/editing/value', 'acp_editing_value_example_usage', 10, 5);
 
 // Or anonymous function
 
-add_filter('acp/editing/value', static function (
+add_filter('ac/editing/value', static function (
     $value,
     $id,
     AC\Setting\Context $context,
@@ -34,7 +34,7 @@ add_filter('acp/editing/value', static function (
 /**
  * Example to get a nested value from an associative array. You need to parse it back when saving the value with the hook `acp/editing/save_value`
  */
-add_filter('acp/editing/value', static function (
+add_filter('ac/editing/value', static function (
     $value,
     $id,
     AC\Setting\Context $context,
