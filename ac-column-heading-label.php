@@ -3,7 +3,7 @@
  * This hooks allows you to alter the label just before they are rendered on the screen
  */
 
-function ac_heading_label(string $label, AC\Column $column): string
+function ac_heading_label(string $label, AC\Setting\Context $context): string
 {
     // Change column label
     // $label = 'My Custom Label';
@@ -11,15 +11,15 @@ function ac_heading_label(string $label, AC\Column $column): string
     return $label;
 }
 
-add_filter('ac/headings/label', 'ac_heading_label', 10, 2);
+add_filter('ac/column/heading/label', 'ac_heading_label', 10, 2);
 
 /**
  * Example on running each label through the string translation methods
  * translation must already be available in the language file, since no new strings are registered
  */
-function ac_heading_label_translate(string $label, AC\Column $column): string
+function ac_heading_label_translate(string $label, AC\Setting\Context $context): string
 {
     return __($label, 'custom-text-domain');
 }
 
-add_filter('ac/headings/label', 'ac_heading_label_translate', 10, 2);
+add_filter('ac/column/heading/label', 'ac_heading_label', 10, 2);

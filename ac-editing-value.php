@@ -9,22 +9,22 @@
 
 function acp_editing_value_example_usage(
     $value,
-    $id,
     AC\Setting\Context $context,
+    $id,
     AC\TableScreen $table_screen,
     AC\Type\ListScreenId $list_screen_id
 ) {
     return $value;
 }
 
-add_filter('ac/editing/value', 'acp_editing_value_example_usage', 10, 5);
+add_filter('ac/editing/input_value', 'acp_editing_value_example_usage', 10, 5);
 
 // Or anonymous function
 
-add_filter('ac/editing/value', static function (
+add_filter('ac/editing/input_value', static function (
     $value,
-    $id,
     AC\Setting\Context $context,
+    $id,
     AC\TableScreen $table_screen,
     AC\Type\ListScreenId $list_screen_id
 ) {
@@ -34,10 +34,10 @@ add_filter('ac/editing/value', static function (
 /**
  * Example to get a nested value from an associative array. You need to parse it back when saving the value with the hook `acp/editing/save_value`
  */
-add_filter('ac/editing/value', static function (
+add_filter('ac/editing/input_value', static function (
     $value,
-    $id,
     AC\Setting\Context $context,
+    $id,
     AC\TableScreen $table_screen,
     AC\Type\ListScreenId $list_screen_id
 ) {

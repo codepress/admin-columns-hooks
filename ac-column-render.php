@@ -6,12 +6,12 @@
 
 /**
  * @param mixed              $value The column value that is displayed within a cell on the list table
- * @param string|int         $id    Post ID, User ID, Comment ID, Attachment ID or Term ID
  * @param AC\Setting\Context $context
+ * @param string|int         $id    Post ID, User ID, Comment ID, Attachment ID or Term ID
  *
  * @return mixed
  */
-function ac_column_value_usage($value, $id, AC\Setting\Context $context)
+function ac_column_value_usage($value, AC\Setting\Context $context, $id)
 {
     // Change the rendered column value
     // $value = 'new value';
@@ -24,25 +24,21 @@ add_filter('ac/column/render', 'ac_column_value_usage', 10, 3);
 /**
  * Shorter notation
  */
-add_filter('aac/column/render', function ($value, $id, AC\Setting\Context $context) {
+add_filter('ac/column/', function ($value, AC\Setting\Context $context, $id) {
     return $value;
 }, 10, 3);
 
 /**
  * Example on how to wrap the value of a specific Custom Field column of the type 'color' in markup to give it a background color.
- *
- * @param mixed              $value   Column value
- * @param int|string         $id      Post ID, User ID, Comment ID, Attachment ID or Term ID
- * @param AC\Setting\Context $context Context
  */
-function ac_column_value_custom_field_example($value, $id, AC\Setting\Context $context)
+function ac_column_value_custom_field_example($value, AC\Setting\Context $context, $id)
 {
-    if ($context->get_type() === 'column-meta') {
+    if ($context instanceof AC\Setting\Context\CustomField) {
         // Custom Field Key
-        $meta_key = $context->get('meta_key');
+        $meta_key = $context->get_meta_key();
 
         // Custom Field Type can be 'excerpt|color|date|numeric|image|has_content|link|checkmark|library_id|title_by_id|user_by_id|array|count'. The default is ''.
-        $custom_field_type = $context->get('field_type');
+        $custom_field_type = $context->get_field_type();
 
         if ('my_hex_color' === $meta_key && 'color' === $custom_field_type) {
             $value = sprintf('<span style="background-color: %1$s">%1$s</span>', $value);
@@ -56,17 +52,13 @@ add_filter('ac/column/value', 'ac_column_value_custom_field_example', 10, 3);
 
 /**
  * Example on how to add a `class` attribute to the rendered value that can be styled by CSS.
- *
- * @param mixed              $value   Column value
- * @param int|string         $id      Post ID, User ID, Comment ID, Attachment ID or Term ID
- * @param AC\Setting\Context $context Context
  */
-function ac_column_value_add_class_attribute_based_on_value($value, $id, AC\Setting\Context $context)
+function ac_column_value_add_class_attribute_based_on_value($value, AC\Setting\Context $context, $id)
 {
-    if ($context->get_type() === 'column-meta') {
+    if ($context instanceof AC\Setting\Context\CustomField) {
         // Add a unique `class` attribute to the rendered value.
 
-        if ('my_custom_field_key' === $context->get('meta_key')) {
+        if ('my_custom_field_key' === $context->get_meta_key()) {
             $value = sprintf(
                 '<span class="%s %s">%s</span>',
                 esc_attr('column-' . $context->get('name')), // Add the column name to the `class` attribute
@@ -79,4 +71,44 @@ function ac_column_value_add_class_attribute_based_on_value($value, $id, AC\Sett
     return $value;
 }
 
-add_filter('ac/column/value', 'ac_column_value_add_class_attribute_based_on_value', 10, 3);
+add_filter('ac/column/render', 'ac_column_value_add_class_attribute_based_on_value', 10, 3);
+
+function ac_column_value_acf_example($value, AC\Setting\Context $context, $id)
+{
+    // Check for the ACF column
+    if ($context instanceof ACA\ACF\Setting\Context\Field) {
+        /**
+         * Contains all ACF field information
+         */
+        $field_settings = $context->get_field();
+
+        /**
+         * The unique identifier for the ACF field
+         */
+        $field_hash = $context->get_field_key();
+
+        /**
+         * Contains the complete list of available ACF field types 'text|number|url|radio|post_object|link|wysiwyg'
+         * @see ACA\ACF\FieldType
+         */
+        $field_type = $context->get_field_type();
+
+        /**
+         * Custom Field `meta_key`
+         */
+        $meta_key = $context->get_meta_key();
+
+        // Modify the rendered column value for the ACF `text` field type
+        if (
+            'my_custom_field_key' === $meta_key
+            && 'text' === $field_type
+        ) {
+            // In this example we will append a string
+            $value .= ' ( Additional Text )';
+        }
+    }
+
+    return $value;
+}
+
+add_filter('ac/column/render', 'ac_column_value_acf_example', 10, 3);

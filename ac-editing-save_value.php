@@ -17,7 +17,7 @@ add_filter('ac/editing/save_value', 'my_acp_editable_ajax_column_save_value', 10
 /**
  * Change the value to a timestamp for a specific custom field
  */
-add_filter('ac/editing/save_value', function (
+add_filter('ac/editing/save_value', static function (
     $value,
     $id,
     AC\Setting\Context $context,
