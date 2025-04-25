@@ -19,6 +19,7 @@ The following filters have been removed.
 | acp/editing/value/column_type       |                      |
 | acp/editing/view_settings           | Deprecated since 5.7 |
 | acp/editing/view_settings/$type     | Deprecated since 5.7 |
+| acp/horizontal_scrolling/enable     |                      |
 | acp/sorting/post_status             |                      |
 
 The following filters have been replaced to prevent errors due to unmatching params.
@@ -39,8 +40,7 @@ The following filters have been replaced to prevent errors due to unmatching par
 | acp/editing/settings/post_types              | acp/v2/editing/settings/post_types                                                             |
 | acp/editing/value                            | [`acp/v2/editing/value`](ac-editing-value.php)                                                 |
 | acp/editing/view                             | [`acp/v2/editing/view`](ac-editing-view.php)                                                   |
-| acp/export/is_active                         | acp/v2/export/is_active                                                                        |
-| acp/horizontal_scrolling/enable              | acp/v2/horizontal_scrolling/enable                                                             |
+| acp/export/is_active                         | [`ac/export/is_active`](./ac-export-is_active.php)                                             |
 | acp/search/filters                           | acp/v2/search/filters                                                                          |
 | acp/sorting/default                          | acp/v2/sorting/default                                                                         |
 | acp/sorting/model                            | acp/v2/sorting/model                                                                           |

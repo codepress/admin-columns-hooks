@@ -1,4 +1,8 @@
 <?php
+/**
+ * @depecated since 7.0
+ *            Use `ac/export/active` instead.
+ */
 
 /**
  * This hooks allows you to disable the export functionality for specific list tables.
