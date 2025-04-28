@@ -112,3 +112,44 @@ function ac_column_value_acf_example($value, AC\Setting\Context $context, $id)
 }
 
 add_filter('ac/column/render', 'ac_column_value_acf_example', 10, 3);
+
+/* Example of checking for multiple available context types */
+add_filter('ac/column/render', function ($value, AC\Setting\Context $context, $id) {
+    if ($context instanceof ACA\ACF\Setting\Context\Field) {
+        return $context->get_field_type();
+    }
+
+    if ($context instanceof ACA\Types\Setting\Context\Relationship) {
+        return $context->get_type() . $context->get_relation()['type'];
+    }
+
+    if ($context instanceof ACA\Types\Setting\Context\Field) {
+        return $context->get_field_type() . ': ' . $context->get_meta_key();
+    }
+
+    if ($context instanceof ACA\JetEngine\Setting\Context\Field) {
+        return $context->get_field_type() . ': ' . $context->get_meta_key();
+    }
+
+    if ($context instanceof ACA\JetEngine\Setting\Context\Relation) {
+        return $context->get_relation()->get_relation_name();
+    }
+
+    if ($context instanceof ACA\MetaBox\Setting\Context\Relation) {
+        return $context->get_relation()->get_related_meta_type();
+    }
+
+    if ($context instanceof ACA\Pods\Setting\Context\Field) {
+        return $context->get_field_type() . ' - ' . $context->get_meta_key();
+    }
+
+    if ($context instanceof ACA\MetaBox\Setting\Context\Field) {
+        return $context->get_field_type() . ' - ' . $context->get_meta_key();
+    }
+
+    if ($context instanceof AC\Setting\Context\CustomField) {
+        return $context->get_field_type();
+    }
+
+    return $value;
+}, 10, 3);
