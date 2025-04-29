@@ -1,4 +1,8 @@
 <?php
+/**
+ * @depecated since 7.0
+ * Use `ac/sorting/custom_field/numeric_type` instead.
+ */
 
 /**
  * This filter allows you to set the data type of custom `numeric` field used to sort the column.
@@ -15,7 +19,7 @@ function acp_sorting_custom_field_numeric_type(string $date_type, AC\Column\Cust
     return $date_type;
 }
 
-add_filter('acp/sorting/custom_field/date_type', 'acp_sorting_custom_field_numeric_type', 10, 2);
+add_filter('acp/sorting/custom_field/numeric_type', 'acp_sorting_custom_field_numeric_type', 10, 2);
 
 /**
  * Set the sorting data type for a specific custom field to decimal

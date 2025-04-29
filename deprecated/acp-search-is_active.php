@@ -1,5 +1,10 @@
 <?php
 /**
+ * @depecated since 7.0
+ * Use `ac/search/enable` instead.
+ */
+
+/**
  * Hook to enable/disable smart filtering completely. Can easily be checked on specific list screen or other conditionals like User Roles
  */
 

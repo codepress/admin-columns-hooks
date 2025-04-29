@@ -24,28 +24,31 @@ The following filters have been removed.
 
 The following filters have been replaced to prevent errors due to unmatching params.
 
-| Old hook                                     | Replacement                                                                                    |
-|:---------------------------------------------|------------------------------------------------------------------------------------------------|
-| ac/column/value                              | [`ac/column/render`](./ac-column-render.php)                                                   |
-| ac/column/value/sanitize                     | [`ac/v2/column/value/sanitize`](./ac-column-render-sanitize.php)                               |
-| ac/headings/label                            | [`ac/column/heading/label`](./ac-column-heading-label.php)                                     |
-| ac/export/value                              | [`ac/export/render`](./ac-export-render.php)                                                   |
-| ac/export/value/escape                       | [`ac/export/render/escape`](./ac-export-render-escape.php)                                     |
-| acp/custom_field/stored_date_format          | [`ac/custom_field/stored_date_format`](ac-custom-field-stored_date_format.php)                 |
-| acp/delete/bulk/deleted_rows_per_iteration   | [`ac/delete/bulk/deleted_rows_per_iteration`](ac-delete-bulk-deleted_rows_per_iteration.php)   |
-| acp/editing/bulk/updated_rows_per_iteration  | [`ac/editing/bulk/updated_rows_per_iteration`](ac-editing-bulk-updated_rows_per_iteration.php) |
-| acp/editing/persistent                       | [`ac/editing/persistent`](ac-editing-persistent.php)                                           |
-| acp/editing/post_statuses                    | [`ac/editing/post_statuses`](ac-editing-post_statuses.php)                                     |
-| acp/editing/save_value                       | [`acp/v2/editing/save_value`](ac-editing-save_value.php)                                       |
-| acp/editing/settings/post_types              | acp/v2/editing/settings/post_types                                                             |
-| acp/editing/value                            | [`acp/v2/editing/value`](ac-editing-value.php)                                                 |
-| acp/editing/view                             | [`acp/v2/editing/view`](ac-editing-view.php)                                                   |
-| acp/export/is_active                         | [`ac/export/is_active`](./ac-export-is_active.php)                                             |
-| acp/search/filters                           | acp/v2/search/filters                                                                          |
-| acp/sorting/default                          | acp/v2/sorting/default                                                                         |
-| acp/sorting/model                            | acp/v2/sorting/model                                                                           |
-| acp/sorting/remember_last_sorting_preference | acp/v2/sorting/remember_last_sorting_preference                                                |
-| acp/wc/column/product/sales/statuses         | acp/v2/wc/column/product/sales/statuses                                                        |
+| Old hook                                     | Replacement                                                                                        |
+|:---------------------------------------------|----------------------------------------------------------------------------------------------------|
+| ac/column/value                              | [`ac/column/render`](./ac-column-render.php)                                                       |
+| ac/column/value/sanitize                     | [`ac/v2/column/value/sanitize`](./ac-column-render-sanitize.php)                                   |
+| ac/headings/label                            | [`ac/column/heading/label`](./ac-column-heading-label.php)                                         |
+| ac/export/value                              | [`ac/export/render`](./ac-export-render.php)                                                       |
+| ac/export/value/escape                       | [`ac/export/render/escape`](./ac-export-render-escape.php)                                         |
+| acp/custom_field/stored_date_format          | [`ac/custom_field/stored_date_format`](ac-custom-field-stored_date_format.php)                     |
+| acp/delete/bulk/deleted_rows_per_iteration   | [`ac/delete/bulk/deleted_rows_per_iteration`](ac-delete-bulk-deleted_rows_per_iteration.php)       |
+| acp/editing/bulk/updated_rows_per_iteration  | [`ac/editing/bulk/updated_rows_per_iteration`](ac-editing-bulk-updated_rows_per_iteration.php)     |
+| acp/editing/persistent                       | [`ac/editing/persistent`](ac-editing-persistent.php)                                               |
+| acp/editing/post_statuses                    | [`ac/editing/post_statuses`](ac-editing-post_statuses.php)                                         |
+| acp/editing/save_value                       | [`acp/v2/editing/save_value`](ac-editing-save_value.php)                                           |
+| acp/editing/settings/post_types              | [`ac/editing/custom_field/post_types`](./ac-editing-custom-field-post_types.php)                   |
+| acp/editing/value                            | [`acp/v2/editing/value`](ac-editing-value.php)                                                     |
+| acp/editing/view                             | [`acp/v2/editing/view`](ac-editing-view.php)                                                       |
+| acp/export/is_active                         | [`ac/export/is_active`](./ac-export-is_active.php)                                                 |
+| acp/search/is_active                         | [`ac/search/enable`](./ac-search-enable.php)                                                       |
+| acp/search/filters                           | [`ac/search/filters`](./ac-search-filters.php)                                                     |
+| acp/sorting/default                          | [`ac/sorting/default`](./ac-sorting-default.php)                                                   |
+| acp/sorting/model                            | [`ac/sorting/model`](./ac-sorting-model.php)                                                       |
+| acp/sorting/remember_last_sorting_preference | [`ac/sorting/remember_last_sorting_preference`](./ac-sorting-remember_last_sorting_preference.php) |
+| acp/sorting/custom_field/date_type           | [`ac/sorting/custom_field/date_type`](./ac-sorting-custom_field-date_type.php)                     |
+| acp/sorting/custom_field/numeric_type        | [`ac/sorting/custom_field/numeric_type`](./ac-sorting-custom_field-numeric_type.php)               |
+| acp/wc/column/product/sales/statuses         | acp/v2/wc/column/product/sales/statuses                                                            |
 
 ## Actions ##
 

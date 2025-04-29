@@ -1,6 +1,7 @@
 <?php
 /**
- * Hook to change the filter settings for a column
+ * @depecated since 7.0
+ * Use `ac/search/filters` instead.
  */
 
 /**

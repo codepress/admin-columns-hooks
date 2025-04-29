@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @depecated since 7.0
+ * Use `ac/sorting/default` instead.
+ */
+
+/**
  * This filter allows you to set which column should be used to sort by as a default.
  */
 
