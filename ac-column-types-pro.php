@@ -5,7 +5,8 @@
  */
 add_filter('ac/column/types/pro', static function ($factories, AC\TableScreen $table_screen): array {
     // Register for the page post type table
-    if ($table_screen->get_key()->equals(new AC\Type\ListKey('page'))) {
+
+    if ($table_screen->get_id()->equals(new AC\Type\TableId('page'))) {
         $factories[] = MyExampleColumn::class;
     }
 
@@ -30,7 +31,7 @@ add_filter('ac/column/types/pro', static function ($factories, AC\TableScreen $t
  * Define your own custom column class
  * @see https://docs.admincolumns.com/article/21-how-to-create-my-own-column
  */
-class MyExampleColumn extends ACP\Column\BaseFactory
+class MyExampleColumn extends ACP\Column\AdvancedColumnFactory
 {
 
     public function get_column_type(): string
