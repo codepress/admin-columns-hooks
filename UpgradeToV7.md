@@ -44,6 +44,7 @@ The following filters have been replaced to prevent errors due to unmatching par
 | acp/editing/view                             | [`acp/v2/editing/view`](ac-editing-view.php)                                                       |
 | acp/export/is_active                         | [`ac/export/is_active`](./ac-export-is_active.php)                                                 |
 | acp/export/file_name                         | [`ac/export/file_name`](./ac-export-filename.php)                                                  |
+| acp/filtering/cache/seconds                    | [`ac/filtering/cache/seconds`](./ac-filtering-cache-seconds.php)              |
 | acp/resize_columns/active                    | [`ac/resize_columns/active`](./ac-resize_columns-active.php)                                       |
 | acp/search/is_active                         | [`ac/search/enable`](./ac-search-enable.php)                                                       |
 | acp/search/filters                           | [`ac/search/filters`](./ac-search-filters.php)                                                     |
