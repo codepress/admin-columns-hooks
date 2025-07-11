@@ -37,6 +37,9 @@ function example_ac_get_list_screens()
         $columns = $list_screen->get_columns(); // array of column objects
 
         foreach ($columns as $column) {
+            /**
+             * @var $column AC\Column
+             */
             echo $column->get_type(); // e.g. 'column-title', 'column-meta'
             echo $column->get_label(); // e.g. 'Title', 'Author', 'Date'
         }

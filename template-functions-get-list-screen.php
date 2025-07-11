@@ -34,12 +34,18 @@ function example_ac_get_list_screen()
     );
 
     if ($list_screen) {
+        /**
+         * @var AC\ListScreen $list_screen
+         */
         echo $list_screen->get_label(); // e.g. 'Posts', 'Users', 'Comments'
         echo $list_screen->get_meta_type(); // e.g. 'post', 'user' or 'comment
 
         $columns = $list_screen->get_columns(); // array of column objects
 
         foreach ($columns as $column) {
+            /**
+             * @var AC\Column $column
+             */
             echo $column->get_type(); // e.g. 'column-title', 'column-meta'
             echo $column->get_label(); // e.g. 'Title', 'Author', 'Date'
         }
