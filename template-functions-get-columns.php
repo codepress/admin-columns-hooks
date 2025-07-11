@@ -23,6 +23,8 @@ add_action('wp_loaded', 'acp_loaded');
 
 /**
  * Example usage of ac_get_columns() function.
+ * @uses AC\Column
+ * @uses AC\ListScreen
  */
 function example_ac_get_columns()
 {
@@ -40,7 +42,9 @@ function example_ac_get_columns()
         echo $column->get_post_type();      // Output: The name of the post type (e.g. page) if it's a post type column
         echo $column->get_value(1234);      // Output: The value that is displayed on the list table in the column cell
         echo $column->get_option('width');  // Output: Width of the column in pixels or percentage
-        printf($column->get_options());     // Output: All stored options for the column (e.g. width, label, image_size)
+
+        $options = $column->get_options();  // Output: All stored options for the column (e.g. width, label, image_size)
+        print_r($options);   // Output: All stored options for the column (e.g. width, label, image_size)
     }
 }
 

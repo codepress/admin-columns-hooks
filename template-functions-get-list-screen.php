@@ -24,6 +24,8 @@ add_action('wp_loaded', 'acp_loaded');
 
 /**
  * Example usage of ac_get_list_screen() function.
+ * @uses AC\Column
+ * @uses AC\ListScreen
  */
 function example_ac_get_list_screen()
 {

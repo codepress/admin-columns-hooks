@@ -32,6 +32,8 @@ add_action('wp_loaded', 'acp_loaded');
 
 /**
  * Example usage of ac_get_column() function.
+ * @uses AC\Column
+ * @uses AC\ListScreen
  */
 function example_get_column()
 {
@@ -41,13 +43,19 @@ function example_get_column()
     );
 
     if ($column) {
+        /**
+         * @var AC\Column $column
+         */
         echo $column->get_custom_label();   // Output: My Title Label
         echo $column->get_label();          // Output: Title
         echo $column->get_type();           // Output: column-title
+        echo $column->get_meta_type();      // Output: The meta type (e.g. post, user, comment)
         echo $column->get_post_type();      // Output: The name of the post type (e.g. page) if it's a post type column
         echo $column->get_value(1234);      // Output: The value that is displayed on the list table in the column cell
         echo $column->get_option('width');  // Output: Width of the column in pixels or percentage
-        printf($column->get_options());     // Output: All stored options for the column (e.g. width, label, image_size)
+
+        $options = $column->get_options();  // Output: All stored options for the column (e.g. width, label, image_size)
+        print_r($options);
     } else {
         echo 'Column not found';
     }
