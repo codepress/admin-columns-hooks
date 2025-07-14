@@ -12,7 +12,6 @@ Examples and usage for available Admin Columns hooks and filters
 - `ac/column/custom_field/use_text_input` – Use a text input for custom field columns.
 - `acp/custom_field/stored_date_format` – Customize stored date format for custom field columns.
 
----
 
 ## Sorting & Filtering Hooks
 
@@ -21,7 +20,6 @@ Examples and usage for available Admin Columns hooks and filters
 - `acp/search/filters` – Add or modify search filters.
 - `acp/filtering/cache-enable` & `acp/filtering/cache-seconds` – Enable and configure filter caching.
 
----
 
 ## Inline & Bulk Editing
 
@@ -33,7 +31,6 @@ Examples and usage for available Admin Columns hooks and filters
 - `acp/editing/saved` – Action fired after saving.
 - `acp/editing/view` & `acp/editing/view_settings` – Customize the editing UI.
 
----
 
 ## Export Hooks
 
@@ -44,26 +41,24 @@ Examples and usage for available Admin Columns hooks and filters
 - `ac/export/value/escape` – Escape export values.
 - `acp/export/is_active` – Enable or disable the export feature.
 
----
 
 ## Quick Add
 
 - `acp/quick_add/enable` – Enable the “Quick Add” feature.
 - `acp/quick_add/saved` – Run after Quick Add saves.
 
+
 ## Notices
 - `ac/delete_confirmation` – Filter delete confirmation notices.
 - `ac/suppress_site_wide_notices` – Hide site-wide notices.
 - `acp/hide_renewal_notice` – Remove renewal notice in Pro.
 
----
 
 ## Local Storage
 
 - `acp/storage/file/directory` – Customize storage directory.
 - `acp/storage/file/directory/writable` – Validate writable directory.
 
----
 
 ## List Table & Column Configuration
 
