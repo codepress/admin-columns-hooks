@@ -32,7 +32,10 @@ function example_ac_get_list_screens()
          * @var $list_screen AC\ListScreen
          */
         echo $list_screen->get_label(); // e.g. 'Posts', 'Users', 'Comments'
+        echo $list_screen->get_key(); // e.g. 'post', 'page', 'my-custom-post-type', 'wp-users', 'wp-comments'
         echo $list_screen->get_meta_type(); // e.g. 'post', 'user' or 'comment
+        echo $list_screen->get_post_type(); // e.g. 'post', 'page' (if applicable)
+        echo $list_screen->get_title(); // USer defined label e.g. 'My list view', 'Another list view'
 
         $columns = $list_screen->get_columns(); // array of column objects
 
