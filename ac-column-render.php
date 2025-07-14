@@ -24,7 +24,7 @@ add_filter('ac/column/render', 'ac_column_value_usage', 10, 3);
 /**
  * Shorter notation
  */
-add_filter('ac/column/', function ($value, AC\Setting\Context $context, $id) {
+add_filter('ac/column/render', function ($value, AC\Setting\Context $context, $id) {
     return $value;
 }, 10, 3);
 
@@ -48,7 +48,7 @@ function ac_column_value_custom_field_example($value, AC\Setting\Context $contex
     return $value;
 }
 
-add_filter('ac/column/value', 'ac_column_value_custom_field_example', 10, 3);
+add_filter('ac/column/render', 'ac_column_value_custom_field_example', 10, 3);
 
 /**
  * Example on how to add a `class` attribute to the rendered value that can be styled by CSS.
