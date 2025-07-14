@@ -16,6 +16,9 @@ function acp_loaded()
     /**
      * @var AC\ListScreen|null $list_screen
      * @see https://docs.admincolumns.com/article/54-class-ac-listscreen
+     * The AC\ListScreen object contains all the configuration and settings for a particular admin list view. It
+     * includes information about the columns to be displayed, their order, and any custom settings applied
+     * to that specific screen.
      */
     $list_screen = ac_get_list_screen($list_screen_id);
 }

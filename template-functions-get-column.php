@@ -24,6 +24,9 @@ function acp_loaded()
     /**
      * @var AC\Column|null $column
      * @see https://docs.admincolumns.com/article/53-class-ac-column
+     * The AC\Column object encapsulates all the information and functionality related to a single column in an
+     * admin list view. It defines how the column should be displayed, what data it should contain, and
+     * how it should behave.
      */
     $column = ac_get_column($column_name, $list_screen_id);
 }
