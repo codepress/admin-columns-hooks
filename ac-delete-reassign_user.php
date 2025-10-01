@@ -12,9 +12,9 @@
  *
  * @return null|int
  */
-function ac_delete_reassign_user_usage(?int $reassign_id, int $deleted_user_id): ?int
+function ac_delete_reassign_user_usage(?int $reassign_id): ?int
 {
     return $reassign_id;
 }
 
-add_filter('ac/delete/reassign_user', 'ac_delete_reassign_user_usage', 10, 2);
+add_filter('ac/delete/reassign_user', 'ac_delete_reassign_user_usage', 10);
