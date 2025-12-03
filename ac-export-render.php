@@ -10,13 +10,12 @@ add_filter(
         string $value,
         AC\Setting\Context $column,
         $id,
-        AC\TableScreen $table_screen,
-        AC\Type\ListScreenId $list_id
+        AC\TableScreen $table_screen
     ): string {
         return $value;
     },
     10,
-    5
+    4
 );
 
 /**
