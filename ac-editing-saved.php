@@ -17,7 +17,7 @@ add_action('acp/editing/saved', 'acp_editing_saved_usage', 10, 4);
  * In this example we will save the submitted value to second custom field.
  */
 add_action(
-    'acp/editing/saved',
+    'ac/editing/saved',
     static function (AC\Setting\Context $context, $id, $value, AC\TableScreen $table_screen) {
         if (
             $table_screen instanceof AC\PostType &&
@@ -41,7 +41,7 @@ add_action(
  * In this example we will trigger this call manually.
  */
 add_action(
-    'acp/editing/saved',
+    'ac/editing/saved',
     static function (AC\Setting\Context $context, $id, $value, AC\TableScreen $table_screen) {
         if (
             $table_screen instanceof AC\PostType &&
