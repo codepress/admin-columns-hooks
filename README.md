@@ -1,6 +1,9 @@
 # Hooks and Filters for Admin Columns
 Examples and usage for available Admin Columns hooks and filters
 
+
+> The hooks and filters are only supported up to version 7. Version 7 is maintained in a separate branch (master).
+
 * Website: https://admincolumns.com
 * Documentation: https://docs.admincolumns.com
 * List of Hooks and Filters: https://docs.admincolumns.com/article/15-hooks-and-filters
