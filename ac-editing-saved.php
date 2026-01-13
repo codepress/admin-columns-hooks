@@ -11,7 +11,7 @@ function acp_editing_saved_usage(AC\Setting\Context $context, $id, $value, AC\Ta
     // Place your code here
 }
 
-add_action('acp/editing/saved', 'acp_editing_saved_usage', 10, 4);
+add_action('ac/editing/saved', 'acp_editing_saved_usage', 10, 4);
 
 /**
  * In this example we will save the submitted value to second custom field.
