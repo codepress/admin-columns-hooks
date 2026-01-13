@@ -3,7 +3,7 @@
 Examples and usage for available Admin Columns hooks and filters
 
 
-> The hooks and filters are only supported up to version 7. Version 7 is maintained in a separate branch (master).
+> The hooks and filters are only supported from version 7. All hooks support below versin 7 is maintained in a separate branch (legacy). https://github.com/codepress/admin-columns-hooks/tree/legacy
 
 * Website: https://admincolumns.com
 * Documentation: https://docs.admincolumns.com
