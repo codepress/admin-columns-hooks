@@ -9,4 +9,4 @@ add_action('admin_init', function () {
 
     // Allow users with the role 'editor' to manage columns
     $wp_roles->add_cap('editor', AC\Capabilities::MANAGE);
-});
+}); 
