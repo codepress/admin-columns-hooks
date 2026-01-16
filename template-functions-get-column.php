@@ -59,8 +59,6 @@ function example_get_column()
 
         $options = $column->get_options();  // Output: All stored options for the column (e.g. width, label, image_size)
         print_r($options);
-    } else {
-        echo 'Column not found';
     }
 }
 
