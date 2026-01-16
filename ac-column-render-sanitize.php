@@ -2,7 +2,7 @@
 
 function ac_column_value_sanitize_usage(
     bool $sanitize,
-    AC\Setting\Context $context,
+    AC\Column\Context $context,
     $id,
     AC\TableScreen $table_screen,
     AC\Type\ListScreenId $list_screen_id
@@ -17,7 +17,7 @@ add_filter('ac/column/render/sanitize', 'ac_column_value_sanitize_usage', 10, 5)
  */
 add_filter('ac/column/render/sanitize', function (
     bool $sanitize,
-    AC\Setting\Context $context,
+    AC\Column\Context $context,
     $id,
     AC\TableScreen $table_screen,
     AC\Type\ListScreenId $list_screen_id
@@ -29,7 +29,7 @@ add_filter('ac/column/render/sanitize', function (
 add_filter('ac/column/render/sanitize', '__return_false');
 
 // Disable sanitization for all custom field columns
-add_filter('ac/column/render/sanitize', function (bool $sanitize, AC\Setting\Context $context) {
+add_filter('ac/column/render/sanitize', function (bool $sanitize, AC\Column\Context $context) {
     return $context->get_type() === 'column-meta'
         ? false
         : $sanitize;

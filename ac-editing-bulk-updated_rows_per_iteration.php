@@ -20,7 +20,7 @@ add_filter('ac/editing/bulk/updated_rows_per_iteration', 'acp_editing_bulk_reduc
  * Example to set the amount for a specific Table
  */
 add_filter('ac/editing/bulk/updated_rows_per_iteration', static function (int $number, AC\ListScreen $listScreen) {
-    if ($listScreen->get_key()->equals(new AC\Type\ListKey('page'))) {
+    if ($listScreen->get_table_screen()->get_id()->equals(new AC\Type\TableId('page'))) {
         $number = 10;
     }
 

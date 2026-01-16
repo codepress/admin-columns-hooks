@@ -9,7 +9,7 @@
  */
 function ac_sorting_model(
     ?ACP\Sorting\Model\QueryBindings $model,
-    AC\Setting\Context $context,
+    AC\Column\Context $context,
     AC\TableScreen $table_screen
 ): ?ACP\Sorting\Model\QueryBindings {
     // Change the sorting modal loaded for the column
@@ -24,7 +24,7 @@ add_filter('ac/sorting/model', 'ac_sorting_model', 10, 3);
  */
 add_filter('ac/sorting/model', static function (
     ?ACP\Sorting\Model\QueryBindings $model,
-    AC\Setting\Context $context,
+    AC\Column\Context $context,
     AC\TableScreen $table_screen
 ) {
     // force a specific column to sort on Post Status

@@ -5,13 +5,13 @@
  */
 
 /**
- * @param mixed              $value The column value that is displayed within a cell on the list table
- * @param AC\Setting\Context $context
- * @param string|int         $id    Post ID, User ID, Comment ID, Attachment ID or Term ID
+ * @param mixed             $value The column value that is displayed within a cell on the list table
+ * @param AC\Column\Context $context
+ * @param string|int        $id    Post ID, User ID, Comment ID, Attachment ID or Term ID
  *
  * @return mixed
  */
-function ac_column_value_usage($value, AC\Setting\Context $context, $id)
+function ac_column_value_usage($value, AC\Column\Context $context, $id)
 {
     // Change the rendered column value
     // $value = 'new value';
@@ -24,16 +24,16 @@ add_filter('ac/column/render', 'ac_column_value_usage', 10, 3);
 /**
  * Shorter notation
  */
-add_filter('ac/column/render', function ($value, AC\Setting\Context $context, $id) {
+add_filter('ac/column/render', function ($value, AC\Column\Context $context, $id) {
     return $value;
 }, 10, 3);
 
 /**
  * Example on how to wrap the value of a specific Custom Field column of the type 'color' in markup to give it a background color.
  */
-function ac_column_value_custom_field_example($value, AC\Setting\Context $context, $id)
+function ac_column_value_custom_field_example($value, AC\Column\Context $context, $id)
 {
-    if ($context instanceof AC\Setting\Context\CustomField) {
+    if ($context instanceof AC\Column\CustomFieldContext) {
         // Custom Field Key
         $meta_key = $context->get_meta_key();
 
@@ -53,9 +53,9 @@ add_filter('ac/column/render', 'ac_column_value_custom_field_example', 10, 3);
 /**
  * Example on how to add a `class` attribute to the rendered value that can be styled by CSS.
  */
-function ac_column_value_add_class_attribute_based_on_value($value, AC\Setting\Context $context, $id)
+function ac_column_value_add_class_attribute_based_on_value($value, AC\Column\Context $context, $id)
 {
-    if ($context instanceof AC\Setting\Context\CustomField) {
+    if ($context instanceof AC\Column\CustomFieldContext) {
         // Add a unique `class` attribute to the rendered value.
 
         if ('my_custom_field_key' === $context->get_meta_key()) {
@@ -73,10 +73,10 @@ function ac_column_value_add_class_attribute_based_on_value($value, AC\Setting\C
 
 add_filter('ac/column/render', 'ac_column_value_add_class_attribute_based_on_value', 10, 3);
 
-function ac_column_value_acf_example($value, AC\Setting\Context $context, $id)
+function ac_column_value_acf_example($value, AC\Column\Context $context, $id)
 {
     // Check for the ACF column
-    if ($context instanceof ACA\ACF\Setting\Context\Field) {
+    if ($context instanceof ACA\ACF\Column\Context) {
         /**
          * Contains all ACF field information
          */
@@ -113,41 +113,43 @@ function ac_column_value_acf_example($value, AC\Setting\Context $context, $id)
 
 add_filter('ac/column/render', 'ac_column_value_acf_example', 10, 3);
 
-/* Example of checking for multiple available context types */
-add_filter('ac/column/render', function ($value, AC\Setting\Context $context, $id) {
-    if ($context instanceof ACA\ACF\Setting\Context\Field) {
+/**
+ * Example of checking for multiple available context types
+ */
+add_filter('ac/column/render', function ($value, AC\Column\Context $context, $id) {
+    if ($context instanceof ACA\ACF\Column\Context) {
         return $context->get_field_type();
     }
 
-    if ($context instanceof ACA\Types\Setting\Context\Relationship) {
+    if ($context instanceof ACA\Types\Column\RelationshipContext) {
         return $context->get_type() . $context->get_relation()['type'];
     }
 
-    if ($context instanceof ACA\Types\Setting\Context\Field) {
+    if ($context instanceof ACA\Types\Column\FieldContextContext) {
         return $context->get_field_type() . ': ' . $context->get_meta_key();
     }
 
-    if ($context instanceof ACA\JetEngine\Setting\Context\Field) {
+    if ($context instanceof ACA\JetEngine\Column\FieldContext) {
         return $context->get_field_type() . ': ' . $context->get_meta_key();
     }
 
-    if ($context instanceof ACA\JetEngine\Setting\Context\Relation) {
+    if ($context instanceof ACA\JetEngine\Column\RelationContext) {
         return $context->get_relation()->get_relation_name();
     }
 
-    if ($context instanceof ACA\MetaBox\Setting\Context\Relation) {
+    if ($context instanceof ACA\MetaBox\Column\RelationContext) {
         return $context->get_relation()->get_related_meta_type();
     }
 
-    if ($context instanceof ACA\Pods\Setting\Context\Field) {
+    if ($context instanceof ACA\MetaBox\Column\FieldContext) {
         return $context->get_field_type() . ' - ' . $context->get_meta_key();
     }
 
-    if ($context instanceof ACA\MetaBox\Setting\Context\Field) {
+    if ($context instanceof ACA\Pods\Column\FieldContextContext) {
         return $context->get_field_type() . ' - ' . $context->get_meta_key();
     }
 
-    if ($context instanceof AC\Setting\Context\CustomField) {
+    if ($context instanceof AC\Column\CustomFieldContext) {
         return $context->get_field_type();
     }
 

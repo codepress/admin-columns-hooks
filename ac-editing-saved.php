@@ -6,7 +6,7 @@
 /**
  * Fires after a inline-edit saved a value
  */
-function acp_editing_saved_usage(AC\Setting\Context $context, $id, $value, AC\TableScreen $table_screen)
+function acp_editing_saved_usage(AC\Column\Context $context, $id, $value, AC\TableScreen $table_screen)
 {
     // Place your code here
 }
@@ -18,10 +18,10 @@ add_action('ac/editing/saved', 'acp_editing_saved_usage', 10, 4);
  */
 add_action(
     'ac/editing/saved',
-    static function (AC\Setting\Context $context, $id, $value, AC\TableScreen $table_screen) {
+    static function (AC\Column\Context $context, $id, $value, AC\TableScreen $table_screen) {
         if (
             $table_screen instanceof AC\PostType &&
-            $context instanceof AC\Setting\Context\CustomField &&
+            $context instanceof AC\Column\CustomFieldContext &&
             'my_custom_field' === $context->get_meta_key()
 
         ) {
@@ -42,7 +42,7 @@ add_action(
  */
 add_action(
     'ac/editing/saved',
-    static function (AC\Setting\Context $context, $id, $value, AC\TableScreen $table_screen) {
+    static function (AC\Column\Context $context, $id, $value, AC\TableScreen $table_screen) {
         if (
             $table_screen instanceof AC\PostType &&
             $table_screen->get_post_type()->equals('post')
