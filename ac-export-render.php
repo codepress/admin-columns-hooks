@@ -8,7 +8,7 @@ add_filter(
     'ac/export/render',
     function (
         string $value,
-        AC\Setting\Context $column,
+        AC\Column\Context $context,
         $id,
         AC\TableScreen $table_screen
     ): string {
@@ -23,7 +23,7 @@ add_filter(
  */
 add_filter(
     'ac/export/render',
-    function (string $value, AC\Setting\Context $context): string {
+    function (string $value, AC\Column\Context $context): string {
         if ($context->get_type() === 'column-meta' && $context->get('field_type') === 'date') {
             $timestamp = ac_helper()->date->strtotime($value);
 
@@ -43,8 +43,8 @@ add_filter(
  */
 add_filter(
     'ac/export/render',
-    function (string $value, AC\Setting\Context $context): string {
-        if ($context instanceof ACA\ACF\Setting\Context\Field && 'image' === $context->get_field_type()) {
+    function (string $value, AC\Column\Context $context): string {
+        if ($context instanceof ACA\ACF\Column\Context && 'image' === $context->get_field_type()) {
             // In this example `$value` is an attachment ID
             $attachment_id = (int)$value;
             $image_src = wp_get_attachment_image_src($attachment_id);
@@ -62,7 +62,7 @@ add_filter(
  */
 add_filter(
     'ac/export/render',
-    function (string $value, AC\Setting\Context $context): string {
+    function (string $value, AC\Column\Context $context): string {
         if ($context->get_type() === 'column-meta') {
             $value = strip_tags($value);
         }

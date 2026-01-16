@@ -7,7 +7,7 @@
  * Usage
  *
  * @param ACP\Editing\View|null $view
- * @param AC\Setting\Context    $context
+ * @param Context               $context
  * @param string                $editing_context "single" or "bulk"
  * @param ACP\Editing\Service   $service
  * @param AC\TableScreen        $table_screen
@@ -16,7 +16,7 @@
  */
 function acp_editing_view_example_usage(
     ?ACP\Editing\View $view,
-    AC\Setting\Context $context,
+    AC\Column\Context $context,
     string $editing_context,
     ACP\Editing\Service $service,
     AC\TableScreen $table_screen
@@ -32,7 +32,7 @@ add_filter(
     'ac/editing/view',
     static function (
         $view,
-        AC\Setting\Context $context,
+        AC\Column\Context $context,
         string $edit_context,
         ACP\Editing\Service $service,
         AC\TableScreen $table_screen
@@ -48,7 +48,7 @@ add_filter(
  */
 function acp_editing_view_enable_bulk_for_slug(
     $view,
-    AC\Setting\Context $context,
+    AC\Column\Context $context,
     string $edit_context,
     ACP\Editing\Service $service
 ) {
@@ -63,7 +63,7 @@ add_filter('ac/editing/view', 'acp_editing_view_enable_bulk_for_slug', 10, 4);
 
 function acp_editing_view_custom_select(
     $view,
-    AC\Setting\Context $context,
+    AC\Column\Context $context,
     string $edit_context,
     ACP\Editing\Service $service
 ) {

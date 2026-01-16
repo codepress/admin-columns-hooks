@@ -9,7 +9,7 @@
 
 function acp_editing_value_example_usage(
     $value,
-    AC\Setting\Context $context,
+    AC\Column\Context $context,
     $id,
     AC\TableScreen $table_screen,
     AC\Type\ListScreenId $list_screen_id
@@ -23,7 +23,7 @@ add_filter('ac/editing/input_value', 'acp_editing_value_example_usage', 10, 5);
 
 add_filter('ac/editing/input_value', static function (
     $value,
-    AC\Setting\Context $context,
+    AC\Column\Context $context,
     $id,
     AC\TableScreen $table_screen,
     AC\Type\ListScreenId $list_screen_id
@@ -36,12 +36,12 @@ add_filter('ac/editing/input_value', static function (
  */
 add_filter('ac/editing/input_value', static function (
     $value,
-    AC\Setting\Context $context,
+    AC\Column\Context $context,
     $id,
     AC\TableScreen $table_screen,
     AC\Type\ListScreenId $list_screen_id
 ) {
-    if ($context instanceof AC\Setting\Context\CustomField) {
+    if ($context instanceof AC\Column\CustomFieldContext) {
         $value = $value['sub_key'];
     }
 
