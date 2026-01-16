@@ -125,7 +125,7 @@ add_filter('ac/column/render', function ($value, AC\Column\Context $context, $id
         return $context->get_type() . $context->get_relation()['type'];
     }
 
-    if ($context instanceof ACA\Types\Column\FieldContextContext) {
+    if ($context instanceof ACA\Types\Column\FieldContext) {
         return $context->get_field_type() . ': ' . $context->get_meta_key();
     }
 
@@ -145,7 +145,7 @@ add_filter('ac/column/render', function ($value, AC\Column\Context $context, $id
         return $context->get_field_type() . ' - ' . $context->get_meta_key();
     }
 
-    if ($context instanceof ACA\Pods\Column\FieldContextContext) {
+    if ($context instanceof ACA\Pods\Column\FieldContext) {
         return $context->get_field_type() . ' - ' . $context->get_meta_key();
     }
 

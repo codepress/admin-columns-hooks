@@ -3,7 +3,7 @@
 /**
  * Fetch all list screens for a particular list table.
  */
-function acp_loaded()
+function example_loaded_ac_get_list_screens()
 {
     /**
      * @see https://docs.admincolumns.com/article/66-how-to-find-the-list-screen-id
@@ -16,7 +16,7 @@ function acp_loaded()
     $list_screens = ac_get_list_screens($list_screen_key);
 }
 
-add_action('wp_loaded', 'acp_loaded');
+add_action('wp_loaded', 'example_loaded_ac_get_list_screens');
 
 /**
  * Example usage of ac_get_list_screens() function.

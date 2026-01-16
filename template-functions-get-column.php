@@ -3,7 +3,7 @@
 /**
  * Fetch a single column object
  */
-function acp_loaded()
+function example_loaded_get_column()
 {
     /**
      * @see https://docs.admincolumns.com/article/65-how-to-find-the-column-id
@@ -31,7 +31,7 @@ function acp_loaded()
     $column = ac_get_column($column_name, $list_screen_id);
 }
 
-add_action('wp_loaded', 'acp_loaded');
+add_action('wp_loaded', 'example_loaded_get_column');
 
 /**
  * Example usage of ac_get_column() function.

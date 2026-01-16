@@ -26,7 +26,7 @@ add_filter('ac/list_screen/is_active', function ($active, WP_Screen $screen): bo
 /**
  * Disable Admin Columns for all Editors
  */
-add_filter('ac/list_screen/key/is_active', function ($active, WP_Screen $screen): bool {
+add_filter('ac/list_screen/key/is_active', function ($active, string $table_id): bool {
     if (current_user_can('editor')) {
         return false;
     }

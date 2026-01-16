@@ -3,7 +3,7 @@
 /**
  * Fetch all columns for a particular list table.
  */
-function acp_loaded()
+function example_loaded_ac_get_columns()
 {
     /**
      * @see https://docs.admincolumns.com/article/66-how-to-find-the-list-screen-id
@@ -19,7 +19,7 @@ function acp_loaded()
     $columns = ac_get_columns($list_screen_id);
 }
 
-add_action('wp_loaded', 'acp_loaded');
+add_action('wp_loaded', 'example_loaded_ac_get_columns');
 
 /**
  * Example usage of ac_get_columns() function.
