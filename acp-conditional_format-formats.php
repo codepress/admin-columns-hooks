@@ -11,7 +11,7 @@ add_filter('acp/conditional_format/formats', function (array $formats): array {
 /**
  * Example that adds new colorblind patterns
  */
-function acp_conditional_formatting_add_color_blind_patterns(array $formats): array
+function ac_conditional_formatting_add_color_blind_patterns(array $formats): array
 {
     $formats['success_pattern'] = [
         'background'       => 'repeating-linear-gradient(-45deg,rgba(255,255,255,.3),rgba(255,255,255,.3) 5px,transparent 5px,transparent 10px);',
@@ -37,7 +37,7 @@ function acp_conditional_formatting_add_color_blind_patterns(array $formats): ar
     return $formats;
 }
 
-add_filter('acp/conditional_format/formats', 'acp_conditional_formatting_add_color_blind_patterns');
+add_filter('acp/conditional_format/formats', 'ac_conditional_formatting_add_color_blind_patterns');
 
 /**
  * Example that adds some nice matching colors :)

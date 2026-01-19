@@ -7,7 +7,7 @@
 /**
  * Disable the export functionality on the Users list table. The `Export` button wil also be removed.
  */
-function acp_disable_export_for_users_list_table(bool $is_active, AC\ListScreen $list_screen): bool
+function ac_disable_export_for_users_list_table(bool $is_active, AC\ListScreen $list_screen): bool
 {
     // Meta type is 'post', 'term', 'user' or 'comment'
     if ('user' === $list_screen->get_meta_type()) {
@@ -17,12 +17,12 @@ function acp_disable_export_for_users_list_table(bool $is_active, AC\ListScreen 
     return $is_active;
 }
 
-add_filter('ac/export/is_active', 'acp_disable_export_for_users_list_table', 10, 2);
+add_filter('ac/export/is_active', 'ac_disable_export_for_users_list_table', 10, 2);
 
 /**
  * Disable the export functionality for a specific `Post Type`, in this the `Page` list table.
  */
-function acp_disable_export_for_page_list_table(bool $is_active, AC\ListScreen $list_screen): bool
+function ac_disable_export_for_page_list_table(bool $is_active, AC\ListScreen $list_screen): bool
 {
     if ('page' === $list_screen->get_post_type()) {
         return false;
@@ -31,7 +31,7 @@ function acp_disable_export_for_page_list_table(bool $is_active, AC\ListScreen $
     return $is_active;
 }
 
-add_filter('ac/export/is_active', 'acp_disable_export_for_page_list_table', 10, 2);
+add_filter('ac/export/is_active', 'ac_disable_export_for_page_list_table', 10, 2);
 
 /**
  * Disable the export functionality completely for all list tables

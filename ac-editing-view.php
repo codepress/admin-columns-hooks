@@ -7,14 +7,14 @@
  * Usage
  *
  * @param ACP\Editing\View|null $view
- * @param Context               $context
+ * @param AC\Column\Context     $context
  * @param string                $editing_context "single" or "bulk"
  * @param ACP\Editing\Service   $service
  * @param AC\TableScreen        $table_screen
  *
  * @return ACP\Editing\View|null
  */
-function acp_editing_view_example_usage(
+function ac_editing_view_example_usage(
     ?ACP\Editing\View $view,
     AC\Column\Context $context,
     string $editing_context,
@@ -24,7 +24,7 @@ function acp_editing_view_example_usage(
     return $view;
 }
 
-add_filter('ac/editing/view', 'acp_editing_view_example_usage', 10, 5);
+add_filter('ac/editing/view', 'ac_editing_view_example_usage', 10, 5);
 
 // Or anonymous function
 
@@ -46,7 +46,7 @@ add_filter(
 /**
  * Example that enabled bulk editing for the Slug column that is disabled by default. It returns the view that is normally used for inline editing
  */
-function acp_editing_view_enable_bulk_for_slug(
+function ac_editing_view_enable_bulk_for_slug(
     $view,
     AC\Column\Context $context,
     string $edit_context,
@@ -59,9 +59,9 @@ function acp_editing_view_enable_bulk_for_slug(
     return $view;
 }
 
-add_filter('ac/editing/view', 'acp_editing_view_enable_bulk_for_slug', 10, 4);
+add_filter('ac/editing/view', 'ac_editing_view_enable_bulk_for_slug', 10, 4);
 
-function acp_editing_view_custom_select(
+function ac_editing_view_custom_select(
     $view,
     AC\Column\Context $context,
     string $edit_context,
@@ -77,5 +77,5 @@ function acp_editing_view_custom_select(
     return $view;
 }
 
-add_filter('ac/editing/view', 'acp_editing_view_custom_select', 10, 4);
+add_filter('ac/editing/view', 'ac_editing_view_custom_select', 10, 4);
 

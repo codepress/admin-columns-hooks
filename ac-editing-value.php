@@ -7,7 +7,7 @@
  * This hook allows you to alter the value that is retrieved for editing before it is displayed in the editable.
  */
 
-function acp_editing_value_example_usage(
+function ac_editing_value_example_usage(
     $value,
     AC\Column\Context $context,
     $id,
@@ -17,7 +17,7 @@ function acp_editing_value_example_usage(
     return $value;
 }
 
-add_filter('ac/editing/input_value', 'acp_editing_value_example_usage', 10, 5);
+add_filter('ac/editing/input_value', 'ac_editing_value_example_usage', 10, 5);
 
 // Or anonymous function
 

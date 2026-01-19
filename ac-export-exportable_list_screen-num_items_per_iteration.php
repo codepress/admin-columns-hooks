@@ -5,13 +5,13 @@
  * Default is set to 250
  */
 
-function acp_export_increase_number_per_iteration(int $number): int
+function ac_export_increase_number_per_iteration(int $number): int
 {
     // Default = 250;
     return 500;
 }
 
-add_filter('ac/export/exportable_list_screen/num_items_per_iteration', 'acp_export_increase_number_per_iteration');
+add_filter('ac/export/exportable_list_screen/num_items_per_iteration', 'ac_export_increase_number_per_iteration');
 
 /**
  * Set a different number of items to be exported per iteration for different list screens
@@ -21,7 +21,7 @@ add_filter('ac/export/exportable_list_screen/num_items_per_iteration', 'acp_expo
  *
  * @return int
  */
-function acp_export_set_number_of_exported_items_per_iteration_per_list_screen(
+function ac_export_set_number_of_exported_items_per_iteration_per_list_screen(
     int $number,
     ACP\Export\Strategy $stategy
 ): int {
@@ -42,7 +42,7 @@ function acp_export_set_number_of_exported_items_per_iteration_per_list_screen(
 
 add_filter(
     'ac/export/exportable_list_screen/num_items_per_iteration',
-    'acp_export_set_number_of_exported_items_per_iteration_per_list_screen',
+    'ac_export_set_number_of_exported_items_per_iteration_per_list_screen',
     10,
     2
 );

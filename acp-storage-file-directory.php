@@ -17,7 +17,7 @@
  *
  * @return string|null
  */
-function acp_storage_file_directory(?string $path): ?string
+function ac_storage_file_directory(?string $path): ?string
 {
     // Use a writable path
     $path = get_stylesheet_directory() . '/acp-settings';
@@ -25,4 +25,4 @@ function acp_storage_file_directory(?string $path): ?string
     return $path;
 }
 
-add_filter('acp/storage/file/directory', 'acp_storage_file_directory');
+add_filter('acp/storage/file/directory', 'ac_storage_file_directory');

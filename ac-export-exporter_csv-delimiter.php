@@ -7,9 +7,9 @@
 /**
  * Change the default export delimiter from a ',' to ';'
  */
-function acp_export_change_export_delimiter(string $delimiter): string
+function ac_export_change_export_delimiter(string $delimiter): string
 {
     return ';';
 }
 
-add_filter('ac/export/exporter_csv/delimiter', 'acp_export_change_export_delimiter');
+add_filter('ac/export/exporter_csv/delimiter', 'ac_export_change_export_delimiter');
