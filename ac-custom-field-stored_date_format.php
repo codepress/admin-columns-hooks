@@ -19,7 +19,7 @@ add_filter('ac/custom_field/stored_date_format', 'acp_custom_field_stored_date_f
  */
 function acp_set_custom_field_stored_date_format(string $date_format, AC\Column\Context $context): string
 {
-    if ($context instanceof AC\Column\CustomFieldContext && 'my_date_meta_key' === $context->get('meta_key')) {
+    if ($context instanceof AC\Column\CustomFieldContext && 'my_date_meta_key' === $context->get_meta_key()) {
         // Set the date format to 'U' Unix timestamp
         $date_format = 'U';
     }

@@ -67,7 +67,7 @@ function acp_editing_view_custom_select(
     string $edit_context,
     ACP\Editing\Service $service
 ) {
-    if ($context->get_type() === 'column-meta' && $context->get('meta_key') === 'your-meta-key') {
+    if ($context->get_type() === 'column-meta' && $context->get('field') === 'your-meta-key') {
         $view = new ACP\Editing\View\Select([
             'value'  => 'Label',
             'value2' => 'Label 2',
