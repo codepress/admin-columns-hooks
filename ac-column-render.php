@@ -1,6 +1,6 @@
 <?php
 /**
- * The filter `aac/column/render` allows you to alter the value of a column cell
+ * The filter `ac/column/render` allows you to alter the value of a column cell
  * You probably want to check for a specific column instance and check for extra conditionals related to the column in order to change the value for the correct column
  */
 

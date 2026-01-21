@@ -11,9 +11,9 @@ function example_loaded_ac_get_list_screens()
      * admin columns settings page. Enable the "List screen Key" by clicking the checkbox next to it.
      * The list screen Key will now be visible in the right sidebar.
      */
-    $list_screen_key = "<LIST SCREEN KEY GOES HERE>"; // e.g. page, post, wp-users, wp-comments, wp-media, wp-taxonomy_category etc.
+    $table_id = "<TABLE ID GOES HERE>"; // e.g. page, post, wp-users, wp-comments, wp-media, wp-taxonomy_category etc.
 
-    $list_screens = ac_get_list_screens($list_screen_key);
+    $list_screens = ac_get_list_screens($table_id);
 }
 
 add_action('wp_loaded', 'example_loaded_ac_get_list_screens');
@@ -32,7 +32,7 @@ function example_ac_get_list_screens()
          * @var $list_screen AC\ListScreen
          */
         echo $list_screen->get_label(); // e.g. 'Posts', 'Users', 'Comments'
-        echo $list_screen->get_key(); // e.g. 'post', 'page', 'my-custom-post-type', 'wp-users', 'wp-comments'
+        echo $list_screen->get_table_id(); // e.g. 'post', 'page', 'my-custom-post-type', 'wp-users', 'wp-comments'
         echo $list_screen->get_meta_type(); // e.g. 'post', 'user' or 'comment
         echo $list_screen->get_post_type(); // e.g. 'post', 'page' (if applicable)
         echo $list_screen->get_title(); // USer defined label e.g. 'My list view', 'Another list view'
@@ -45,6 +45,12 @@ function example_ac_get_list_screens()
              */
             echo $column->get_type(); // e.g. 'column-title', 'column-meta'
             echo $column->get_label(); // e.g. 'Title', 'Author', 'Date'
+
+            /**
+             * @var AC\Column\Context $context
+             */
+            echo $context->get_label(); // User defined label e.g. 'My Column Label'
+            echo $context->all(); // All stored column settings. e.g. 'width', 'label', 'image_size' etc.
         }
     }
 }

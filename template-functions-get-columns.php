@@ -32,18 +32,20 @@ function example_ac_get_columns()
         '5e84e8302794f' // List Screen ID
     );
 
+    /**
+     * @var AC\Column         $column
+     * @var AC\Column\Context $context
+     */
     foreach ($columns as $column) {
-        /**
-         * @var AC\Column $column
-         */
-        echo $column->get_custom_label();   // Output: My Title Label
-        echo $column->get_label();          // Output: Title
-        echo $column->get_type();           // Output: column-title
-        echo $column->get_post_type();      // Output: The name of the post type (e.g. page) if it's a post type column
-        echo $column->get_value(1234);      // Output: The value that is displayed on the list table in the column cell
-        echo $column->get_option('width');  // Output: Width of the column in pixels or percentage
+        $context = $column->get_context();
 
-        $options = $column->get_options();  // Output: All stored options for the column (e.g. width, label, image_size)
+        echo $context->get_label();         // Output: My Title Label
+        echo $context->get_type_label();    // Output: Title
+        echo $context->get_type();          // Output: column-title
+        echo $context->get('width');        // Output: Width of the column in pixels or percentage
+
+        $options = $context->all();         // Output: All stored options for the column (e.g. width, label, image_size)
+
         print_r($options);   // Output: All stored options for the column (e.g. width, label, image_size)
     }
 }

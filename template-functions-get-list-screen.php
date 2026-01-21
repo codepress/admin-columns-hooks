@@ -41,10 +41,10 @@ function example_ac_get_list_screen()
          * @var AC\ListScreen $list_screen
          */
         echo $list_screen->get_label(); // e.g. 'Posts', 'Users', 'Comments'
-        echo $list_screen->get_key(); // e.g. 'post', 'page', 'my-custom-post-type', 'wp-users', 'wp-comments'
+        echo $list_screen->get_table_id(); // e.g. 'post', 'page', 'my-custom-post-type', 'wp-users', 'wp-comments'
         echo $list_screen->get_meta_type(); // e.g. 'post', 'user' or 'comment
         echo $list_screen->get_post_type(); // e.g. 'post', 'page' (if applicable)
-        echo $list_screen->get_title(); // USer defined label e.g. 'My list view', 'Another list view'
+        echo $list_screen->get_title(); // User defined label e.g. 'My list view', 'Another list view'
 
         $columns = $list_screen->get_columns(); // array of column objects
 
@@ -53,7 +53,15 @@ function example_ac_get_list_screen()
              * @var AC\Column $column
              */
             echo $column->get_type(); // e.g. 'column-title', 'column-meta'
-            echo $column->get_label(); // e.g. 'Title', 'Author', 'Date'
+            echo $column->get_label(); // Fixed label e.g. 'Title', 'Author', 'Date'
+
+            /**
+             * @var AC\Column\Context $context
+             */
+            $context = $column->get_context();
+
+            echo $context->get_label(); // User defined label e.g. 'My Column Label'
+            echo $context->all(); // All stored column settings. e.g. 'width', 'label', 'image_size' etc.
         }
     }
 }
