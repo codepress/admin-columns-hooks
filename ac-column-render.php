@@ -8,7 +8,7 @@
  * @param mixed             $value  The column value that is displayed within a cell on the list table
  * @param AC\Column\Context $column The column properties and all its settings
  * @param string|int        $id     Post ID, User ID, Comment ID, Attachment ID or Term ID
- * @param AC\TableScreen    $table  This onject contains info about the list table: Post, User, Comment, Taxonomy etc.
+ * @param AC\TableScreen    $table  The table properties
  *
  * @return mixed
  */
