@@ -52,10 +52,10 @@ function ac_column_value_custom_field_example($value, AC\Column\Context $context
         $custom_field_type = $context->get_field_type();
 
         // Other properties
-        $column_custom_label = $context->get_label(); // e.g. My Custom Field Column Title
         $column_name = $context->get_name(); // e.g. 62542279f0624c
         $column_type = $context->get_type(); // column-meta
-        $column_type_label = $context->get_type_label(); // e.g. Custom Field
+        //$column_custom_label = $context->get_label(); // e.g. My Custom Field Column Title
+        //$column_type_label = $context->get_type_label(); // e.g. Custom Field
 
         if ('my_hex_color' === $meta_key && 'color' === $custom_field_type) {
             $value = sprintf('<span style="background-color: %1$s">%1$s</span>', $value);
