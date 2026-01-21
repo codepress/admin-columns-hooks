@@ -54,7 +54,7 @@ function ac_column_value_custom_field_example($value, AC\Column\Context $context
     // Targets page list table with a specific custom field column
     if ('page' === $post_type && $context instanceof AC\Column\CustomFieldContext) {
         // Custom Field Key
-        $meta_key = $context->get_meta_key();
+        $meta_key = $context->get_meta_key(); // e.g. my-custom-field-key
 
         // Custom Field Type can be 'excerpt|color|date|numeric|image|has_content|link|checkmark|library_id|title_by_id|user_by_id|array|count'. The default is ''.
         $custom_field_type = $context->get_field_type();
@@ -62,7 +62,7 @@ function ac_column_value_custom_field_example($value, AC\Column\Context $context
         // Other properties
         $column_name = $context->get_name(); // e.g. 62542279f0624c
         $column_type = $context->get_type(); // column-meta
-        //$column_custom_label = $context->get_label(); // e.g. My Custom Field Column Title
+        //$column_custom_label = $context->get_label(); // e.g. My Column Label
         //$column_type_label = $context->get_type_label(); // e.g. Custom Field
 
         if ('my_hex_color' === $meta_key && 'color' === $custom_field_type) {
