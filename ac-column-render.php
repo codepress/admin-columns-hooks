@@ -8,7 +8,7 @@
  * @param mixed             $value        The column value that is displayed within a cell on the list table
  * @param AC\Column\Context $context
  * @param string|int        $id           Post ID, User ID, Comment ID, Attachment ID or Term ID
- * @param AC\TableScreen    $table_screen Post, User, Comment table info
+ * @param AC\TableScreen    $table_screen This onject contains info about the list table: Post, User, Comment, Taxonomy etc.
  *
  * @return mixed
  */
@@ -34,14 +34,22 @@ add_filter('ac/column/render', function ($value, AC\Column\Context $context, $id
  */
 function ac_column_value_custom_field_example($value, AC\Column\Context $context, $id, AC\TableScreen $table_screen)
 {
-
-    // Table properties
+    // Post type of the post list table
     $post_type = $table_screen instanceof AC\PostType
-        ? (string)$table_screen->get_post_type()
+        ? (string)$table_screen->get_post_type() // e.g. post, page, product, custom-post-type etc.
         : null;
 
-    // Other Table properties
-    $table_id = (string)$table_screen->get_id(); // e.g. post, page, wp-users, wp-comments etc.
+    // Unique identifier for the list table
+    $table_id = (string)$table_screen->get_id(); // e.g. post, page, wp-users, wp-comments, wp-taxonomy etc.
+
+    // Taxonomy slug of the taxonomy list table
+    $taxonomy = $table_screen instanceof AC\Taxonomy
+        ? (string)$table_screen->get_taxonomy() // e.g. post_tag, category etc.
+        : null;
+
+    // List table labels
+    $label = $table_screen->get_labels()->get_singular(); // e.g. Post, Page, Comment, User, Tag etc.
+    $label_plural = $table_screen->get_labels()->get_plural(); // e.g. Posts, Pages Comments, Users, Tags etc.
 
     // Targets page list table with a specific custom field column
     if ('page' === $post_type && $context instanceof AC\Column\CustomFieldContext) {
