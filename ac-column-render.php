@@ -68,6 +68,7 @@ function ac_column_value_custom_field_example($value, AC\Column\Context $context
         if ('my_hex_color' === $meta_key && 'color' === $custom_field_type) {
             $value = sprintf('<span style="background-color: %1$s">%1$s</span>', $value);
         }
+    }
 
     return $value;
 }
