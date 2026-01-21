@@ -5,13 +5,14 @@
  */
 
 /**
- * @param mixed             $value The column value that is displayed within a cell on the list table
+ * @param mixed             $value        The column value that is displayed within a cell on the list table
  * @param AC\Column\Context $context
- * @param string|int        $id    Post ID, User ID, Comment ID, Attachment ID or Term ID
+ * @param string|int        $id           Post ID, User ID, Comment ID, Attachment ID or Term ID
+ * @param AC\TableScreen    $table_screen Post, User, Comment table info
  *
  * @return mixed
  */
-function ac_column_value_usage($value, AC\Column\Context $context, $id)
+function ac_column_value_usage($value, AC\Column\Context $context, $id, AC\TableScreen $table_screen)
 {
     // Change the rendered column value
     // $value = 'new value';
@@ -19,42 +20,61 @@ function ac_column_value_usage($value, AC\Column\Context $context, $id)
     return $value;
 }
 
-add_filter('ac/column/render', 'ac_column_value_usage', 10, 3);
+add_filter('ac/column/render', 'ac_column_value_usage', 10, 4);
 
 /**
  * Shorter notation
  */
-add_filter('ac/column/render', function ($value, AC\Column\Context $context, $id) {
+add_filter('ac/column/render', function ($value, AC\Column\Context $context, $id, AC\TableScreen $table_screen) {
     return $value;
-}, 10, 3);
+}, 10, 4);
 
 /**
  * Example on how to wrap the value of a specific Custom Field column of the type 'color' in markup to give it a background color.
  */
-function ac_column_value_custom_field_example($value, AC\Column\Context $context, $id)
+function ac_column_value_custom_field_example($value, AC\Column\Context $context, $id, AC\TableScreen $table_screen)
 {
-    if ($context instanceof AC\Column\CustomFieldContext) {
+
+    // Table properties
+    $post_type = $table_screen instanceof AC\PostType
+        ? (string)$table_screen->get_post_type()
+        : null;
+
+    // Other Table properties
+    $table_id = (string)$table_screen->get_id(); // e.g. post, page, wp-users, wp-comments etc.
+
+    // Targets page list table with a specific custom field column
+    if ('page' === $post_type && $context instanceof AC\Column\CustomFieldContext) {
         // Custom Field Key
         $meta_key = $context->get_meta_key();
 
         // Custom Field Type can be 'excerpt|color|date|numeric|image|has_content|link|checkmark|library_id|title_by_id|user_by_id|array|count'. The default is ''.
         $custom_field_type = $context->get_field_type();
 
+        // Other properties
+        $column_custom_label = $context->get_label(); // e.g. My Custom Field Column Title
+        $column_name = $context->get_name(); // e.g. 62542279f0624c
+        $column_type = $context->get_type(); // column-meta
+        $column_type_label = $context->get_type_label(); // e.g. Custom Field
+
         if ('my_hex_color' === $meta_key && 'color' === $custom_field_type) {
             $value = sprintf('<span style="background-color: %1$s">%1$s</span>', $value);
         }
-    }
 
     return $value;
 }
 
-add_filter('ac/column/render', 'ac_column_value_custom_field_example', 10, 3);
+add_filter('ac/column/render', 'ac_column_value_custom_field_example', 10, 4);
 
 /**
  * Example on how to add a `class` attribute to the rendered value that can be styled by CSS.
  */
-function ac_column_value_add_class_attribute_based_on_value($value, AC\Column\Context $context, $id)
-{
+function ac_column_value_add_class_attribute_based_on_value(
+    $value,
+    AC\Column\Context $context,
+    $id,
+    AC\TableScreen $table_screen
+) {
     if ($context instanceof AC\Column\CustomFieldContext) {
         // Add a unique `class` attribute to the rendered value.
 
@@ -71,9 +91,9 @@ function ac_column_value_add_class_attribute_based_on_value($value, AC\Column\Co
     return $value;
 }
 
-add_filter('ac/column/render', 'ac_column_value_add_class_attribute_based_on_value', 10, 3);
+add_filter('ac/column/render', 'ac_column_value_add_class_attribute_based_on_value', 10, 4);
 
-function ac_column_value_acf_example($value, AC\Column\Context $context, $id)
+function ac_column_value_acf_example($value, AC\Column\Context $context, $id, AC\TableScreen $table_screen)
 {
     // Check for the ACF column
     if ($context instanceof ACA\ACF\Column\Context) {
@@ -111,12 +131,12 @@ function ac_column_value_acf_example($value, AC\Column\Context $context, $id)
     return $value;
 }
 
-add_filter('ac/column/render', 'ac_column_value_acf_example', 10, 3);
+add_filter('ac/column/render', 'ac_column_value_acf_example', 10, 4);
 
 /**
  * Example of checking for multiple available context types
  */
-add_filter('ac/column/render', function ($value, AC\Column\Context $context, $id) {
+add_filter('ac/column/render', function ($value, AC\Column\Context $context, $id, AC\TableScreen $table_screen) {
     if ($context instanceof ACA\ACF\Column\Context) {
         return $context->get_field_type();
     }
@@ -154,4 +174,4 @@ add_filter('ac/column/render', function ($value, AC\Column\Context $context, $id
     }
 
     return $value;
-}, 10, 3);
+}, 10, 4);
