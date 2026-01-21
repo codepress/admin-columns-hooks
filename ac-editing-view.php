@@ -7,19 +7,19 @@
  * Usage
  *
  * @param ACP\Editing\View|null $view
- * @param AC\Column\Context     $context
+ * @param AC\Column\Context     $column
  * @param string                $editing_context "single" or "bulk"
  * @param ACP\Editing\Service   $service
- * @param AC\TableScreen        $table_screen
+ * @param AC\TableScreen        $table
  *
  * @return ACP\Editing\View|null
  */
 function ac_editing_view_example_usage(
     ?ACP\Editing\View $view,
-    AC\Column\Context $context,
+    AC\Column\Context $column,
     string $editing_context,
     ACP\Editing\Service $service,
-    AC\TableScreen $table_screen
+    AC\TableScreen $table
 ): ?ACP\Editing\View {
     return $view;
 }
@@ -32,10 +32,10 @@ add_filter(
     'ac/editing/view',
     static function (
         $view,
-        AC\Column\Context $context,
+        AC\Column\Context $column,
         string $edit_context,
         ACP\Editing\Service $service,
-        AC\TableScreen $table_screen
+        AC\TableScreen $table
     ) {
         return $view;
     },
@@ -48,11 +48,11 @@ add_filter(
  */
 function ac_editing_view_enable_bulk_for_slug(
     $view,
-    AC\Column\Context $context,
+    AC\Column\Context $column,
     string $edit_context,
     ACP\Editing\Service $service
 ) {
-    if ($context->get_type() === 'column-slug' && 'bulk' === $edit_context) {
+    if ($column->get_type() === 'column-slug' && 'bulk' === $edit_context) {
         $view = $service->get_view('single');
     }
 
@@ -63,11 +63,11 @@ add_filter('ac/editing/view', 'ac_editing_view_enable_bulk_for_slug', 10, 4);
 
 function ac_editing_view_custom_select(
     $view,
-    AC\Column\Context $context,
+    AC\Column\Context $column,
     string $edit_context,
     ACP\Editing\Service $service
 ) {
-    if ($context->get_type() === 'column-meta' && $context->get('field') === 'your-meta-key') {
+    if ($column->get_type() === 'column-meta' && $column->get('field') === 'your-meta-key') {
         $view = new ACP\Editing\View\Select([
             'value'  => 'Label',
             'value2' => 'Label 2',

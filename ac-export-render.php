@@ -6,12 +6,7 @@
 
 add_filter(
     'ac/export/render',
-    function (
-        string $value,
-        AC\Column\Context $context,
-        $id,
-        AC\TableScreen $table_screen
-    ): string {
+    function (string $value, AC\Column\Context $column, $id, AC\TableScreen $table_screen): string {
         return $value;
     },
     10,
@@ -23,8 +18,8 @@ add_filter(
  */
 add_filter(
     'ac/export/render',
-    function (string $value, AC\Column\Context $context): string {
-        if ($context->get_type() === 'column-meta' && $context->get('field_type') === 'date') {
+    function (string $value, AC\Column\Context $column): string {
+        if ($column->get_type() === 'column-meta' && $column->get('field_type') === 'date') {
             $timestamp = ac_helper()->date->strtotime($value);
 
             if ($timestamp) {
@@ -35,7 +30,7 @@ add_filter(
         return $value;
     },
     10,
-    3
+    2
 );
 
 /**
@@ -43,8 +38,8 @@ add_filter(
  */
 add_filter(
     'ac/export/render',
-    function (string $value, AC\Column\Context $context): string {
-        if ($context instanceof ACA\ACF\Column\Context && 'image' === $context->get_field_type()) {
+    function (string $value, AC\Column\Context $column): string {
+        if ($column instanceof ACA\ACF\Column\Context && 'image' === $column->get_field_type()) {
             // In this example `$value` is an attachment ID
             $attachment_id = (int)$value;
             $image_src = wp_get_attachment_image_src($attachment_id);
@@ -62,8 +57,8 @@ add_filter(
  */
 add_filter(
     'ac/export/render',
-    function (string $value, AC\Column\Context $context): string {
-        if ($context->get_type() === 'column-meta') {
+    function (string $value, AC\Column\Context $column): string {
+        if ($column->get_type() === 'column-meta') {
             $value = strip_tags($value);
         }
 

@@ -6,7 +6,7 @@
 /**
  * Fires after a inline-edit saved a value
  */
-function ac_editing_saved_usage(AC\Column\Context $context, $id, $value, AC\TableScreen $table_screen)
+function ac_editing_saved_usage(AC\Column\Context $column, $id, $value, AC\TableScreen $table)
 {
     // Place your code here
 }
@@ -18,11 +18,12 @@ add_action('ac/editing/saved', 'ac_editing_saved_usage', 10, 4);
  */
 add_action(
     'ac/editing/saved',
-    static function (AC\Column\Context $context, $id, $value, AC\TableScreen $table_screen) {
+    static function (AC\Column\Context $column, $id, $value, AC\TableScreen $table) {
         if (
-            $table_screen instanceof AC\PostType &&
-            $context instanceof AC\Column\CustomFieldContext &&
-            'my_custom_field' === $context->get_meta_key()
+            $table instanceof AC\PostType &&
+            $table->get_post_type()->equals('page') &&
+            $column instanceof AC\Column\CustomFieldContext &&
+            'my_custom_field' === $column->get_meta_key()
 
         ) {
             // Modify the value here
@@ -42,10 +43,10 @@ add_action(
  */
 add_action(
     'ac/editing/saved',
-    static function (AC\Column\Context $context, $id, $value, AC\TableScreen $table_screen) {
+    static function (AC\Column\Context $column, $id, $value, AC\TableScreen $table) {
         if (
-            $table_screen instanceof AC\PostType &&
-            $table_screen->get_post_type()->equals('post')
+            $table instanceof AC\PostType &&
+            $table->get_post_type()->equals('post')
         ) {
             // Update the `modified_date` after making any changes using inline or bulk editing
             wp_update_post(['ID' => $id]);

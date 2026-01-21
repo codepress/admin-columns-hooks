@@ -3,8 +3,8 @@
 function my_acp_editable_ajax_column_save_value(
     $value,
     $id,
-    AC\Column\Context $context,
-    AC\TableScreen $table_screen,
+    AC\Column\Context $column,
+    AC\TableScreen $table,
     AC\Type\ListScreenId $list_screen_id
 ) {
     // Possibly modify $value
@@ -20,14 +20,14 @@ add_filter('ac/editing/save_value', 'my_acp_editable_ajax_column_save_value', 10
 add_filter('ac/editing/save_value', static function (
     $value,
     $id,
-    AC\Column\Context $context,
-    AC\TableScreen $table_screen,
+    AC\Column\Context $column,
+    AC\TableScreen $table,
     AC\Type\ListScreenId $list_screen_id
 ) {
     if (
         $value &&
-        $context instanceof AC\Column\CustomFieldContext &&
-        'date' === $context->get_field_type()
+        $column instanceof AC\Column\CustomFieldContext &&
+        'date' === $column->get_field_type()
     ) {
         // Convert submitted value to a unix timestamp
         $value = strtotime($value);
