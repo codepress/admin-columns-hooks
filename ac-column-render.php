@@ -62,7 +62,7 @@ function ac_column_value_custom_field_example($value, AC\Column\Context $column,
         // Other properties
         $column_name = $column->get_name(); // e.g. 62542279f0624c
         $column_type = $column->get_type(); // column-meta
-        //$column_custom_label = $column->get_label(); // e.g. My Column Label
+        //$column_custom_label = $column->get('label'); // e.g. My Column Label
         //$column_type_label = $column->get_type_label(); // e.g. Custom Field
 
         if ('my_hex_color' === $meta_key && 'color' === $custom_field_type) {
@@ -139,40 +139,129 @@ add_filter('ac/column/render', 'ac_column_value_acf_example', 10, 4);
  * Example of checking for multiple available context types
  */
 add_filter('ac/column/render', function ($value, AC\Column\Context $column, $id, AC\TableScreen $table) {
-    if ($column instanceof ACA\ACF\Column\Context) {
-        return $column->get_field_type();
-    }
-
-    if ($column instanceof ACA\Types\Column\RelationshipContext) {
-        return $column->get_type() . $column->get_relation()['type'];
-    }
-
-    if ($column instanceof ACA\Types\Column\FieldContext) {
-        return $column->get_field_type() . ': ' . $column->get_meta_key();
-    }
-
-    if ($column instanceof ACA\JetEngine\Column\FieldContext) {
-        return $column->get_field_type() . ': ' . $column->get_meta_key();
-    }
-
-    if ($column instanceof ACA\JetEngine\Column\RelationContext) {
-        return $column->get_relation()->get_relation_name();
-    }
-
-    if ($column instanceof ACA\MetaBox\Column\RelationContext) {
-        return $column->get_relation()->get_related_meta_type();
-    }
-
-    if ($column instanceof ACA\MetaBox\Column\FieldContext) {
-        return $column->get_field_type() . ' - ' . $column->get_meta_key();
-    }
-
-    if ($column instanceof ACA\Pods\Column\FieldContext) {
-        return $column->get_field_type() . ' - ' . $column->get_meta_key();
-    }
-
+    // Custom Field column
     if ($column instanceof AC\Column\CustomFieldContext) {
-        return $column->get_field_type();
+        $meta_key = $column->get_meta_key(); // e.g. my-meta-key
+        $field_type = $column->get_field_type(); // e.g. date, text, image, url etc.
+        $name = $column->get_name(); // Column type identifier: column-meta
+        $label = $column->get('label'); // e.g. My column label
+        $settings = $column->all(); // List of stored options: [ 'width' => 120, 'label' => 'My Column Label', ... ]
+
+        // Change Custom Field column value here
+        // $value = 'Custom Field: ' . $value;
+
+        return $value;
+    }
+
+    // Advanced Custom Field column
+    if ($column instanceof ACA\ACF\Column\Context) {
+        $acf_field_settings = $column->get_field(); // Array of all field options
+        $acf_field_key = $column->get_field_key();
+        $acf_field_label = $column->get_field_label();
+        $acf_field_id = $column->get_field_id();
+        $acf_field_type = $column->get_field_type();
+        $acf_meta_key = $column->get_meta_key();
+
+        // Change ACF column value here
+        // $value = 'ACF: ' . $value;
+
+        return $value;
+    }
+
+    // Toolset Types column
+    if ($column instanceof ACA\Types\Column\FieldContext) {
+        $types_field = $column->get_field();
+        $types_field_type = $types_field->get_type();
+        $types_field_label = $types_field->get_label();
+        $types_field_id = $types_field->get_id();
+        $types_meta_key = $types_field->get_meta_key();
+
+        // Change Toolset Types column value here
+        // $value = 'Toolset Types: ' . $value;
+
+        return $value;
+    }
+
+    // Toolset Types relational column
+    if ($column instanceof ACA\Types\Column\RelationshipContext) {
+        $types_relation_field = $column->get_relation(); // array of options e.g. [ 'type' => 'Relation-type' ]
+
+        // Change Toolset Types Relational column value here
+        // $value = 'Toolset Types: ' . $value;
+
+        return $value;
+    }
+
+    // JetEngine column
+    if ($column instanceof ACA\JetEngine\Column\FieldContext) {
+        $jetengine_field = $column->get_field();
+        $jetengine_field_type = $jetengine_field->get_type();
+        $jetengine_field_title = $jetengine_field->get_title();
+
+        $jetengine_meta_key = $column->get_meta_key();
+
+        // Change Jetengine column value here
+        // $value = 'JetEngine: ' . $value;
+
+        return $value;
+    }
+
+    // JetEngine Relational column
+    if ($column instanceof ACA\JetEngine\Column\RelationContext) {
+        $jetengine_relation_field = $column->get_relation();
+        $jetengine_relation_field_name = $jetengine_relation_field->get_relation_name();
+        $jetengine_relation_field_id = $jetengine_relation_field->get_id();
+
+        // Change JetEngine Relation column value here
+        // $value = 'JetEngine: ' . $value;
+
+        return $value;
+    }
+
+    // MetaBox column
+    if ($column instanceof ACA\MetaBox\Column\FieldContext) {
+        $metabox_field = $column->get_field();
+        $metabox_field_id = $metabox_field->get_id();
+        $metabox_field_type = $metabox_field->get_type();
+        $metabox_field_name = $metabox_field->get_name();
+        $metabox_field_settings = $metabox_field->get_settings();
+        $metabox_meta_key = $column->get_meta_key();
+
+        // Change MetaBox column value here
+        // $value = 'MetaBox: ' . $value;
+
+        return $value;
+    }
+
+    // MetaBox Relational column
+    if ($column instanceof ACA\MetaBox\Column\RelationContext) {
+        $metabox_relation_field = $column->get_relation();
+        $metabox_relation_id = $metabox_relation_field->get_id();
+        $metabox_relation_type = $metabox_relation_field->get_type();
+        $metabox_relation_title = $metabox_relation_field->get_title();
+        $metabox_relation_meta_type = $metabox_relation_field->get_meta_type();
+        $metabox_relation_related_meta_type = $metabox_relation_field->get_related_meta_type();
+        $metabox_relation_related_settigs = $metabox_relation_field->get_related_field_settings();
+
+        // Change MetaBox Relation column value here
+        // $value = 'MetaBox: ' . $value;
+
+        return $value;
+    }
+
+    // Pods column
+    if ($column instanceof ACA\Pods\Column\FieldContext) {
+        $pods_field = $column->get_field();
+        $pods_field_type = $pods_field->get_type();
+        $pods_field_name = $pods_field->get_name();
+        $pods_field_label = $pods_field->get_label();
+        $pods_field_parent = $pods_field->get_parent();
+        $pods_meta_key = $column->get_meta_key();
+
+        // Change Pods column value here
+        // $value = 'Pods: ' . $value;
+
+        return $value;
     }
 
     return $value;
