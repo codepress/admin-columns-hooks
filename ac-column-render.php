@@ -62,7 +62,7 @@ function ac_column_value_custom_field_example($value, AC\Column\Context $column,
         // Other properties
         $column_name = $column->get_name(); // e.g. 62542279f0624c
         $column_type = $column->get_type(); // column-meta
-        //$column_custom_label = $column->get('label'); // e.g. My Column Label
+        $column_label = $column->get('label'); // e.g. My Column Label
         //$column_type_label = $column->get_type_label(); // e.g. Custom Field
 
         if ('my_hex_color' === $meta_key && 'color' === $custom_field_type) {
@@ -143,8 +143,8 @@ add_filter('ac/column/render', function ($value, AC\Column\Context $column, $id,
     if ($column instanceof AC\Column\CustomFieldContext) {
         $meta_key = $column->get_meta_key(); // e.g. my-meta-key
         $field_type = $column->get_field_type(); // e.g. date, text, image, url etc.
-        $name = $column->get_name(); // Column type identifier: column-meta
-        $label = $column->get('label'); // e.g. My column label
+        $name = $column->get_name(); // Column type identifier. e.g. column-meta
+        $label = $column->get('label'); // User defined column label. e.g. My column label
         $settings = $column->all(); // List of stored options: [ 'width' => 120, 'label' => 'My Column Label', ... ]
 
         // Change Custom Field column value here
