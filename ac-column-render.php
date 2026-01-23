@@ -136,12 +136,15 @@ function ac_column_value_acf_example($value, AC\Column\Context $column, $id, AC\
 add_filter('ac/column/render', 'ac_column_value_acf_example', 10, 4);
 
 /**
- * Example of checking for multiple available context types
+ * Custom Field value render
  */
 add_filter('ac/column/render', function ($value, AC\Column\Context $column, $id, AC\TableScreen $table) {
     // Custom Field column
     if ($column instanceof AC\Column\CustomFieldContext) {
-        $meta_key = $column->get_meta_key(); // e.g. my-meta-key
+        $meta_key = $column->get_meta_key(); // e.g. my_meta_key
+        $meta_type = $column->get_meta_type(); // e.g. post, user, comment or term
+        $meta_type = $column->get_post_type(); // e.g. post, page, my-custom-post-type etc.
+        $meta_type = $column->get_taxonomy(); // e.g. post_category, tag, my-custom-taxonomy etc.
         $field_type = $column->get_field_type(); // e.g. date, text, image, url etc.
         $name = $column->get_name(); // Column type identifier. e.g. column-meta
         $label = $column->get('label'); // User defined column label. e.g. My column label
@@ -153,6 +156,13 @@ add_filter('ac/column/render', function ($value, AC\Column\Context $column, $id,
         return $value;
     }
 
+    return $value;
+}, 10, 4);
+
+/**
+ * Third Party add-ons support: ACF, MetaBox, JetEngine, Pods, Toolset Types.
+ */
+add_filter('ac/column/render', function ($value, AC\Column\Context $column, $id, AC\TableScreen $table) {
     // Advanced Custom Field column
     if ($column instanceof ACA\ACF\Column\Context) {
         $acf_field_settings = $column->get_field(); // Array of all field options
@@ -164,30 +174,6 @@ add_filter('ac/column/render', function ($value, AC\Column\Context $column, $id,
 
         // Change ACF column value here
         // $value = 'ACF: ' . $value;
-
-        return $value;
-    }
-
-    // Toolset Types column
-    if ($column instanceof ACA\Types\Column\FieldContext) {
-        $types_field = $column->get_field();
-        $types_field_type = $types_field->get_type();
-        $types_field_label = $types_field->get_label();
-        $types_field_id = $types_field->get_id();
-        $types_meta_key = $types_field->get_meta_key();
-
-        // Change Toolset Types column value here
-        // $value = 'Toolset Types: ' . $value;
-
-        return $value;
-    }
-
-    // Toolset Types relational column
-    if ($column instanceof ACA\Types\Column\RelationshipContext) {
-        $types_relation_field = $column->get_relation(); // array of options e.g. [ 'type' => 'Relation-type' ]
-
-        // Change Toolset Types Relational column value here
-        // $value = 'Toolset Types: ' . $value;
 
         return $value;
     }
@@ -249,6 +235,30 @@ add_filter('ac/column/render', function ($value, AC\Column\Context $column, $id,
         return $value;
     }
 
+    // Toolset Types column
+    if ($column instanceof ACA\Types\Column\FieldContext) {
+        $types_field = $column->get_field();
+        $types_field_type = $types_field->get_type();
+        $types_field_label = $types_field->get_label();
+        $types_field_id = $types_field->get_id();
+        $types_meta_key = $types_field->get_meta_key();
+
+        // Change Toolset Types column value here
+        // $value = 'Toolset Types: ' . $value;
+
+        return $value;
+    }
+
+    // Toolset Types relational column
+    if ($column instanceof ACA\Types\Column\RelationshipContext) {
+        $types_relation_field = $column->get_relation(); // array of options e.g. [ 'type' => 'Relation-type' ]
+
+        // Change Toolset Types Relational column value here
+        // $value = 'Toolset Types: ' . $value;
+
+        return $value;
+    }
+
     // Pods column
     if ($column instanceof ACA\Pods\Column\FieldContext) {
         $pods_field = $column->get_field();
@@ -265,4 +275,67 @@ add_filter('ac/column/render', function ($value, AC\Column\Context $column, $id,
     }
 
     return $value;
+}, 10, 4);
+
+/**
+ * Example: how to target specific list tables
+ */
+add_filter('ac/column/render', function ($value, AC\Column\Context $column, $id, AC\TableScreen $table) {
+    // Target the "Page" list table
+    if ($table instanceof AC\PostType && $table->get_post_type()->equals('page')) {
+        // $value = 'Page: ' . $value;
+        // $value = get_post_meta($id, '_thumbnail_id', true);
+
+        return $value;
+    }
+
+    // Target the "User" list table
+    if ($table instanceof AC\TableScreen\User) {
+        // $value = 'User: ' . $value;
+        // $value = get_user_meta($id, 'my_meta_key', true);
+
+        return $value;
+    }
+
+    // Target the "Comment" list table
+    if ($table instanceof AC\TableScreen\Comment) {
+        // $value = 'Comment: ' . $value;
+        // $value = get_comment_meta($id, 'my_meta_key', true);
+
+        return $value;
+    }
+
+    // Target the "Categroy" list table
+    if ($table instanceof AC\Taxonomy && $table->get_taxonomy()->equals('category')) {
+        // $value = 'Category: ' . $value;
+        // $value = get_term_meta($id, 'my_meta_key', true);
+
+        return $value;
+    }
+
+    // Target the "Media" list table
+    if ($table instanceof AC\PostType && $table->get_post_type()->equals('attachment')) {
+        // $value = 'Media: ' . $value;
+        // $value = get_post_meta($id, '_wp_attached_file', true);
+
+        return $value;
+    }
+
+    // Target all custom post type list tables
+    if ($table instanceof AC\PostType) {
+        $post_type = (string)$table->get_post_type();
+
+        // $value = 'Custom Post Type: ' . $post_type . ' ' . $value;
+        // $value = get_post_meta($id, 'my_meta_key', true);
+
+        return $value;
+    }
+
+    // Target the "Custom Post Type" list table
+    if ($table instanceof AC\PostType && $table->get_post_type()->equals('my-custom-post-type-slug')) {
+        // $value = 'My Custom Post Type: ' . $value;
+        // $value = get_post_meta($id, 'my_meta_key', true);
+
+        return $value;
+    }
 }, 10, 4);
