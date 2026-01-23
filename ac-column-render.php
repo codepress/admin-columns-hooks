@@ -284,7 +284,33 @@ add_filter('ac/column/render', function ($value, AC\Column\Context $column, $id,
     // Target the "Page" list table
     if ($table instanceof AC\PostType && $table->get_post_type()->equals('page')) {
         // $value = 'Page: ' . $value;
+        // $value = get_post_meta($id, '_wp_page_template', true);
+
+        return $value;
+    }
+
+    // Target the "Post" list table
+    if ($table instanceof AC\PostType && $table->get_post_type()->equals('post')) {
+        // $value = 'Post: ' . $value;
         // $value = get_post_meta($id, '_thumbnail_id', true);
+
+        return $value;
+    }
+
+    // Target the "Custom Post Type" list table
+    if ($table instanceof AC\PostType && $table->get_post_type()->equals('my-custom-post-type-slug')) {
+        // $value = 'My Custom Post Type: ' . $value;
+        // $value = get_post_meta($id, 'my_meta_key', true);
+
+        return $value;
+    }
+
+    // Target all custom post type list tables
+    if ($table instanceof AC\PostType) {
+        $post_type = (string)$table->get_post_type();
+
+        // $value = 'Custom Post Type: ' . $post_type . ' ' . $value;
+        // $value = get_post_meta($id, 'my_meta_key', true);
 
         return $value;
     }
@@ -305,7 +331,7 @@ add_filter('ac/column/render', function ($value, AC\Column\Context $column, $id,
         return $value;
     }
 
-    // Target the "Categroy" list table
+    // Target the "Category" taxonomy list table
     if ($table instanceof AC\Taxonomy && $table->get_taxonomy()->equals('category')) {
         // $value = 'Category: ' . $value;
         // $value = get_term_meta($id, 'my_meta_key', true);
@@ -321,21 +347,4 @@ add_filter('ac/column/render', function ($value, AC\Column\Context $column, $id,
         return $value;
     }
 
-    // Target all custom post type list tables
-    if ($table instanceof AC\PostType) {
-        $post_type = (string)$table->get_post_type();
-
-        // $value = 'Custom Post Type: ' . $post_type . ' ' . $value;
-        // $value = get_post_meta($id, 'my_meta_key', true);
-
-        return $value;
-    }
-
-    // Target the "Custom Post Type" list table
-    if ($table instanceof AC\PostType && $table->get_post_type()->equals('my-custom-post-type-slug')) {
-        // $value = 'My Custom Post Type: ' . $value;
-        // $value = get_post_meta($id, 'my_meta_key', true);
-
-        return $value;
-    }
 }, 10, 4);
