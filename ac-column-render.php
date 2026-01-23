@@ -124,7 +124,7 @@ function ac_column_value_acf_example($value, AC\Column\Context $column, $id, AC\
 add_filter('ac/column/render', 'ac_column_value_acf_example', 10, 4);
 
 /**
- * Custom Field value render
+ * Example for a Custom Field. List of all properties.
  */
 add_filter('ac/column/render', function ($value, AC\Column\Context $column, $id, AC\TableScreen $table) {
     // Custom Field column
@@ -148,7 +148,7 @@ add_filter('ac/column/render', function ($value, AC\Column\Context $column, $id,
 }, 10, 4);
 
 /**
- * Third Party add-ons support: ACF, MetaBox, JetEngine, Pods, Toolset Types.
+ * Example for 3rd party add-ons: ACF, MetaBox, JetEngine, Pods, Toolset Types.
  */
 add_filter('ac/column/render', function ($value, AC\Column\Context $column, $id, AC\TableScreen $table) {
     // Advanced Custom Field column
