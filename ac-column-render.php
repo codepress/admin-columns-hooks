@@ -34,27 +34,14 @@ add_filter('ac/column/render', function ($value, AC\Column\Context $column, $id,
  */
 function ac_column_value_custom_field_example($value, AC\Column\Context $column, $id, AC\TableScreen $table)
 {
-    // Post type of the post list table
-    $post_type = $table instanceof AC\PostType
-        ? (string)$table->get_post_type() // e.g. post, page, product, custom-post-type etc.
-        : null;
-
-    // Unique identifier for the list table
-    $table_id = (string)$table->get_id(); // e.g. post, page, wp-users, wp-comments, wp-taxonomy etc.
-
-    // Taxonomy slug of the taxonomy list table
-    $taxonomy = $table instanceof AC\Taxonomy
-        ? (string)$table->get_taxonomy() // e.g. post_tag, category etc.
-        : null;
-
-    // List table labels
-    $label = $table->get_labels()->get_singular(); // e.g. Post, Page, Comment, User, Tag etc.
-    $label_plural = $table->get_labels()->get_plural(); // e.g. Posts, Pages Comments, Users, Tags etc.
-
-    // Targets page list table with a specific custom field column
-    if ('page' === $post_type && $column instanceof AC\Column\CustomFieldContext) {
+    // Target a Custom Field column on the "Page" list table
+    if (
+        $table instanceof AC\PostType && // this is a post type
+        $table->get_post_type()->equals('page') && // this is a "Page" list table
+        $column instanceof AC\Column\CustomFieldContext // this is a "Custom Field" column
+    ) {
         // Custom Field Key
-        $meta_key = $column->get_meta_key(); // e.g. my-custom-field-key
+        $meta_key = $column->get_meta_key(); // e.g. my_custom_field_key
 
         // Custom Field Type can be 'excerpt|color|date|numeric|image|has_content|link|checkmark|library_id|title_by_id|user_by_id|array|count'. The default is ''.
         $custom_field_type = $column->get_field_type();
@@ -65,6 +52,7 @@ function ac_column_value_custom_field_example($value, AC\Column\Context $column,
         $column_label = $column->get('label'); // e.g. My Column Label
         //$column_type_label = $column->get_type_label(); // e.g. Custom Field
 
+        // Target a specific meta_key and field type
         if ('my_hex_color' === $meta_key && 'color' === $custom_field_type) {
             $value = sprintf('<span style="background-color: %1$s">%1$s</span>', $value);
         }
@@ -346,5 +334,4 @@ add_filter('ac/column/render', function ($value, AC\Column\Context $column, $id,
 
         return $value;
     }
-
 }, 10, 4);
