@@ -154,11 +154,11 @@ add_filter('ac/column/render', function ($value, AC\Column\Context $column, $id,
     // Advanced Custom Field column
     if ($column instanceof ACA\ACF\Column\Context) {
         $acf_field_settings = $column->get_field(); // Array of all field options
-        $acf_field_key = $column->get_field_key();
-        $acf_field_label = $column->get_field_label();
-        $acf_field_id = $column->get_field_id();
-        $acf_field_type = $column->get_field_type();
-        $acf_meta_key = $column->get_meta_key();
+        $acf_field_setting = $column->get_field_setting('label'); // Array of all field options
+        $acf_field_key = $column->get_field_key(); // e.g. field_530367d9e582e
+        $acf_field_label = $column->get_field_label(); // e.g. My Field Label
+        $acf_field_type = $column->get_field_type(); // e.g. checkbox, radio, select, text, image etc.
+        $acf_meta_key = $column->get_meta_key(); // e.g. my_acf_field
 
         // Change ACF column value here
         // $value = 'ACF: ' . $value;
@@ -168,11 +168,11 @@ add_filter('ac/column/render', function ($value, AC\Column\Context $column, $id,
 
     // JetEngine column
     if ($column instanceof ACA\JetEngine\Column\FieldContext) {
-        $jetengine_field = $column->get_field();
-        $jetengine_field_type = $jetengine_field->get_type();
-        $jetengine_field_title = $jetengine_field->get_title();
-
-        $jetengine_meta_key = $column->get_meta_key();
+        $jetengine_field_settings = $column->get_field_settings(); // Array of all field options
+        $jetengine_field_id = $column->get_field_setting('id'); // e.g. 1234
+        $jetengine_field_type = $column->get_type(); // e.g. checkbox, text, select etc.
+        $jetengine_field_title = $column->get_field_title(); // e.g. My Field Title
+        $jetengine_meta_key = $column->get_meta_key(); // e.g. my_jetengine_field
 
         // Change Jetengine column value here
         // $value = 'JetEngine: ' . $value;
@@ -194,12 +194,14 @@ add_filter('ac/column/render', function ($value, AC\Column\Context $column, $id,
 
     // MetaBox column
     if ($column instanceof ACA\MetaBox\Column\FieldContext) {
-        $metabox_field = $column->get_field();
-        $metabox_field_id = $metabox_field->get_id();
-        $metabox_field_type = $metabox_field->get_type();
-        $metabox_field_name = $metabox_field->get_name();
-        $metabox_field_settings = $metabox_field->get_settings();
-        $metabox_meta_key = $column->get_meta_key();
+        $metabox_field_settings = $column->get_field_setttings(); // Array of all field options
+        $metabox_field_setting = $column->get_field_setting('name'); // e.g. My Field Label
+        $metabox_meta_key = $column->get_meta_key(); // e.g. my_metabox_field
+
+        $metabox_field = $column->get_field(); // Object of the field 'ACA\MetaBox\Field\Field' class
+        $metabox_field_id = $metabox_field->get_id(); // e.g. mb_checkbox
+        $metabox_field_type = $metabox_field->get_type(); // e,.g. text, image, select etc.
+        $metabox_field_name = $metabox_field->get_name(); // e.g. My Field Label
 
         // Change MetaBox column value here
         // $value = 'MetaBox: ' . $value;
@@ -225,11 +227,15 @@ add_filter('ac/column/render', function ($value, AC\Column\Context $column, $id,
 
     // Toolset Types column
     if ($column instanceof ACA\Types\Column\FieldContext) {
-        $types_field = $column->get_field();
-        $types_field_type = $types_field->get_type();
-        $types_field_label = $types_field->get_label();
-        $types_field_id = $types_field->get_id();
-        $types_meta_key = $types_field->get_meta_key();
+        $types_field_settings = $column->get_field_settings(); // Array of all field options ['slug'=> 'types', ... ]
+        $types_field_setting = $column->get_field_setting('id'); // e.g. types_field
+        $types_meta_key = $column->get_meta_key(); // E.g. my_types_field
+
+        $types_field = $column->get_field(); // Object of the field 'ACA\Typs\Field' class
+        $types_field_type = $types_field->get_type(); // e.g. text, image, select etc.
+        $types_field_label = $types_field->get_label(); // e.g. My Field Label
+        $types_field_id = $types_field->get_id(); // e.g. types_field
+        $types_meta_key = $types_field->is_repeatable(); // true of false
 
         // Change Toolset Types column value here
         // $value = 'Toolset Types: ' . $value;
@@ -249,12 +255,12 @@ add_filter('ac/column/render', function ($value, AC\Column\Context $column, $id,
 
     // Pods column
     if ($column instanceof ACA\Pods\Column\FieldContext) {
-        $pods_field = $column->get_field();
+        $pods_field = $column->get_field(); // @see Pods\Whatsit\Field class
         $pods_field_type = $pods_field->get_type();
         $pods_field_name = $pods_field->get_name();
         $pods_field_label = $pods_field->get_label();
         $pods_field_parent = $pods_field->get_parent();
-        $pods_meta_key = $column->get_meta_key();
+        $pods_meta_key = $column->get_meta_key(); // e.g. my_pods_field
 
         // Change Pods column value here
         // $value = 'Pods: ' . $value;
