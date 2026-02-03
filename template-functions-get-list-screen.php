@@ -7,7 +7,7 @@ function example_loaded_ac_get_list_screen()
 {
     /**
      * @see https://docs.admincolumns.com/article/66-how-to-find-the-list-screen-id
-     * The "List Screen ID" can be found by opening the screen options in the top-right corner of the
+     * The "ID" can be found by opening the options in the top-right corner of the
      * admin columns settings page. Enable the "List screen ID" by clicking the checkbox next to it.
      * The list screen ID will now be visible in the right sidebar.
      */
