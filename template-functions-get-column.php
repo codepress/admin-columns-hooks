@@ -7,17 +7,15 @@ function example_loaded_get_column()
 {
     /**
      * @see https://docs.admincolumns.com/article/65-how-to-find-the-column-id
-     * The "Column Name" can be found by opening the screen options in the top-right corner of the
-     * admin columns settings page. Enable the "Column Name" by clicking the checkbox next to it.
+     * The "Column Name" can be found by going to the column editor and clicking the three dots menu. Enable the "Column Info" by clicking the checkbox.
      * The Column Name will now be visible for each column.
      */
     $column_name = "<COLUMN NAME GOES HERE>"; // e.g. '5f2a7bb898468'
 
     /**
      * @see https://docs.admincolumns.com/article/66-how-to-find-the-list-screen-id
-     * The "List Screen ID" can be found by opening the screen options in the top-right corner of the
-     * admin columns settings page. Enable the "List screen ID" by clicking the checkbox next to it.
-     * The list screen ID will now be visible in the right sidebar.
+     * TThe "List screen ID" can be found by going to the column editor and clicking the three dots menu. Enable the "Column Info" by clicking the checkbox.
+     * The list screen ID will now be visible.
      */
     $list_screen_id = "<LIST SCREEN ID GOES HERE>"; // e.g. '5eeca96a61826'
 
@@ -49,6 +47,7 @@ function example_get_column()
     if ($column) {
         /**
          * @var AC\Column\Context $context
+         * @see https://docs.admincolumns.com/article/53-class-ac-column
          */
         $context = $column->get_context();
 

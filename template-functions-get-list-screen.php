@@ -57,6 +57,7 @@ function example_ac_get_list_screen()
 
             /**
              * @var AC\Column\Context $context
+             * @see https://docs.admincolumns.com/article/53-class-ac-column
              */
             $context = $column->get_context();
 
