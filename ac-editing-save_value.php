@@ -2,8 +2,8 @@
 
 function my_acp_editable_ajax_column_save_value(
     $value,
-    $id,
     AC\Column\Context $column,
+    int $id,
     AC\TableScreen $table,
     AC\Type\ListScreenId $list_screen_id
 ) {
@@ -19,8 +19,8 @@ add_filter('ac/editing/save_value', 'my_acp_editable_ajax_column_save_value', 10
  */
 add_filter('ac/editing/save_value', static function (
     $value,
-    $id,
     AC\Column\Context $column,
+    $id,
     AC\TableScreen $table,
     AC\Type\ListScreenId $list_screen_id
 ) {
