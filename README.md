@@ -77,19 +77,19 @@ Examples and usage for available Admin Columns hooks and filters
 - [`ac/suppress_site_wide_notices`](ac-suppress_site_wide_notices.php) – Hide site-wide notices.
 - [`acp/hide_renewal_notice`](acp-hide_renewal_notice.php) – Remove renewal notice in Pro.
 
-## Conditional Formatting (Pro)
+## Conditional Formatting
 
 - [`acp/conditional_format/formats`](acp-conditional_format-formats.php) – Add conditional formatting rules.
 
-## Select Formatting (Pro)
+## Select Formatting
 
 - [`acp/select/formatter/user_name`](acp-select-formatter-user_name.php) – Customize user name display in select dropdowns.
 
-## Addons (Pro)
+## Addons
 
 - [`acp/addon/active`](acp-addon-active.php) – Enable or disable specific addon integrations.
 
-## Local Storage (Pro)
+## Local Storage
 
 - [`acp/storage/file/directory`](acp-storage-file-directory.php) – Customize storage directory.
 - [`acp/storage/file/directory/writable`](acp-storage-file-directory-writable.php) – Validate writable directory.
