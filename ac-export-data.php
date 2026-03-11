@@ -5,7 +5,7 @@
  * Fires after the export data has been collected, before the CSV is generated.
  * Use this hook to add custom columns, modify cell values, or change column headers.
  *
- * @param ACP\Export\Exporter\TableData $data         The export data object. Use add_header() and add_cell() to modify the output.
+ * @param ACP\Export\Exporter\TableData $data         The export data object. Use add_header() and add_cell() to overwrite the output.
  * @param AC\Type\ValueCollection       $rows         Collection of row identifiers (e.g. post IDs) included in the export.
  * @param AC\ColumnIterator             $columns      Iterator over the columns being exported.
  * @param AC\TableScreen                $table_screen The current table screen context (e.g. posts, users, media).
@@ -104,10 +104,10 @@ add_action('ac/export/data', static function (ACP\Export\Exporter\TableData $dat
  * Example: Combine two columns into one
  */
 add_action('ac/export/data', static function (ACP\Export\Exporter\TableData $data, AC\Type\ValueCollection $rows, AC\ColumnIterator $columns, AC\TableScreen $table_screen) {
-    $first_name_col = '1a2ef234b3c';
-    $last_name_col = '4da3bc15e6f';
+    $first_name_column_id = '1a2ef234b3c';
+    $last_name_column_id = '4da3bc15e6f';
 
-    if ( ! $data->has_column($first_name_col) || ! $data->has_column($last_name_col)) {
+    if ( ! $data->has_column($first_name_column_id) || ! $data->has_column($last_name_column_id)) {
         return;
     }
 
@@ -115,13 +115,13 @@ add_action('ac/export/data', static function (ACP\Export\Exporter\TableData $dat
     $data->add_header('full_name', 'Full Name');
 
     foreach ($data->get_rows() as $row_id => $row) {
-        $first = $data->get_cell((string)$row_id, $first_name_col) ?? '';
-        $last = $data->get_cell((string)$row_id, $last_name_col) ?? '';
+        $first_name = $data->get_cell((string)$row_id, $first_name_column_id) ?? '';
+        $last_name = $data->get_cell((string)$row_id, $last_name_column_id) ?? '';
 
-        $data->add_cell((string)$row_id, 'full_name', trim($first . ' ' . $last));
+        $data->add_cell((string)$row_id, 'full_name', trim($first_name . ' ' . $last_name));
     }
 
     // Remove the original columns
-    $data->remove_column($first_name_col);
-    $data->remove_column($last_name_col);
+    $data->remove_column($first_name_column_id);
+    $data->remove_column($last_name_column_id);
 }, 10, 4);
