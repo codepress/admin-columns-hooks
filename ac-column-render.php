@@ -343,3 +343,46 @@ add_filter('ac/column/render', function (string $value, AC\Column\Context $colum
 
     return $value;
 }, 10, 4);
+
+/**
+ * Example: Override the rendered value of a specific custom field column where the date format is not available in the stored date format setting.
+ * The 'ac/column/render' filter runs after Admin Columns has formatted a value
+ *
+ * @param string            $value       The already-formatted display value.
+ * @param AC\Column\Context $column      Column configuration and metadata.
+ * @param int|string        $id          The row ID (post ID, user ID, term ID, etc.).
+ * @param AC\TableScreen    $table       The current admin table screen.
+ * @param AC\ListScreen     $list_screen The list screen managing this table.
+ */
+add_filter('ac/column/render', static function (
+    string $value,
+    AC\Column\Context $column,
+    $id
+) {
+    // Target only the specific custom field you want to customize.
+    $meta_key = 'your_custom_field_key';
+
+    // Guard: only act on custom field columns of type 'date' with the right meta key.
+    if ( ! $column instanceof AC\Column\CustomFieldContext
+         || $column->get_field_type() !== 'date'
+         || $column->get_meta_key() !== $meta_key
+    ) {
+        return $value;
+    }
+
+    // Fetch the raw, unformatted value straight from the database.
+    $raw_value = get_post_meta($id, $meta_key, true);
+
+    if ( ! $raw_value) {
+        return $value;
+    }
+
+    $timestamp = strtotime($raw_value);
+
+    if ($timestamp === false) {
+        // Unparseable date — fall back to the default formatted output.
+        return $value;
+    }
+
+    return wp_date('Y-m-d H:i:s', $timestamp);
+}, 10, 3);
