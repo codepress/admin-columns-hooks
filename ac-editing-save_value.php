@@ -3,7 +3,7 @@
 function my_acp_editable_ajax_column_save_value(
     $value,
     AC\Column\Context $column,
-    int $id,
+    $id,
     AC\TableScreen $table,
     AC\Type\ListScreenId $list_screen_id
 ) {
