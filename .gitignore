@@ -7,6 +7,9 @@ Icon*
 ehthumbs.d*
 Thumbs.d*
 /.idea*
+/.claude*
+CLAUDE.md
+
 # Project specific
 config.codekit
 *.scssc
