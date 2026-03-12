@@ -44,6 +44,7 @@ Customize the inline and bulk editing experience. Hooks cover the editing UI, di
 - [`ac/editing/value`](ac-editing-value.php) – Filter the value shown in the editing field.
 - [`ac/editing/save_value`](ac-editing-save_value.php) – Hook into the save process.
 - [`ac/editing/saved`](ac-editing-saved.php) – Action fired after saving.
+- [`ac/editing/before_save`](ac-editing-before_save.php) – Action fired before a value is saved (inline or bulk edit).
 - [`ac/editing/persistent`](ac-editing-persistent.php) – Keep inline edit form open after editing.
 - [`ac/editing/post_statuses`](ac-editing-post_statuses.php) – Filter available post statuses for editing.
 - [`ac/editing/custom_field/post_types`](ac-editing-custom-field-post_types.php) – Filter post types for custom field editing.
@@ -84,6 +85,7 @@ Control which list screens Admin Columns is active on, which post types show col
 - [`ac/list_screen/is_active`](ac-list_screen-is_active.php) – Enable or disable Admin Columns for a list screen.
 - [`ac/list_screen/key/is_active`](ac-list_screen-key-is_active.php) – Enable or disable Admin Columns for a specific list screen key.
 - [`ac/post_types`](ac-post_types.php) – Filter which post types show columns.
+- [`ac/list_screen/saved`](ac-list_screen-saved.php) – Action fired after a column configuration is saved.
 - [`ac/resize_columns/active`](ac-resize_columns-active.php) – Enable column resizing.
 
 ## Notices
@@ -101,6 +103,8 @@ Register custom conditional formatting rules that apply visual styles to column 
 ## Select Formatting
 
 Customize how values are displayed in select-type column dropdowns, such as overriding the format used for user names.
+- [`acp/select/formatter/post_title`](acp-select-formatter-post_title.php) – Customize post title display in select dropdowns.
+- [`acp/select/formatter/term_name`](acp-select-formatter-term_name.php) – Customize term name display in select dropdowns.
 - [`acp/select/formatter/user_name`](acp-select-formatter-user_name.php) – Customize user name display in select dropdowns.
 
 ## Addons
@@ -126,3 +130,73 @@ PHP functions for retrieving column and list screen objects programmatically, us
 - [`ac_get_columns()`](template-functions-get-columns.php) – Get all columns for a list screen.
 - [`ac_get_list_screen()`](template-functions-get-list-screen.php) – Get a list screen instance.
 - [`ac_get_list_screens()`](template-functions-get-list-screens.php) – Get all registered list screens.
+
+## Miscellaneous
+
+Hooks available in the source that do not yet have a dedicated example file.
+
+**Plugin lifecycle**
+- `ac/ready` – Fires when Admin Columns is fully initialized.
+- `acp/ready` – Fires when Admin Columns Pro is fully initialized.
+- `acp/init` – Fires during Admin Columns Pro plugin initialization.
+- `acp/api` – Provides access to the Admin Columns Pro API object.
+
+**Table & screen**
+- `ac/table` – Fires when the Admin Columns table is set up.
+- `ac/table/request` – Fires when the table request is processed.
+- `ac/table/screen` – Fires when the table screen is initialized.
+- `ac/table/list_screen` – Fires when a list screen is applied to the table.
+- `ac/table/body_class` – Filter CSS classes on the table wrapper element.
+- `ac/table/admin_footer` – Fires in the admin footer for the table screen.
+- `ac/table_scripts` – Fires when Admin Columns table scripts are enqueued.
+- `ac/admin_head` – Fires in the admin head for the table screen.
+- `ac/screen` – Fires for each Admin Columns screen load.
+
+**List screen events**
+- `ac/list_screen/before_create` – Fires before a new list screen is created.
+- `ac/list_screen/created` – Fires after a list screen is created.
+- `ac/list_screen/before_save` – Fires before a list screen is saved.
+- `ac/list_screen/deleted` – Fires when a list screen is deleted.
+
+**Editing**
+- `ac/editing/bulk/active` – Enable or disable bulk editing per column.
+- `ac/editing/role_group` – Customize role group labels in column permissions.
+- `acp/editing/inline/button_default_state` – Set the default state of the inline edit toggle button.
+- `acp/editing/rows_per_iteration` – Control rows processed per bulk edit iteration.
+
+**UI features**
+- `ac/sticky_column/enable` – Enable or disable the sticky first column feature.
+- `ac/sticky_header/enable` – Enable or disable the sticky table header.
+- `ac/horizontal_scrolling/enable` – Enable or disable horizontal table scrolling.
+- `acp/horizontal_scrolling/show_indicator` – Show or hide the horizontal scroll indicator.
+- `acp/table/views/active` – Enable or disable the table views feature.
+
+**Search & filtering**
+- `ac/filtering/select/options` – Modify the options shown in filter dropdowns.
+- `acp/filtering/terms_args` – Customize term query arguments for taxonomy filters.
+
+**Export**
+- `ac/export/row_headers` – Customize the CSV export header row.
+- `acp/export/before_batch` – Fires before each export batch is processed.
+
+**Column types**
+- `ac/column/images/content` – Filter post content used to extract images for the Images column.
+- `ac/column/linkcount/domains` – Filter the domains counted by the Link Count column.
+- `ac/select/query/limit` – Limit the number of items returned in select queries.
+
+**Integrations & addons**
+- `ac/integration/active` – Enable or disable a specific third-party integration programmatically.
+- `acp/taxonomies` – Filter the list of taxonomies available in Admin Columns Pro.
+
+**Storage**
+- `acp/storage/file/enable_for_multisite` – Enable file-based column storage on multisite.
+- `acp/storage/file/directory/migrate` – Trigger a storage directory migration.
+
+**Admin**
+- `ac/admin/menu_list` – Customize the Admin Columns admin menu items.
+- `ac/admin/settings/table_elements` – Add or modify elements on the settings table.
+- `ac/admin/page/menu` – Customize the Admin Columns page menu.
+- `acp/admin/page/menu` – Customize the Admin Columns Pro page menu.
+- `ac/display_licence` – Control whether the license section is shown in the admin.
+- `ac/capabilities/init` – Fires when Admin Columns capabilities are initialized.
+- `ac/settings/restore` – Fires when Admin Columns settings are restored.
