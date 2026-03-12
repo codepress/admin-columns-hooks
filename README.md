@@ -35,6 +35,7 @@ Control how columns are sorted and how filter dropdowns behave. Covers default s
 - [`ac/search/filters`](ac-search-filters.php) – Add or modify search filters.
 - [`ac/search/options`](ac-search-options.php) – Modify search filter dropdown options.
 - [`ac/filtering/cache/seconds`](ac-filtering-cache-seconds.php) – Enable and configure filter caching.
+- [`ac/filtering/select/options`](ac-filtering-select-options.php) – Modify the options shown in filter bar dropdowns.
 
 ## Inline & Bulk Editing
 
@@ -172,7 +173,6 @@ Hooks available in the source that do not yet have a dedicated example file.
 - `acp/table/views/active` – Enable or disable the table views feature.
 
 **Search & filtering**
-- `ac/filtering/select/options` – Modify the options shown in filter dropdowns.
 - `acp/filtering/terms_args` – Customize term query arguments for taxonomy filters.
 
 **Export**
