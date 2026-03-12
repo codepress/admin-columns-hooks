@@ -7,9 +7,9 @@
  * Increase the cache duration of the filtering drop-downs. On large datasets, populating the drop-downs may take some time.
  * Please notice that when you increase the seconds, it may not display all the available options in the drop-down when you made changes to the items on your overview page
  */
-function ac_filter_increase_cache_seconds(int $seconds): int
+function ac_filter_increase_cache_seconds(int $seconds, ACP\Search\Comparison $comparison): int
 {
     return 600; // default is 300 seconds (5 minutes).
 }
 
-add_filter('ac/filtering/cache/seconds', 'ac_filter_increase_cache_seconds');
+add_filter('ac/filtering/cache/seconds', 'ac_filter_increase_cache_seconds', 10, 2);

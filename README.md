@@ -11,6 +11,8 @@ Examples and usage for available Admin Columns hooks and filters
 
 ## Column Value & Headings
 
+Control how column values are displayed, sanitized, and labeled in the list table. Includes hooks for modifying column groups, available types, and date/custom field formatting.
+
 - [`ac/column/render`](ac-column-render.php) – Filter the display value of a column.
 - [`ac/column/render/sanitize`](ac-column-render-sanitize.php) – Sanitize the rendered column value.
 - [`ac/column/heading/label`](ac-column-heading-label.php) – Customize column header labels.
@@ -21,6 +23,8 @@ Examples and usage for available Admin Columns hooks and filters
 - [`ac/custom_field/stored_date_format`](ac-custom-field-stored_date_format.php) – Customize stored date format for custom field columns.
 
 ## Sorting & Filtering Hooks
+
+Control how columns are sorted and how filter dropdowns behave. Covers default sort order, custom sort models, type-specific sorting for dates and numbers, and search/filter configuration.
 
 - [`ac/sorting/default`](ac-sorting-default.php) – Modify default sorting behavior.
 - [`ac/sorting/model`](ac-sorting-model.php) – Customize the sorting model for a column.
@@ -34,6 +38,8 @@ Examples and usage for available Admin Columns hooks and filters
 
 ## Inline & Bulk Editing
 
+Customize the inline and bulk editing experience. Hooks cover the editing UI, displayed and saved values, post status options, and batch size for bulk operations.
+
 - [`ac/editing/view`](ac-editing-view.php) – Customize the editing UI.
 - [`ac/editing/value`](ac-editing-value.php) – Filter the value shown in the editing field.
 - [`ac/editing/save_value`](ac-editing-save_value.php) – Hook into the save process.
@@ -46,11 +52,15 @@ Examples and usage for available Admin Columns hooks and filters
 
 ## Delete
 
+Hooks for the bulk delete feature, including confirmation dialogs, user reassignment on deletion, and batch size control.
+
 - [`ac/delete/confirmation`](ac-delete-confirmation.php) – Filter delete confirmation notices.
 - [`ac/delete/reassign_user`](ac-delete-reassign_user.php) – Set the reassign user when deleting users.
 - [`ac/delete/bulk/deleted_rows_per_iteration`](ac-delete-bulk-deleted_rows_per_iteration.php) – Control batch size in bulk deletes.
 
 ## Export Hooks
+
+Customize the CSV export feature. Hooks allow you to modify export data, format values, escape output, change the delimiter, set filenames, toggle the feature, and control batch size during export.
 
 - [`ac/export/data`](ac-export-data.php) – Modify full export data (add/remove columns, rows, format values).
 - [`ac/export/render`](ac-export-render.php) – Modify export column values.
@@ -62,10 +72,14 @@ Examples and usage for available Admin Columns hooks and filters
 
 ## Quick Add
 
+Hooks for the Quick Add feature, which allows creating new entries directly from the list table without leaving the screen.
+
 - [`ac/quick_add/enable`](ac-quick_add-enable.php) – Enable the "Quick Add" feature.
 - [`ac/quick_add/saved`](ac-quick_add-saved.php) – Run after Quick Add saves.
 
 ## List Screen
+
+Control which list screens Admin Columns is active on, which post types show columns, and whether column resizing is enabled.
 
 - [`ac/list_screen/is_active`](ac-list_screen-is_active.php) – Enable or disable Admin Columns for a list screen.
 - [`ac/list_screen/key/is_active`](ac-list_screen-key-is_active.php) – Enable or disable Admin Columns for a specific list screen key.
@@ -74,22 +88,30 @@ Examples and usage for available Admin Columns hooks and filters
 
 ## Notices
 
+Suppress or hide admin notices shown by Admin Columns, including site-wide notices and the Pro license renewal reminder.
+
 - [`ac/suppress_site_wide_notices`](ac-suppress_site_wide_notices.php) – Hide site-wide notices.
 - [`acp/hide_renewal_notice`](acp-hide_renewal_notice.php) – Remove renewal notice in Pro.
 
 ## Conditional Formatting
 
+Register custom conditional formatting rules that apply visual styles to column values based on defined conditions.
 - [`acp/conditional_format/formats`](acp-conditional_format-formats.php) – Add conditional formatting rules.
 
 ## Select Formatting
 
+Customize how values are displayed in select-type column dropdowns, such as overriding the format used for user names.
 - [`acp/select/formatter/user_name`](acp-select-formatter-user_name.php) – Customize user name display in select dropdowns.
 
 ## Addons
 
+Enable or disable specific third-party addon integrations (e.g., ACF, MetaBox, JetEngine, Pods) provided by Admin Columns Pro.
+
 - [`acp/addon/active`](acp-addon-active.php) – Enable or disable specific addon integrations.
 
 ## Local Storage
+
+Configure how Admin Columns Pro stores column configurations. Hooks cover the storage directory, write permissions, dynamic configuration loading via callbacks, and registering template files.
 
 - [`acp/storage/file/directory`](acp-storage-file-directory.php) – Customize storage directory.
 - [`acp/storage/file/directory/writable`](acp-storage-file-directory-writable.php) – Validate writable directory.
@@ -97,6 +119,8 @@ Examples and usage for available Admin Columns hooks and filters
 - [`acp/storage/template/files`](acp-storage-template-files.php) – Register column template files.
 
 ## Template Functions
+
+PHP functions for retrieving column and list screen objects programmatically, useful for theme templates and custom integrations.
 
 - [`ac_get_column()`](template-functions-get-column.php) – Get a single column instance by name.
 - [`ac_get_columns()`](template-functions-get-columns.php) – Get all columns for a list screen.

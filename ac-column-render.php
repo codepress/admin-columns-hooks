@@ -5,14 +5,15 @@
  */
 
 /**
- * @param string            $value  The column value that is displayed within a cell on the list table
- * @param AC\Column\Context $column The column properties and all its settings
- * @param string|int        $id     Post ID, User ID, Comment ID, Attachment ID or Term ID
- * @param AC\TableScreen    $table  The table properties
+ * @param string            $value       The column value that is displayed within a cell on the list table
+ * @param AC\Column\Context $column      The column properties and all its settings
+ * @param string|int        $id          Post ID, User ID, Comment ID, Attachment ID or Term ID
+ * @param AC\TableScreen    $table       The table properties
+ * @param AC\ListScreen     $list_screen The list screen managing this table
  *
  * @return mixed
  */
-function ac_column_value_usage(string $value, AC\Column\Context $column, $id, AC\TableScreen $table)
+function ac_column_value_usage(string $value, AC\Column\Context $column, $id, AC\TableScreen $table, AC\ListScreen $list_screen)
 {
     // Change the rendered column value
     // $value = 'new value';
@@ -20,19 +21,19 @@ function ac_column_value_usage(string $value, AC\Column\Context $column, $id, AC
     return $value;
 }
 
-add_filter('ac/column/render', 'ac_column_value_usage', 10, 4);
+add_filter('ac/column/render', 'ac_column_value_usage', 10, 5);
 
 /**
  * Shorter notation
  */
-add_filter('ac/column/render', function (string $value, AC\Column\Context $column, $id, AC\TableScreen $table) {
+add_filter('ac/column/render', function (string $value, AC\Column\Context $column, $id, AC\TableScreen $table, AC\ListScreen $list_screen) {
     return $value;
-}, 10, 4);
+}, 10, 5);
 
 /**
  * Example on how to wrap the value of a specific Custom Field column of the type 'color' in markup to give it a background color.
  */
-function ac_column_value_custom_field_example(string $value, AC\Column\Context $column, $id, AC\TableScreen $table)
+function ac_column_value_custom_field_example(string $value, AC\Column\Context $column, $id, AC\TableScreen $table, AC\ListScreen $list_screen)
 {
     // Target a Custom Field column on the "Page" list table
     if (
@@ -61,12 +62,12 @@ function ac_column_value_custom_field_example(string $value, AC\Column\Context $
     return $value;
 }
 
-add_filter('ac/column/render', 'ac_column_value_custom_field_example', 10, 4);
+add_filter('ac/column/render', 'ac_column_value_custom_field_example', 10, 5);
 
 /**
  * Example on how to add a `class` attribute to the rendered value that can be styled by CSS.
  */
-function ac_column_value_add_class_attribute(string $value, AC\Column\Context $column, $id, AC\TableScreen $table)
+function ac_column_value_add_class_attribute(string $value, AC\Column\Context $column, $id, AC\TableScreen $table, AC\ListScreen $list_screen)
 {
     if ($column instanceof AC\Column\CustomFieldContext) {
         // Add a unique `class` attribute to the rendered value.
@@ -84,9 +85,9 @@ function ac_column_value_add_class_attribute(string $value, AC\Column\Context $c
     return $value;
 }
 
-add_filter('ac/column/render', 'ac_column_value_add_class_attribute', 10, 4);
+add_filter('ac/column/render', 'ac_column_value_add_class_attribute', 10, 5);
 
-function ac_column_value_acf_example(string $value, AC\Column\Context $column, $id, AC\TableScreen $table)
+function ac_column_value_acf_example(string $value, AC\Column\Context $column, $id, AC\TableScreen $table, AC\ListScreen $list_screen)
 {
     // Check for the ACF column
     if ($column instanceof ACA\ACF\Column\Context) {
@@ -121,12 +122,12 @@ function ac_column_value_acf_example(string $value, AC\Column\Context $column, $
     return $value;
 }
 
-add_filter('ac/column/render', 'ac_column_value_acf_example', 10, 4);
+add_filter('ac/column/render', 'ac_column_value_acf_example', 10, 5);
 
 /**
  * Example for a Custom Field. List of all properties.
  */
-add_filter('ac/column/render', function (string $value, AC\Column\Context $column, $id, AC\TableScreen $table) {
+add_filter('ac/column/render', function (string $value, AC\Column\Context $column, $id, AC\TableScreen $table, AC\ListScreen $list_screen) {
     // Custom Field column
     if ($column instanceof AC\Column\CustomFieldContext) {
         $meta_key = $column->get_meta_key(); // e.g. my_meta_key
@@ -145,12 +146,12 @@ add_filter('ac/column/render', function (string $value, AC\Column\Context $colum
     }
 
     return $value;
-}, 10, 4);
+}, 10, 5);
 
 /**
  * Example for 3rd party add-ons: ACF, MetaBox, JetEngine, Pods, Toolset Types.
  */
-add_filter('ac/column/render', function (string $value, AC\Column\Context $column, $id, AC\TableScreen $table) {
+add_filter('ac/column/render', function (string $value, AC\Column\Context $column, $id, AC\TableScreen $table, AC\ListScreen $list_screen) {
     // Advanced Custom Field column
     if ($column instanceof ACA\ACF\Column\Context) {
         $acf_field_settings = $column->get_field(); // Array of all field options
@@ -269,12 +270,12 @@ add_filter('ac/column/render', function (string $value, AC\Column\Context $colum
     }
 
     return $value;
-}, 10, 4);
+}, 10, 5);
 
 /**
  * Example: how to target specific list tables
  */
-add_filter('ac/column/render', function (string $value, AC\Column\Context $column, $id, AC\TableScreen $table) {
+add_filter('ac/column/render', function (string $value, AC\Column\Context $column, $id, AC\TableScreen $table, AC\ListScreen $list_screen) {
     // Target the "Page" list table
     if ($table instanceof AC\PostType && $table->get_post_type()->equals('page')) {
         // $value = 'Page: ' . $value;
@@ -342,7 +343,7 @@ add_filter('ac/column/render', function (string $value, AC\Column\Context $colum
     }
 
     return $value;
-}, 10, 4);
+}, 10, 5);
 
 /**
  * Example: Override the rendered value of a specific custom field column where the date format is not available in the stored date format setting.

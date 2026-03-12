@@ -8,10 +8,11 @@
 add_filter('ac/search/filters', static function (
     array $filter,
     AC\Column\Context $column,
-    AC\TableScreen $table
+    AC\TableScreen $table,
+    AC\Type\ListScreenId $list_screen_id
 ): array {
     return $filter;
-}, 10, 3);
+}, 10, 4);
 
 /**
  * Unset Smart Filtering operators for a specific column
